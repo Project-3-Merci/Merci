@@ -27,23 +27,18 @@ User profile:
 # Client / Frontend
 
 ## React Router Routes (React App)
+
 | Path                      | Component            | Permissions                 | Behavior                                                     |
 | ------------------------- | -------------------- | --------------------------- | ------------------------------------------------------------ |
-| `/`                       | SplashPage           | public `<Route>`            | Home page                                                    |
+| `/`                       | SelectPage           | public `<Route>`            | Home page                                                    |
 | `/signup`                 | SignupPage           | anon only  `<AnonRoute>`    | Signup form, link to login, navigate to homepage after signup |
 | `/login`                  | LoginPage            | anon only `<AnonRoute>`     | Login form, link to signup, navigate to homepage after login |
-| `/tournaments`            | TournamentListPage   | user only `<PrivateRoute>`  | Shows all tournaments in a list                              |
-| `/tournaments/add`        | TournamentListPage   | user only `<PrivateRoute>`  | Edits a tournament                                           |
-| `/tournaments/:id`        | TournamentDetailPage | user only `<PrivateRoute>`  | Details of a tournament to edit                              |
-| `/tournament/:id`         | n/a                  | user only `<PrivateRoute>`  | Delete tournament                                            |
-| `/tournament/players`     | PlayersListPage      | user only  `<PrivateRoute>` | List of players of a tournament                              |
-| `/tournament/players/add` | PlayersListPage      | user only `<PrivateRoute>`  | Add a player to the tournament                               |
-| `/tournament/players/:id` | PlayersDetailPage    | user only `<PrivateRoute>`  | Edit player for tournament                                   |
-| `/tournament/players/:id` | PlayersListPage      | user only  `<PrivateRoute>` | Delete player from tournament                                |
-| `/tournament/tableview`   | TableView            | user only  `<PrivateRoute>` | Games view and brackets                                      |
-| `/tournament/ranks`       | RanksPage            | user only `<PrivateRoute>`  | Ranks list                                                   |
-| `/tournament/game`        | GameDetailPage       | user only `<PrivateRoute>`  | Game details                                                 |
-
+| `/favour`            | FavourPage   | public`<Route>`  | Shows all public favours in a list                              |
+| `/favour/:id`        | FavourDetailPage   | user only `<PrivateRoute>`  | Details of specific favour       |
+| `/myFavours`         |  MyFavourPage              | user only `<PrivateRoute>`  |  List of my favours (Accepted / Requested)                                       |
+| `/chat/:receivedId`     | ChatPage      | user only  `<PrivateRoute>` | Display chat between two users                              |
+| `/profile/:id` | ProfilePage      | user only `<PrivateRoute>`  | Shows profile information                               |
+| `/create` | CreateFavourPage    | user only `<PrivateRoute>`  | Creates new favour                                   |
 
 
 
@@ -51,30 +46,26 @@ User profile:
 
 - LoginPage
 
-- SplashPage
+- SelectPage
 
-- TournamentListPage
+- SignupPage
 
-- Tournament Cell
+- FavourPage
 
-- TournamentDetailPage
+- FavourDetailPage
 
-- TableViewPage
+- MyFavourPage
 
-- PlayersListPage
+- ChatPage
 
-- PlayerDetailPage
+- ProfilePage
 
-- RanksPage
-
-- TournamentDetailPageOutput
+- CreateFavourPage
 
 - Navbar
 
+- Map
 
-  
-
- 
 
 ## Services
 
@@ -118,7 +109,7 @@ User model
   imgUrl: {type: String, default:""},
   acceptedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
   requestedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
-  matchedFavours: [{type: Schema.Types.ObjectId, ref:"matched"}],
+  token: {type: Number, default: 100}
 }
 ```
 
@@ -127,7 +118,8 @@ Favours model
 
 ```javascript
  {
-  requestUser: {type: Schema.Types.ObjectId, ref:"user"},
+  asker: {type: Schema.Types.ObjectId, ref:"user"},
+  taker: {type: Schema.Types.ObjectId, ref:"user", default: null},
   description: {type: String},
   location: {type: String},
   locationLat: {type: Number},
@@ -136,32 +128,13 @@ Favours model
  }
 ```
 
-Matched model
-
-```javascript
- {
-   favour: {type: Schema.Types.ObjectId, ref:"favours"},
-   requestUser: {type: Schema.Types.ObjectId, ref:"user"},
-   acceptUser: {type: Schema.Types.ObjectId, ref:"user"},
- }
-```
-
-Chat model
-
-```javascript
- {
-   userOne: {type: Schema.Types.ObjectId, ref:"user"},
-   userTwo: {type: Schema.Types.ObjectId, ref:"user"},
-   messagesArray: [{type: Schema.Types.ObjectId, ref:"message"}],
- }
-```
-
 Message model
 
 ```javascript
  {
    content: {type: String},
-   owner: {type: Schema.Types.ObjectId, ref:"user"},
+   sender: {type: Schema.Types.ObjectId, ref:"user"},
+   receiver: {type: Schema.Types.ObjectId, ref:"user"}
  }
 ```
 <br>
@@ -169,26 +142,25 @@ Message model
 
 ## API Endpoints (backend routes)
 
-| HTTP Method | URL                         | Request Body                 | Success status | Error Status | Description                                                  |
-| ----------- | --------------------------- | ---------------------------- | -------------- | ------------ | ------------------------------------------------------------ |
-| GET         | `/auth/profile    `           | Saved session                | 200            | 404          | Check if user is logged in and return profile page           |
-| POST        | `/auth/signup`                | {name, email, password}      | 201            | 404          | Checks if fields not empty (422) and user not exists (409), then create user with encrypted password, and store user in session |
-| POST        | `/auth/login`                 | {username, password}         | 200            | 401          | Checks if fields not empty (422), if user exists (404), and if password matches (404), then stores user in session |
-| POST        | `/auth/logout`                | (empty)                      | 204            | 400          | Logs out the user                                            |
-| GET         | `/api/tournaments`                |                              |                | 400          | Show all tournaments                                         |
-| GET         | `/api/tournaments/:id`            | {id}                         |                |              | Show specific tournament                                     |
-| POST        | `/api/tournaments` | {}                           | 201            | 400          | Create and save a new tournament                             |
-| PUT         | `/api/tournaments/:id`       | {name,img,players}           | 200            | 400          | edit tournament                                              |
-| DELETE      | `/api/tournaments/:id`     | {id}                         | 201            | 400          | delete tournament                                            |
-| GET         | `/api/players`                    |                              |                | 400          | show players                                                 |
-| GET         | `/api/players/:id`                | {id}                         |                |              | show specific player                                         |
-| POST        | `/api/players`         | {name,img,tournamentId}      | 200            | 404          | add player                                                   |
-| PUT         | `/api/players/:id`           | {name,img}                   | 201            | 400          | edit player                                                  |
-| DELETE      | `/api/players/:id`         | {id}                         | 200            | 400          | delete player                                                |
-| GET         | `/api/games`                      | {}                           | 201            | 400          | show games                                                   |
-| GET         | `/api/games/:id`                  | {id,tournamentId}            |                |              | show specific game                                           |
-| POST        | `/api/games`             | {player1,player2,winner,img} |                |              | add game                                                     |
-| PUT         | `/api/games/:id`             | {winner,score}               |                |              | edit game                                                    |
+
+| **Method** | **View**           | **Route**                                | **Description**                                                                                      | **Request - Body**                                                      |
+| ---------- | ------------------ | ---------------------------------------- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `GET`      | `index` or `favours` | `/`                                      | Main page route home `index` index view. If logged redirect `/swipe`                                 | {req.session.userID}                                                    |
+| `GET`      | `signup`           | `/signup`                                | Render `signup` form view                                                                            |                                                                         |
+| `POST`     | `swipe`            | `/signup`                                | Send signup data to server and creates user in DB. Then redirect to `/swipe`                         | {username, password, age, name, interests, aboutme, campus, profileImg} |
+| `GET`      | `login`            | `/login`                                 | Render `login`form view                                                                              |                                                                         |
+| `POST`     | `swipe`            | `/login`                                 | Sends login data to server and redirects to `/swipe`                                                 | {username, password}                                                    |
+| `GET`      | `swipe`            | `/swipe/show/:userId`                    | Render `swipe` view                                                                                  | {req.session.filter}                                                    |
+| `POST`     | `swipe`            | `/swipe/like/:userId/:likedId`           | Sends ObjID of liked user to server. Check for matches. Then redirect to `/swipe`                    | {req.params.id, req.session.userID}                                     |
+| `POST`     | `swipe`            | `/swipe/dislike/:userId/:dislikedId`     | Sends objID of disliked user to server. Then redirects to `/swipe`                                   | {req.params.id, req.session.userID}                                     |
+| `POST`     | `swipe`            | `/swipe/filter/:userId`                  | Sends filter option to the server. Add the filter to the current session. Then redirects to `/swipe` | {req.session.userID, req.session.filter}                                |
+| `GET`      | `profile`          | `/profile/:userId`                       | Render `profile` view                                                                                | {req.sessionId}                                                         |
+| `POST`     | `profile`          | `/profile/:userId/edit-imgProfile`       | Sends the new image to the server, update DB. Then render `profile` view                             | {req.session.userID, req.file.path}                                     |
+| `POST`     | `profile`          | `/profile/:userId/edit-infoProfile`      | Sends the new data to server, update DB. Then render `profile` view                                  | {name, interests, aboutme}                                              |
+| `POST`     | `profile`          | `/profile/:userId/add-newPhoto`          | Sends the img to server, update DB. Then render `profile` view                                       | {req.file.path}                                                         |
+| `POST`     | `profile`          | `/profile/:userId/delete-photo/:photoId` | Delete img from DB. Then render `profile`view                                                        | {req.params.id}                                                         |
+| `GET`      | `matches`          | `/matches/:userId`                       | Render `matches` view                                                                                | {req.session.id}                                                        |
+
 
 
 <br>
