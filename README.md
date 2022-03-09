@@ -64,7 +64,7 @@ User profile:
 
 - Navbar
 
-- Map
+- Mapbox
 
 
 ## Services
