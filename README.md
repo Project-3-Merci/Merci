@@ -152,14 +152,15 @@ Message model
 | `POST`     | `login`            | `/auth/login`                                 | Sends login data to server and redirects to `/favours`                                                 | {e-mail, password}                                                    |
 | `GET`      | `favours`            | `/favours`                    | Render `favours` view                                                                                  |                                                     |
 | `GET`     | `favours`            | `/favours/:id`           | Render details of the favour.   | {req.params.id}                                     |
-| `GET`     | `myFavours`            | `/myFavours/:userId`     | Render all accepted / requested favours of user              | {req.params.userId}                                     |
+| `DELETE`     | `favours`            | `/favours/:id`           | Deletes favour from database.   | {req.params.id}                                     |
+| `GET`     | `myList`            | `/favours/myList/:userId`     | Render all accepted / requested favours of user              | {req.params.userId}                                     |
 | `GET`     | `chat`            | `/chat/:receiverId`                  | Render chat page between current user and the specified receiver | {req.params.receiverID}                                |
 | `POST`      | `chat`          | `/chat/:receiverId`                       | Sends new message to server   | {req.params.receiverId}      |
-| `GET`     | `create`          | `/create`       | Render create new favour page |        |
-| `POST`     | `create`          | `/create`      | Sends the new favour data to server. Then redirect to `myFavours/:userId`     | {location, description, token}    |
+| `GET`     | `create`          | `/favours/create`       | Render create new favour page |        |
+| `POST`     | `create`          | `/favours/create`      | Sends the new favour data to server. Then redirect to `myFavours/:userId`     | {location, description, token}    |
 | `GET`     | `profile`          | `/profile/:id`          | Renders current specified profile user   |        |
-| `POST`     | `profile`          | `/profile/:id/edit` | Sends new user data to server, then redirect to `/profile/:id`    | {profileImg, age, aboutMe}                                                         |
-| `GET`      | `verify`          | `/verify`                       | Verifies existing token and sends user data back to the front   |                                                       |
+| `PUT`     | `profile`          | `/profile/:id` | Sends new user data to server, then redirect to `/profile/:id`    | {profileImg, age, aboutMe}                                                         |
+| `GET`      | `verify`          | `/auth/verify`                       | Verifies existing token and sends user data back to the front   |                                                       |
 
 
 

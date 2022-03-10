@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 
-const favoursSchema = new Schema({
+const favourSchema = new Schema({
   asker: { type: Schema.Types.ObjectId, ref:"user" },
   taker: { type: Schema.Types.ObjectId, ref:"user", default: null },
   description: { type: String },
@@ -11,4 +11,4 @@ const favoursSchema = new Schema({
   token: { type: Number }
 });
 
-module.exports = model("Favours", favoursSchema);
+module.exports = model("Favour", favourSchema);
