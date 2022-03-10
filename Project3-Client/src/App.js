@@ -11,6 +11,9 @@ import IsPrivate from "./components/IsPrivate";
 import AllFavoursPage from "./pages/AllFavoursPage"
 import UserFavoursPage from "./pages/UserFavoursPage"
 import CreateFavourPage from "./pages/CreateFavourPage"
+import EditProfilePage from "./pages/EditProfilePage"
+import ProfilePage from "./pages/ProfilePage"
+import FavourDetailsPage from "./pages/FavourDetailsPage"
 
 
 function App() {
@@ -22,10 +25,12 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<IsPrivate> <ChatPage /> </IsPrivate>} />
         
-
         <Route path="/favours" element={<AllFavoursPage />} />
         <Route path="/favours/myList" element={<UserFavoursPage/>} />
         <Route path="/favours/create" element={<CreateFavourPage/>} />
+        <Route path="/profile/edit" element={<EditProfilePage/>} />
+        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/favour/:id" element={<FavourDetailsPage/>} />
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
 
