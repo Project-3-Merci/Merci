@@ -6,7 +6,7 @@ import ProjectCard from "./../components/ProjectCard";
 const API_URL = "http://localhost:5005";
 
 
-function ProjectListPage() {
+function AllFavoursPage() {
   const [projects, setProjects] = useState([]);
 
   const getAllProjects = () => {
@@ -41,5 +41,5 @@ function ProjectListPage() {
   );
 }
 
-export default ProjectListPage;
+export default AllFavoursPage;
 
