@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const API_URL = "http://localhost:5005";
 
-function EditProjectPage(props) {
+function EditProfilePage(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
 
@@ -95,4 +95,4 @@ function EditProjectPage(props) {
   );
 }
 
-export default EditProjectPage;
+export default EditProfilePage;
