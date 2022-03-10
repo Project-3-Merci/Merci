@@ -3,7 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 
-
+import ChatPage from "./pages/ChatPage"
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon";
@@ -20,6 +20,7 @@ function App() {
 
       <Routes>      
         <Route path="/" element={<HomePage />} />
+        <Route path="/chat" element={<IsPrivate> <ChatPage /> </IsPrivate>} />
         
 
         <Route path="/favours" element={<AllFavoursPage />} />
