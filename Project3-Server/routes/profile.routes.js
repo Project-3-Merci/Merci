@@ -12,3 +12,4 @@ router.route("/:id")
 .put(isAuthenticated, (req, res, next)=>{
 
 })
+module.exports = router;
