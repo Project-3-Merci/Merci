@@ -1,3 +1,10 @@
+import IsPrivate from "../components/IsPrivate";
+
 export default function CreateFavourPage(){
-    return(<div>CreateFavourPage</div>)
+    return(
+        <IsPrivate>
+
+            <div>CreateFavourPage</div>
+        </IsPrivate>
+    )
 }
