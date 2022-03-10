@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <nav>
-      <Link to="/favours">
+      <Link to="/">
         <button>Home</button>
       </Link>
 
