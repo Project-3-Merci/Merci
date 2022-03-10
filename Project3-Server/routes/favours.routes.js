@@ -25,3 +25,5 @@ router.get("/myList/:userId",isAuthenticated, (req,res,next)=>{
 router.post("/create",isAuthenticated, (req, res, next)=>{
 
 })
+
+module.exports = router;

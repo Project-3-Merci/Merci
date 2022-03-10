@@ -14,3 +14,5 @@ router.route("/:receiverId")
 .post(isAuthenticated,(req, res, next)=>{
     
 })
+
+module.exports = router;
