@@ -9,7 +9,7 @@ const router = express.Router();
 const saltRounds = 10;
 
 
-// POST /auth/signup  - Creates a new user in the database
+// To create a new user in the database
 router.post('/signup', (req, res, next) => {
   const { email, password, name } = req.body;
 
@@ -43,7 +43,7 @@ router.post('/signup', (req, res, next) => {
         return;
       }
 
-      // If email is unique, proceed to hash the password
+      // If email is unique, hash the password
       const salt = bcrypt.genSaltSync(saltRounds);
       const hashedPassword = bcrypt.hashSync(password, salt);
 
