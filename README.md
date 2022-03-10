@@ -35,7 +35,7 @@ User profile:
 | `/login`                  | LoginPage            | anon only `<AnonRoute>`     | Login form, link to signup, navigate to homepage after login |
 | `/favours`            | FavourPage   | public`<Route>`  | Shows all public favours in a list                              |
 | `/favours/:id`        | FavourDetailPage   | user only `<PrivateRoute>`  | Details of specific favour       |
-| `/myFavours`         |  MyFavourPage              | user only `<PrivateRoute>`  |  List of my favours (Accepted / Requested)                                       |
+| `/favours/myList`         |  MyFavourPage              | user only `<PrivateRoute>`  |  List of my favours (Accepted / Requested)                                       |
 | `/chat/:receivedId`     | ChatPage      | user only  `<PrivateRoute>` | Display chat between two users                              |
 | `/profile/:id` | ProfilePage      | user only `<PrivateRoute>`  | Shows profile information                               |
 | `/create` | CreateFavourPage    | user only `<PrivateRoute>`  | Creates new favour                                   |
