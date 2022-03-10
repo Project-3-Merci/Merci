@@ -8,7 +8,7 @@ import TaskCard from "../components/TaskCard";
 const API_URL = "http://localhost:5005";
 
 
-function ProjectDetailsPage (props) {
+function FavourDetailsPage (props) {
   const [project, setProject] = useState(null);
   const { projectId } = useParams();
   
@@ -62,4 +62,4 @@ function ProjectDetailsPage (props) {
   );
 }
 
-export default ProjectDetailsPage;
+export default FavourDetailsPage;
