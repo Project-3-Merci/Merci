@@ -3,10 +3,11 @@ import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 
-
+import ChatPage from "./pages/ChatPage"
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon";
+import IsPrivate from "./components/IsPrivate"
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
 
       <Routes>      
         <Route path="/" element={<HomePage />} />
-        
+        <Route path="/chat" element={<IsPrivate> <ChatPage /> </IsPrivate>} />
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
 
