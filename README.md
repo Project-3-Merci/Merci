@@ -105,7 +105,7 @@ User model
 {
   email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
-  username: { type: String, required: true, unique: true },
+  name: { type: String, required: true, unique: true },
   aboutMe: {type:String, default: ""},
   age :{type: Number},
   profileImg: { type: String, default:"http://cdn.onlinewebfonts.com/svg/img_574534.png"},
