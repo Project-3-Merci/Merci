@@ -12,13 +12,13 @@ function AllFavoursPage() {
     const storedToken = localStorage.getItem("authToken");
 
     // Send the token through the request "Authorization" Headers
-    axios
+/*     axios
       .get(
       `${API_URL}/api/projects`,
       { headers: { Authorization: `Bearer ${storedToken}` } }
     )
       .then((response) => setProjects(response.data))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error)); */
   };
 
   // We set this effect will run only once, after the initial render

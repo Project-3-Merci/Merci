@@ -1,9 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-import AddTask from "../components/AddTask";
 
-import TaskCard from "../components/TaskCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -46,7 +44,7 @@ function FavourDetailsPage (props) {
       )}
 
       
-      <AddTask refreshProject={getProject} projectId={projectId} />          
+      {/* <AddTask refreshProject={getProject} projectId={projectId} />          
 
       { project && project.tasks.map((task) => <TaskCard key={task._id} {...task} /> )} 
 
@@ -56,7 +54,7 @@ function FavourDetailsPage (props) {
           
       <Link to={`/projects/edit/${projectId}`}>
         <button>Edit Project</button>
-      </Link>
+      </Link> */}
       
     </div>
   );
