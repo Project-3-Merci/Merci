@@ -7,7 +7,11 @@ import ChatPage from "./pages/ChatPage"
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import IsAnon from "./components/IsAnon";
-import IsPrivate from "./components/IsPrivate"
+import IsPrivate from "./components/IsPrivate";
+import AllFavoursPage from "./pages/AllFavoursPage"
+import UserFavoursPage from "./pages/UserFavoursPage"
+import CreateFavourPage from "./pages/CreateFavourPage"
+
 
 function App() {
   return (
@@ -17,6 +21,11 @@ function App() {
       <Routes>      
         <Route path="/" element={<HomePage />} />
         <Route path="/chat" element={<IsPrivate> <ChatPage /> </IsPrivate>} />
+        
+
+        <Route path="/favours" element={<AllFavoursPage />} />
+        <Route path="/favours/myList" element={<UserFavoursPage/>} />
+        <Route path="/favours/create" element={<CreateFavourPage/>} />
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />
 
