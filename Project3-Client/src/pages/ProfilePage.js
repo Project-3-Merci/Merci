@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Navigate } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import apiService from "../services/api.service";
 
@@ -10,8 +10,14 @@ export default function ProfilePage(props) {
   const [fetching, setFetching] = useState(true);
   const [profile, setProfile] = useState([]);
 
+  let {id} = useParams()
+  
   useEffect(() => {
-    apiService.getOne("profile", user?._id).then((response) => {
+      console.log(id)
+
+
+
+    apiService.getOne("profile", id).then((response) => {
       setProfile(response.data);
       setFetching(false);
     });
@@ -28,7 +34,7 @@ export default function ProfilePage(props) {
       <h4>Age: {profile.age}</h4>
       <h4>About me: {profile.aboutMe}</h4>
 
-      <Link to={"/profile/:id"}>
+      <Link to={`/profile/${id}/edit`}>
         {" "}
         <button>Edit</button>
       </Link>
