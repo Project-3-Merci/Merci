@@ -1,7 +1,6 @@
 const express = require("express");
+const { isAuthenticated } = require("../middleware/jwt.middleware");
 const User = require("../models/User.model");
-
-const { isAuthenticated } = require('./../middleware/jwt.middleware.js');
 
 const router = express.Router();
 
@@ -11,10 +10,13 @@ router.route("/:id")
 
     User.findById(userId)
     .then(user =>{
+        console.log(user)
         res.status(200).json(user)
     })
-})
-.put(isAuthenticated, (req, res, next)=>{
+    .catch(error => console.log(error))
 
+    
+})
+.put((req, res, next)=>{
 })
 module.exports = router;
