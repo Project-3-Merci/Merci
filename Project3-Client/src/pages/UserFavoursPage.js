@@ -28,6 +28,7 @@ export default function UserFavoursPage() {
     getRequestedFavours();
   }, []);
 
+
   const getAcceptedFavours = () => {
     axios
       .get(`${API_URL}/myList/${userId}`)
@@ -49,6 +50,9 @@ export default function UserFavoursPage() {
 
         <div className="RequestedFavoursPage">
           <h2>Requested Favours</h2>
+{/* 
+          {requestedFavours.map((requestedFavour)=> )} */}
+          
           <h3>Favours:id + status/chat</h3>
         </div>
 
