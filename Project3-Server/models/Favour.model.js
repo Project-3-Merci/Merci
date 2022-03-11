@@ -9,7 +9,8 @@ const favourSchema = new Schema({
   locationLat: { type: Number },
   locationLong: { type: Number },
   token: { type: Number },
-  photo:{type: String}
+  photo:{type: String},
+  completed:{type:Boolean, default: false}
 });
 
 module.exports = model("Favour", favourSchema);
