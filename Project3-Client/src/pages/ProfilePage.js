@@ -1,14 +1,14 @@
-import { useContext} from "react";
+import { useContext, useState, useEffect} from "react";
 import { AuthContext } from "../context/auth.context";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-import { useState,useEffect } from "react";
 import axios from "axios";
 
 
 export default function ProfilePage(props){
 
     const { isLoggedIn, user} = useContext(AuthContext)
+
 
     const [fetching, setFetching] = useState(true);
     const [profile, setProfile] = useState([]);
@@ -19,11 +19,11 @@ export default function ProfilePage(props){
       .then(response =>{
         setProfile(response.data)
         setFetching(false)
+        
       })
 
     }, [])
-
-    if(!fetching) console.log(profile)
+  
 
     if(isLoggedIn){
         return (

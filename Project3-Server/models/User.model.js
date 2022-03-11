@@ -6,7 +6,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   aboutMe: {type:String, default: ""},
-  age :{type: Number, default: null},
+  age :{type: Number},
   profileImg: { type: String, default:"http://cdn.onlinewebfonts.com/svg/img_574534.png"},
   acceptedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
   requestedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
