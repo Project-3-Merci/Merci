@@ -11,6 +11,7 @@ require("../db/index");
 // User.collection.drop();
 
 const favours = [{
+    title: "Soda delivery",
     description: "Coca Cola Light 5L",
     location: "Pamplona 96",
     locationLat: -97,
@@ -18,6 +19,7 @@ const favours = [{
     token: 10
 },
 {
+    title: "Porros delivery",
     description: "Porros",
     location: "El Raval",
     locationLat: -97,
@@ -25,6 +27,7 @@ const favours = [{
     token: 50
 },
 {
+    title: "Carlos delivery",
     description: "Carlos' Favour",
     location: "Carlos' House",
     locationLat: -97,
@@ -32,6 +35,7 @@ const favours = [{
     token: 40
 },
 {
+    title: "Burguer delivery",
     description: "Hamburguesa Tex Mex (Con Jalapeños extra)",
     location: "Ironhack",
     locationLat: -97,
@@ -39,6 +43,7 @@ const favours = [{
     token: 10
 },
 {
+    title: "Mochila delivery",
     description: "Traer Mochila",
     location: "Entregar mi mochila",
     locationLat: -97,
