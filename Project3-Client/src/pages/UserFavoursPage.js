@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
+import FavourCard from "../components/FavourCard";
 
 const API_URL = "http://localhost:5005";
 
@@ -28,7 +29,6 @@ export default function UserFavoursPage() {
     getRequestedFavours();
   }, []);
 
-
   const getAcceptedFavours = () => {
     axios
       .get(`${API_URL}/myList/${userId}`)
@@ -50,15 +50,21 @@ export default function UserFavoursPage() {
 
         <div className="RequestedFavoursPage">
           <h2>Requested Favours</h2>
-{/* 
-          {requestedFavours.map((requestedFavour)=> )} */}
-          
+
+          {requestedFavours.map((requestedFavour) => (
+            <FavourCard key={requestedFavour._id} {...requestedFavour} />
+          ))}
+
           <h3>Favours:id + status/chat</h3>
         </div>
 
         <div className="AcceptedFavoursPage">
           <h2>Accepted Favours</h2>
-          <h3>Favours:id + chat</h3>
+
+          {acceptedFavours.map((acceptedFavour) => (
+            <FavourCard key={acceptedFavour._id} {...acceptedFavour} />
+          ))}
+
           <h3>Favours:id + chat</h3>
         </div>
       </div>
