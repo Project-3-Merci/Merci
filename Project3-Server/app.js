@@ -20,7 +20,7 @@ const chatRouter = require("./routes/chat.routes")
 app.use("/chat", isAuthenticated, chatRouter);
 
 const profileRouter = require("./routes/profile.routes")
-app.use("/profile", isAuthenticated, profileRouter);
+app.use("/profile",isAuthenticated, profileRouter);
 
 require("./error-handling")(app);
 
