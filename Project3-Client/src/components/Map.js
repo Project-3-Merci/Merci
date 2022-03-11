@@ -1,10 +1,6 @@
 import { Component } from "react"
 import { Map, GoogleApiWrapper } from "google-maps-react"
-<<<<<<< HEAD
-
-=======
 require("dotenv/config")
->>>>>>> 98be69654499f24facaf884445e5d7a7299b368b
 
 class MapContainer extends Component {
     render() {
