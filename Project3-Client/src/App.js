@@ -28,8 +28,8 @@ function App() {
         <Route path="/favours" element={<AllFavoursPage />} />
         <Route path="/favours/myList" element={<UserFavoursPage/>} />
         <Route path="/favours/create" element={<CreateFavourPage/>} />
-        <Route path="/profile/edit" element={<EditProfilePage/>} />
-        <Route path="/profile" element={<ProfilePage/>} />
+        <Route path="/profile/:id" element={<ProfilePage/>} />
+        <Route path="/profile/:id/edit" element={<EditProfilePage/>} />
         <Route path="/favour/:id" element={<FavourDetailsPage/>} />
         <Route path="/signup" element={<IsAnon> <SignupPage /> </IsAnon>} />
         <Route path="/login" element={<IsAnon> <LoginPage /> </IsAnon>} />

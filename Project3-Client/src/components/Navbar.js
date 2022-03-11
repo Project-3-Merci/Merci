@@ -2,10 +2,14 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./../context/auth.context";
 
+const API_URL = "http://localhost:5005";
+
+
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider `value` prop
-  const { isLoggedIn, user, logOutUser, isLoading } = useContext(AuthContext);
+  const { isLoggedIn, user, logOutUser} = useContext(AuthContext);
+
 
   return (
     <nav>
@@ -23,7 +27,7 @@ function Navbar() {
             <button>All Favours</button>
           </Link>
 
-          <Link to="/profile">
+          <Link to={`/profile/${user?._id}`}>
             <button>Profile</button>
           </Link>
 
