@@ -1,30 +1,30 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import apiService from "../services/api.service";
 
 const API_URL = "http://localhost:5005";
 
 
 function AllFavoursPage() {
-  const [projects, setProjects] = useState([]);
+  const [favours, setFavours] = useState([]);
 
-  const getAllProjects = () => {
+  const getAllFavours = () => {
     // Get the token from the localStorage
     const storedToken = localStorage.getItem("authToken");
 
     // Send the token through the request "Authorization" Headers
-/*     axios
-      .get(
-      `${API_URL}/api/projects`,
-      { headers: { Authorization: `Bearer ${storedToken}` } }
+     apiService
+      .getAll(
+      "favours"
     )
-      .then((response) => setProjects(response.data))
-      .catch((error) => console.log(error)); */
+      .then((response) => setFavours(response.data))
+      .catch((error) => console.log(error)); 
   };
 
   // We set this effect will run only once, after the initial render
   // by setting the empty dependency array - []
   useEffect(() => {
-    getAllProjects();
+    getAllFavours();
   }, [] );
 
   
@@ -33,7 +33,7 @@ function AllFavoursPage() {
       
       <h1>All Favours Page</h1>
       
-      {/*{ projects.map((project) => <ProjectCard key={project._id} {...project} />  )*/}
+      {favours.map((favour) => <li key={favour._id} {...favour} value={favour.title}> {favour.title}</li>  )}
        
     </div>
   );

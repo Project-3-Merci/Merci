@@ -26,7 +26,7 @@ class ApiService {
 
   // GET /api/projects
   getAll = (resource) => {
-    return this.api.get(`/api/${resource}`);
+    return this.api.get(`/${resource}`);
   };
 
   // GET /api/projects/:id
