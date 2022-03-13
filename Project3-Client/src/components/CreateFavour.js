@@ -1,31 +1,63 @@
-import { useContext, useEffect, useState } from "react";
+import axios from "axios";
+import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import apiService from "../services/api.service";
-import NumericInput from 'react-numeric-input';
+import { Navigate } from "react-router-dom";
 
-export default function CreateFavour() {
-    const { user } = useContext(AuthContext)
-    
-    const [fetching, setFetching] = useState(true);
-    const [profile, setProfile] = useState([])
+export default function CreateFavour1() {
+  const API_URL = "http://localhost:5005";
+  const {user} = useContext(AuthContext)
 
-    useEffect(() => {
-        apiService.getOne("profile", user?._id).then((response) => {
-          setProfile(response.data);
-          setFetching(false);
+  const [formData, setFormData] = useState({
+    title: "",
+    description: "",
+  });
+
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    axios
+      .post(`${API_URL}/favours/create/${user._id}`, formData)
+      .then((_) => {
+        setFormData({
+          title: "",
+          description: "",
         });
-      }, []);
+      })
+      .then((_) => {
+        return <Navigate to="/favours/myList"></Navigate>;
+      });
+  }
 
-    return(
-        <div>
-        <form>
-            <label> New favour
-                <textarea></textarea>
-            </label>
-            <h1>Token credit: {profile.token}</h1>
-            <NumericInput className="form-control"></NumericInput> 
-            <input type="submit" value="Submit" />
-        </form>
-        </div>
-    )
+  function handleChange(event) {
+    const key = event.target.name;
+    const value = event.target.value;
+    setFormData((formData) => ({ ...formData, [key]: value }));
+  }
+
+  return (
+    <div className="AddFavour">
+      <h3>Add a Favour</h3>
+
+      <form onSubmit={handleSubmit}>
+        <label>Title:</label>
+        <input
+          type="text"
+          name="title"
+          value={formData.title}
+          onChange={handleChange}
+        />
+
+        <label> Description: </label>
+        <textarea
+          type="text"
+          name="description"
+          value={formData.description}
+          onChange={handleChange}
+        />
+
+        <h1>Token credit:</h1>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
 }
