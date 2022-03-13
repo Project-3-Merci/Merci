@@ -107,3 +107,17 @@ nav li {
 .TaskCard {
   background-color: #dfeef9;
 }
+
+.btn-create {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto
+}
+
+.lat-long {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto
+}
