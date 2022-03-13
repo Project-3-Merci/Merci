@@ -1,6 +1,7 @@
 const express = require("express");
 const { isAuthenticated } = require("../middleware/jwt.middleware");
 const User = require("../models/User.model");
+const fileUploader = require("../config/cloudinary")
 
 const router = express.Router();
 
@@ -16,6 +17,12 @@ router.route("/:id")
 
     
 })
+
 .put((req, res, next)=>{
+    const id = req.params.userId;
+    const {aboutMe,profileImg,age} = req.body;
+    User.findByIdAndUpdate(id, {aboutMe,profileImg,age})
+     .then(()=> res.redirect(`/profile/${id}`))
+     .catch((err)=>{console.log(err)})
 })
 module.exports = router;

@@ -15,7 +15,9 @@
     "express-jwt": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.1.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "multer-storage-cloudinary": "^4.0.0",
+    "cloudinary": "^1.28.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

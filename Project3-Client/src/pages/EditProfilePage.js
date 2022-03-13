@@ -9,7 +9,18 @@ function EditProfilePage(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [age,setAge] = useState()
-  
+
+  const [imageSelected, setImageSelected] = useState()
+  const uploadImage = () => {
+  const formData = new FormData()
+    formData.append("file", imageSelected)
+    formData.append("upload_present", "sp284tf1")
+
+    axios.post("https://api.cloudinary.com/v1_1/${db0sxdfjz}/image/upload", formData)
+      .then((response)=>{
+        console.log(response)
+      })
+ }
 
   const navigate =  useNavigate();
   const { projectId } = useParams();
@@ -75,15 +86,17 @@ function EditProfilePage(props) {
       <h3>Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
+        
+        <div>
         <label>Image</label>
         <input
           type="file"
-          name="image"
-          value={profileImg}
-          onChange={(e) => setProfileImg(e.target.value)
-            
+          onChange={(e) => setImageSelected(e.target.files[0])
           }
         />
+        <button onClick={uploadImage()}> Upload Image </button>
+        </div>
+
          <label>Age:</label>
         <input
           type="number"
@@ -99,6 +112,7 @@ function EditProfilePage(props) {
         }
         />
         
+
         <label>About me:</label>
         <textarea
           name="description"
@@ -109,7 +123,6 @@ function EditProfilePage(props) {
         <button type="submit">Update Project</button>
       </form>
 
-      <button onClick={deleteProject}>Delete Project</button>
     </div>
   );
 }
