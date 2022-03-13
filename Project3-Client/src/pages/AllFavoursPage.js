@@ -33,7 +33,7 @@ function AllFavoursPage() {
       
       <h1>All Favours Page</h1>
       
-      {/*{ projects.map((project) => <ProjectCard key={project._id} {...project} />  )*/}
+      {favours.map((favour) => <li key={favour._id} {...favour} value={favour.title}> {favour.title}</li>  )}
        
     </div>
   );
