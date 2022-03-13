@@ -26,7 +26,7 @@ router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
     return;
   }
 
-/*   User.findById(userId)
+  /*   User.findById(userId)
     .populate("acceptedFavours")
     .then((user) => res.status(200).json(user))
     .catch((error) => res.json(error)); */
@@ -40,29 +40,29 @@ router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
 router.post("/create/:userId", (req, res, next) => {
   const asker = req.params.userId;
   const { title, description } = req.body;
-router.get("/myList/:userId", isAuthenticated, (req, res, next) => {});
+  router.get("/myList/:userId", isAuthenticated, (req, res, next) => {});
 
-router.post("/create/:userId", (req, res, next) => {
-  const asker = req.params.userId;
-  const { title, description, token, location, locationLat, locationLong } =
-    req.body;
-  Favour.create({
-    asker,
-    title,
-    description,
-    token,
-    location,
-    locationLat,
-    locationLong,
-  })
-    .then((newFavour) => {
-      User.findByIdAndUpdate(asker, {
-        $push: { requestedFavours: newFavour._id },
-      })
-      .then(()=>res.json(newFavour));
+  router.post("/create/:userId", (req, res, next) => {
+    const asker = req.params.userId;
+    const { title, description, token, location, locationLat, locationLong } =
+      req.body;
+    Favour.create({
+      asker,
+      title,
+      description,
+      token,
+      location,
+      locationLat,
+      locationLong,
     })
-    .catch((error) => console.log(error));
-  console.log("THIS IS THE LOG", req.body);
+      .then((newFavour) => {
+        User.findByIdAndUpdate(asker, {
+          $push: { requestedFavours: newFavour._id },
+        }).then(() => res.json(newFavour));
+      })
+      .catch((error) => console.log(error));
+    console.log("THIS IS THE LOG", req.body);
+  });
 });
 
 module.exports = router;
