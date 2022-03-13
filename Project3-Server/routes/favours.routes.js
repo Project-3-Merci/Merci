@@ -2,38 +2,52 @@ const express = require("express");
 const User = require("../models/User.model");
 const Favour = require("../models/Favour.model");
 
-const { isAuthenticated } = require('./../middleware/jwt.middleware.js');
+const { isAuthenticated } = require("./../middleware/jwt.middleware.js");
+const { default: mongoose } = require("mongoose");
 
 const router = express.Router();
 
+router.get("/", (req, res, next) => {
+  Favour.find().then((favours) => {
+    res.status(200).json(favours);
+  });
+});
 
-router.get("/", (req, res, next)=>{
-    Favour.find()
-    .then(favours =>{
-        res.status(200).json(favours)
-    })
-})
+router
+  .route("/:id")
+  .get(isAuthenticated, (req, res, next) => {})
+  .delete(isAuthenticated, (req, res, next) => {});
 
-router.route("/:id")
-.get(isAuthenticated,(req, res, next)=>{
-})
-.delete(isAuthenticated, (req, res, next)=>{
-})
+router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
+  const { userId } = req.params;
 
+  if (!mongoose.Types.ObjectId.isValidad(userId)) {
+    req.status(400).json({ message: "specified User Id is not valid" });
+    return;
+  }
 
-router.get("/myList/:userId",isAuthenticated, (req,res,next)=>{
+/*   User.findById(userId)
+    .populate("acceptedFavours")
+    .then((user) => res.status(200).json(user))
+    .catch((error) => res.json(error)); */
 
-})
+  User.findById(userId)
+    .populate("requestedFavours")
+    .then((user) => res.status(200).json(user))
+    .catch((error) => res.json(error));
+});
 
-router.post("/create/:userId", (req, res, next)=>{
-    const asker = req.params.userId
-    const {title, description } = req.body
-    Favour.create({
-        asker, title, description
-    })
+router.post("/create/:userId", (req, res, next) => {
+  const asker = req.params.userId;
+  const { title, description } = req.body;
+  Favour.create({
+    asker,
+    title,
+    description,
+  })
     .then((newFavour) => res.json(newFavour))
-    .catch((error) => console.log(error))
-    console.log("THIS IS THE LOG",req.body)
-})
+    .catch((error) => console.log(error));
+  console.log("THIS IS THE LOG", req.body);
+});
 
 module.exports = router;

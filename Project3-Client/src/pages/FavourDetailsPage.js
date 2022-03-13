@@ -43,19 +43,6 @@ function FavourDetailsPage (props) {
         </>
       )}
 
-      
-      {/* <AddTask refreshProject={getProject} projectId={projectId} />          
-
-      { project && project.tasks.map((task) => <TaskCard key={task._id} {...task} /> )} 
-
-      <Link to="/projects">
-        <button>Back to projects</button>
-      </Link>
-          
-      <Link to={`/projects/edit/${projectId}`}>
-        <button>Edit Project</button>
-      </Link> */}
-      
     </div>
   );
 }
