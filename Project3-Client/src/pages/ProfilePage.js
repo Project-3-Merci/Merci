@@ -28,7 +28,7 @@ export default function ProfilePage(props) {
   ) : (
     <div>
       <h1>Profile Page</h1>
-      <img src={profile.profileImg} alt="profile image" />
+      <img src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>
       <h3>{profile.email}</h3>
       <h4>Age: {profile.age}</h4>

@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from 'react-router-dom';
+import ProfilePage from "./ProfilePage";
 
 const API_URL = "http://localhost:5005";
 
 function EditProfilePage(props) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [age,setAge] = useState()
+  
 
   const navigate =  useNavigate();
   const { projectId } = useParams();
@@ -34,7 +37,7 @@ function EditProfilePage(props) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { title, description };
+    const requestBody = { title, description,age };
   
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');  
@@ -69,18 +72,34 @@ function EditProfilePage(props) {
   
   return (
     <div className="EditProjectPage">
-      <h3>Edit the Project</h3>
+      <h3>Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
-        <label>Title:</label>
+        <label>Image</label>
         <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          type="file"
+          name="image"
+          value={profileImg}
+          onChange={(e) => setProfileImg(e.target.value)
+            
+          }
+        />
+         <label>Age:</label>
+        <input
+          type="number"
+          name="age"
+          min="0"
+          value={age}
+          onChange={(e) => {if(e.target.value > 18)
+            setAge(e.target.value)
+          else {
+            setAge(18) 
+           }
+          }
+        }
         />
         
-        <label>Description:</label>
+        <label>About me:</label>
         <textarea
           name="description"
           value={description}
