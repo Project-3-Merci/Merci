@@ -12,12 +12,6 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router
-  .route("/:id")
-  .get(isAuthenticated, (req, res, next) => {})
-  .delete(isAuthenticated, (req, res, next) => {});
-
-router.get("/myList/:userId", isAuthenticated, (req, res, next) => {});
 
 router.post("/create/:userId", (req, res, next) => {
   const asker = req.params.userId;
@@ -36,10 +30,32 @@ router.post("/create/:userId", (req, res, next) => {
       User.findByIdAndUpdate(asker, {
         $push: { requestedFavours: newFavour._id },
       })
-      .then(()=>res.json(newFavour));
+        .then(() => res.json(newFavour));
     })
     .catch((error) => console.log(error));
   console.log("THIS IS THE LOG", req.body);
 });
+
+
+router.route("/:id")
+  .get((req, res, next) => {
+    console.log("DETAILS")
+    Favour.findById(req.params.id)
+      .then(favour => {
+        res.status(200).json(favour)
+      })
+
+  })
+  .delete(isAuthenticated, (req, res, next) => {
+  })
+
+router.post("/accept/:id", isAuthenticated, (req, res, next) => {
+
+})
+
+
+router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
+
+})
 
 module.exports = router;

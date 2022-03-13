@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import apiService from "../services/api.service";
+import FavorPreview from "../components/FavourPreview";
 
 const API_URL = "http://localhost:5005";
 
@@ -33,7 +34,9 @@ function AllFavoursPage() {
       
       <h1>All Favours Page</h1>
       
-      {favours.map((favour) => <li key={favour._id} {...favour} value={favour.title}> {favour.title}</li>  )}
+      {favours.map((favour) => 
+      
+      <FavorPreview key={favour._id} title={favour.title} _id={favour._id}/> )}
        
     </div>
   );

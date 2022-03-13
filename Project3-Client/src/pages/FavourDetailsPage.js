@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import apiService from "../services/api.service";
 
 
 const API_URL = "http://localhost:5005";
@@ -8,7 +9,7 @@ const API_URL = "http://localhost:5005";
 
 function FavourDetailsPage (props) {
   const [favour, setFavour] = useState(null);
-  const { favourId } = useParams();
+  const { id } = useParams();
   
   
   const getFavour = () => {
@@ -16,11 +17,8 @@ function FavourDetailsPage (props) {
     const storedToken = localStorage.getItem('authToken');
 
     // Send the token through the request "Authorization" Headers
-    axios
-      .get(
-        `${API_URL}/api/projects/${favourId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }
-      )
+    apiService.getOne(
+        "favours", id)
       .then((response) => {
         const oneFavour = response.data;
         setFavour(oneFavour);
@@ -35,7 +33,8 @@ function FavourDetailsPage (props) {
 
   
   return (
-    <div className="ProjectDetails">
+    <div className="favour-details">
+      <h1>FAVOR PAGE</h1>
       {favour && (
         <>
           <h1>{favour.title}</h1>
