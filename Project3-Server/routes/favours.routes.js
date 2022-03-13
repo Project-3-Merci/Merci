@@ -22,8 +22,15 @@ router.get("/myList/:userId",isAuthenticated, (req,res,next)=>{
 
 })
 
-router.post("/create",isAuthenticated, (req, res, next)=>{
-
+router.post("/create/:userId", (req, res, next)=>{
+    const asker = req.params.userId
+    const {title, description } = req.body
+    Favour.create({
+        asker, title, description
+    })
+    .then((newFavour) => res.json(newFavour))
+    .catch((error) => console.log(error))
+    console.log("THIS IS THE LOG",req.body)
 })
 
 module.exports = router;
