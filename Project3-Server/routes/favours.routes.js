@@ -8,7 +8,10 @@ const router = express.Router();
 
 
 router.get("/", (req, res, next)=>{
-
+    Favour.find()
+    .then(favours =>{
+        res.status(200).json(favours)
+    })
 })
 
 router.route("/:id")
