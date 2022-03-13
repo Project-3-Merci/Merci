@@ -2,23 +2,13 @@ const express = require("express");
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const User = require("../models/User.model");
-const fileUploader = require("../config/cloudinary")
+
 
 const { isAuthenticated } = require('./../middleware/jwt.middleware.js');
 
 const router = express.Router();
 const saltRounds = 10;
 
-  //To upload a new img in the database
-router.route("/edit")
- .get((req,res) => {
-   res.render("/favour/${id}/edit}")
- })
-  .post(fileUploader.single("profileImg"),(req,res, next)=>{
-  const {username, password,email } = req.body
-  const profileImg = req.file.path
-  
-})
 
 // To create a new user in the database
 router.post('/signup', (req, res, next) => {

@@ -1,101 +1,86 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
+import apiService from "../services/api.service";
+import cloudinaryService from "../services/cloudinary";
+
 
 const API_URL = "http://localhost:5005";
 
+
+
 function EditProfilePage(props) {
+
+const [fetching, setFetching] = useState(true);
+const [profile, setProfile] = useState([]);
+
+let {id} = useParams()
+
+useEffect(() => {
+    console.log(id)
+
+
+
+  apiService.getOne("profile", id).then((response) => {
+    setProfile(response.data);
+    setFetching(false);
+  });
+}, []);
   const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [age,setAge] = useState()
 
-  const [imageSelected, setImageSelected] = useState()
+  const [aboutMe, setAboutMe] = useState(profile.aboutMe);
+  const [age,setAge] = useState(profile.age)
+  const [profileImg, setProfileImg] = useState("")
+  const [imgUrl, setImgUrl] = useState("")
+
   const uploadImage = () => {
-  const formData = new FormData()
-    formData.append("file", imageSelected)
-    formData.append("upload_present", "sp284tf1")
 
-    axios.post("https://api.cloudinary.com/v1_1/${db0sxdfjz}/image/upload", formData)
+
+  const formData = new FormData()
+    formData.append("file", profileImg)
+    formData.append("upload_preset", "sp284tf1")
+
+    axios.post("https://api.cloudinary.com/v1_1/db0sxdfjz/image/upload", formData)
       .then((response)=>{
+        setImgUrl(response.data.url)
         console.log(response)
       })
  }
 
-  const navigate =  useNavigate();
-  const { projectId } = useParams();
-  
-  
-  useEffect(() => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');
-    
-    // Send the token through the request "Authorization" Headers 
-    axios
-      .get(
-        `${API_URL}/api/projects/${projectId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }    
-      )
-      .then((response) => {
-        const oneProject = response.data;
-        setTitle(oneProject.title);
-        setDescription(oneProject.description);
-      })
-      .catch((error) => console.log(error));
-    
-  }, [projectId]);
-  
+ 
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { title, description,age };
+    const requestBody = { aboutMe,profileImg,age };
   
     // Get the token from the localStorage
     const storedToken = localStorage.getItem('authToken');  
 
     // Send the token through the request "Authorization" Headers   
-    axios
-      .put(
-        `${API_URL}/api/projects/${projectId}`,
-        requestBody,
-        { headers: { Authorization: `Bearer ${storedToken}` } }              
-      )
+    apiService.updateOne("profile",id,requestBody)
       .then((response) => {
-        navigate(`/projects/${projectId}`)
+  
       });
   };
   
   
-  const deleteProject = () => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');      
-    
-    // Send the token through the request "Authorization" Headers   
-    axios
-      .delete(
-        `${API_URL}/api/projects/${projectId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }           
-      )
-      .then(() => navigate("/projects"))
-      .catch((err) => console.log(err));
-  };  
-
   
   return (
-    <div className="EditProjectPage">
+    <div className="EditProfilePage">
       <h3>Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
         
         <div>
         <label>Image</label>
+        <img src={imgUrl} alt="profile image" width={80}/>
         <input
           type="file"
-          onChange={(e) => setImageSelected(e.target.files[0])
-          }
+          onChange={e=> setProfileImg(e.target.files[0])}
         />
-        <button onClick={uploadImage()}> Upload Image </button>
         </div>
+        <button onClick={uploadImage}>Upload</button>
 
          <label>Age:</label>
         <input
@@ -116,8 +101,8 @@ function EditProfilePage(props) {
         <label>About me:</label>
         <textarea
           name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
+          
+          
         />
 
         <button type="submit">Update Project</button>
@@ -128,3 +113,6 @@ function EditProfilePage(props) {
 }
 
 export default EditProfilePage;
+
+
+
