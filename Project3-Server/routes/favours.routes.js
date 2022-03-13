@@ -8,6 +8,7 @@ const router = express.Router();
 
 
 router.get("/", (req, res, next)=>{
+    
     Favour.find()
     .then(favours =>{
         res.status(200).json(favours)
@@ -15,9 +16,19 @@ router.get("/", (req, res, next)=>{
 })
 
 router.route("/:id")
-.get(isAuthenticated,(req, res, next)=>{
+.get((req, res, next)=>{
+    console.log("DETAILS")
+    Favour.findById(req.params.id)
+    .then(favour =>{
+        res.status(200).json(favour)
+    })
+    
 })
 .delete(isAuthenticated, (req, res, next)=>{
+})
+
+router.post("/accept/:id", isAuthenticated, (req,res,next)=>{
+    
 })
 
 

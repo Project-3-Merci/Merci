@@ -21,7 +21,7 @@ class ApiService {
 
   // POST /api/projects
   createOne = (resource, requestBody) => {
-    return this.api.post(`/api/${resource}`, requestBody);
+    return this.api.post(`/${resource}`, requestBody);
   };
 
   // GET /api/projects
@@ -36,12 +36,12 @@ class ApiService {
 
   // PUT /api/projects/:id
   updateOne = (resource, id, requestBody) => {
-    return this.api.put(`/api/${resource}/${id}`, requestBody);
+    return this.api.put(`/${resource}/${id}`, requestBody);
   };
 
   // DELETE /api/projects/:id
   deleteProject = (resource, id) => {
-    return this.api.delete(`/api/${resource}/${id}`);
+    return this.api.delete(`/${resource}/${id}`);
   };
 }
 
