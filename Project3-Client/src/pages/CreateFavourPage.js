@@ -13,7 +13,7 @@ export default function CreateFavourPage() {
         <div>
         <h1>CREATE NEW FAVOUR PAGE</h1>
         <CreateFavour />
-        <Map />
+        {/* <Map /> */}
         </div>
         )
        
