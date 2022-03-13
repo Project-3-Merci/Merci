@@ -12,6 +12,7 @@
     "react-numeric-input": "^2.2.3",
     "react-router-dom": "^6.1.1",
     "react-scripts": "^5.0.0",
+    "react-numeric-input":"^2.2.3",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

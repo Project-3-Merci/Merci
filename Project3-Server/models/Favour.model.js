@@ -6,7 +6,7 @@ const favourSchema = new Schema({
   taker: { type: Schema.Types.ObjectId, ref:"user", default: null },
   title: { type: String, required: true },
   description: { type: String, required: true },
-  location: { type: String, required: true },
+  location: { type: String },
   locationLat: { type: Number },
   locationLong: { type: Number },
   token: { type: Number },
