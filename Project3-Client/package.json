@@ -9,13 +9,9 @@
     "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-numeric-input": "^2.2.3",
     "react-router-dom": "^6.1.1",
-<<<<<<< HEAD
     "react-scripts": "^5.0.0",
-=======
-    "react-scripts": "4.0.3",
-    "react-numeric-input":"^2.2.3",
->>>>>>> fa1cdff21326040db6a9769df2c6660004719855
     "web-vitals": "^1.0.1"
   },
   "scripts": {
