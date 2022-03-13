@@ -10,9 +10,14 @@ const router = express.Router();
 const saltRounds = 10;
 
   //To upload a new img in the database
-router.post(fileUploader.single("profileImg"),(req,res, next)=>{
+router.route("/edit")
+ .get((req,res) => {
+   res.render("/favour/${id}/edit}")
+ })
+  .post(fileUploader.single("profileImg"),(req,res, next)=>{
   const {username, password,email } = req.body
   const profileImg = req.file.path
+  
 })
 
 // To create a new user in the database
