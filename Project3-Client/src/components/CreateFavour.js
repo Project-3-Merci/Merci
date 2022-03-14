@@ -1,15 +1,16 @@
 import axios from "axios";
 import { useState, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
 
 export default function CreateFavour() {
-  const API_URL = "http://localhost:5005";
+
   const { user } = useContext(AuthContext);
 
   const [profile, setProfile] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     apiService.getOne("profile", user._id).then((response) => {
@@ -22,29 +23,25 @@ export default function CreateFavour() {
     description: "",
     token: "",
     location: "",
-    locationLat: "",
-    locationLong: "",
     photo: "",
   });
 
   function handleSubmit(event) {
     event.preventDefault();
 
-    axios
-      .post(`${API_URL}/favours/create/${user._id}`, formData)
+    apiService
+      .createOne(`favours/create/${user._id}`, formData)
       .then((_) => {
         setFormData({
           title: "",
           description: "",
           token: "",
           location: "",
-          locationLat: "",
-          locationLong: "",
           photo: "",
         });
       })
       .then((_) => {
-        return <Navigate to="/favours/myList"></Navigate>;
+        navigate(`/favours/myList/${user._id}`);
       });
   }
 
@@ -75,7 +72,7 @@ export default function CreateFavour() {
       <h3>Add a Favour</h3>
 
       <form onSubmit={handleSubmit}>
-        <label className="lat-long">Title:</label>
+        <label className="btn-create">Title:</label>
         <input
           type="text"
           name="title"
@@ -83,7 +80,7 @@ export default function CreateFavour() {
           onChange={handleChange}
         />
 
-        <label className="lat-long"> Description: </label>
+        <label className="btn-create"> Description: </label>
         <textarea
           type="text"
           name="description"
@@ -91,7 +88,7 @@ export default function CreateFavour() {
           onChange={handleChange}
         />
 
-        <label className="lat-long">Location: </label>
+        <label className="btn-create">Location: </label>
         <input
           type="text"
           name="location"
@@ -99,23 +96,9 @@ export default function CreateFavour() {
           onChange={handleChange}
         />
 
-        <label className="lat-long">Latitude: </label>
-        <input
-          type="number"
-          name="locationLat"
-          value={formData.locationLat}
-          onChange={handleChange}
-        />
-
-        <label className="lat-long">Longitude: </label>
-        <input
-          type="number"
-          name="locationLong"
-          value={formData.locationLong}
-          onChange={handleChange}
-        />
-
-        <label className="lat-long">Your token credit is:{profile.token}</label>
+        <label className="btn-create">
+          Your token credit is: {profile.token}
+        </label>
         <input
           type="number"
           name="token"
@@ -125,13 +108,16 @@ export default function CreateFavour() {
 
         <input
           type="file"
+          className="img-upload"
           onChange={(event) => {
             setImageSelected(event.target.files[0]);
           }}
         />
-        {photoUrl && <img src={photoUrl} alt="photoUrl"/>}
-        <button type="button" onClick={uploadImage}>
-          upload image
+
+        {photoUrl && <img src={photoUrl} alt="photoUrl" width="10%" />}
+
+        <button className="btn-upload-img" type="button" onClick={uploadImage}>
+          Upload Image
         </button>
 
         <button
