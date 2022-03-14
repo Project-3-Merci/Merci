@@ -1,5 +1,5 @@
 import ChatList from "../components/ChatList"
-
+import socket from "../components/Socket"
 
 export default function ChatPage(){
 
