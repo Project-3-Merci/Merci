@@ -1,9 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
-import { useContext } from "react";
+import { useNavigate, useParams, Navigate, Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import FavourCard from "../components/FavourCard";
+import apiService from "../services/api.service";
 
 const API_URL = "http://localhost:5005";
 
@@ -13,23 +13,25 @@ export default function UserFavoursPage() {
   const [requestedFavours, setRequestedFavours] = useState([]);
   const [acceptedFavours, setAcceptedFavours] = useState([]);
 
-  const { userId } = useParams();
+  let { userId } = useParams();
 
   const getRequestedFavours = () => {
     axios
-      .get(`${API_URL}/myList/${userId}`)
+      .get(`${API_URL}/favours/myList/${userId}`)
       .then((response) => {
         const oneRequestedFavour = response.data;
         setRequestedFavours(oneRequestedFavour);
       })
+      
       .catch((error) => console.log(error));
   };
 
+  console.log(requestedFavours)
   useEffect(() => {
     getRequestedFavours();
   }, []);
 
-  const getAcceptedFavours = () => {
+/*   const getAcceptedFavours = () => {
     axios
       .get(`${API_URL}/myList/${userId}`)
       .then((response) => {
@@ -41,12 +43,13 @@ export default function UserFavoursPage() {
 
   useEffect(() => {
     getAcceptedFavours();
-  }, []);
+  }, []); */
 
   if (isLoggedIn) {
     return (
       <div>
         <h1>UserFavoursPage</h1>
+        <p>test userId: {userId } </p>
 
         <div className="RequestedFavoursPage">
           <h2>Requested Favours</h2>
@@ -58,7 +61,7 @@ export default function UserFavoursPage() {
           <h3>Favours:id + status/chat</h3>
         </div>
 
-        <div className="AcceptedFavoursPage">
+{/*         <div className="AcceptedFavoursPage">
           <h2>Accepted Favours</h2>
 
           {acceptedFavours.map((acceptedFavour) => (
@@ -66,7 +69,7 @@ export default function UserFavoursPage() {
           ))}
 
           <h3>Favours:id + chat</h3>
-        </div>
+        </div> */}
       </div>
     );
   } else {

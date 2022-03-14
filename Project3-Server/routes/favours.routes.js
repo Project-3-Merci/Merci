@@ -13,38 +13,10 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router
-  .route("/:id")
-  .get(isAuthenticated, (req, res, next) => {})
-  .delete(isAuthenticated, (req, res, next) => {});
-
-router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
-  const { userId } = req.params;
-
-  if (!mongoose.Types.ObjectId.isValidad(userId)) {
-    req.status(400).json({ message: "specified User Id is not valid" });
-    return;
-  }
-
-  /*   User.findById(userId)
-    .populate("acceptedFavours")
-    .then((user) => res.status(200).json(user))
-    .catch((error) => res.json(error)); */
-
-  User.findById(userId)
-    .populate("requestedFavours")
-    .then((user) => res.status(200).json(user))
-    .catch((error) => res.json(error));
-});
 
 router.post("/create/:userId", (req, res, next) => {
   const asker = req.params.userId;
-  const { title, description } = req.body;
-  router.get("/myList/:userId", isAuthenticated, (req, res, next) => {});
-
-router.post("/create/:userId", (req, res, next) => {
-  const asker = req.params.userId;
-  const { title, description, token, location, locationLat, locationLong } =
+  const { title, description, token, location, locationLat, locationLong, photo } =
     req.body;
   Favour.create({
     asker,
@@ -61,14 +33,8 @@ router.post("/create/:userId", (req, res, next) => {
       })
         .then(() => res.json(newFavour));
     })
-      .then((newFavour) => {
-        User.findByIdAndUpdate(asker, {
-          $push: { requestedFavours: newFavour._id },
-        }).then(() => res.json(newFavour));
-      })
-      .catch((error) => console.log(error));
-    console.log("THIS IS THE LOG", req.body);
-  });
+    .catch((error) => console.log(error));
+  console.log("THIS IS THE LOG", req.body);
 });
 
 
@@ -89,8 +55,24 @@ router.post("/accept/:id", isAuthenticated, (req, res, next) => {
 })
 
 
-router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
-
-})
+router.route("/myList/:userId")
+.get( isAuthenticated, (req, res, next) => {
+    const  userId  = req.params.id;
+  
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      req.status(400).json({ message: "specified User Id is not valid" });
+      return;
+    }
+  
+    /*   User.findById(userId)
+      .populate("acceptedFavours")
+      .then((user) => res.status(200).json(user))
+      .catch((error) => res.json(error)); */
+  
+    User.findById(userId)
+      .populate("requestedFavours")
+      .then((user) => res.status(200).json(user))
+      .catch((error) => res.json(error));
+  });
 
 module.exports = router;
