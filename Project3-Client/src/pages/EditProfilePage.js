@@ -59,7 +59,7 @@ function EditProfilePage(props) {
 
   return (
     <div className="p-4">
-      <h3 className="text-info">Edit Profile</h3>
+      <h3 className="text-info ">Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
         <label className="p-2 text-center">Image</label>

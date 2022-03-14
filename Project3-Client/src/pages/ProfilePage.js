@@ -23,6 +23,7 @@ export default function ProfilePage(props) {
     <Navigate to="/login" />
   ) : (
     <div>
+      
       <h1>Profile Page</h1>
       <img className="rounded img-fluid"  src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>

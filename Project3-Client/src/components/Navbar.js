@@ -12,31 +12,37 @@ function Navbar() {
 
 
   return (
-    <nav className="p-3 mb-2 bg-secondary col-xs-3">
+
+
+
+
+
+    
+    <nav className=" progress-bar-striped">
       <Link to="/">
-        <button className="btn btn-dark border border-warning ">Home</button>
+        <button className="btn btn-dark border border-warning m-1">Home</button>
       </Link>
 
       {isLoggedIn && (
         <>
           <Link to={`/favours/myList/${user?._id}`}>
-            <button className="btn btn-dark border border-warning btn-block col-xs-2">My Favours</button>
+            <button className="btn btn-dark border border-warning btn-block m-1">My Favours</button>
           </Link>
           
           <Link to="/favours">
-            <button className="btn btn-dark border border-warning col-xs-2">All Favours</button>
+            <button className="btn btn-dark border border-warning m-1">All Favours</button>
           </Link>
 
           <Link to={`/profile/${user?._id}`}>
-            <button className="btn btn-dark border border-warning">Profile</button>
+            <button className="btn btn-dark border border-warning m-1">Profile</button>
           </Link>
 
           <Link to="/chat">
-            <button className="btn btn-dark border border-warning">Chat</button>
+            <button className="btn btn-dark border border-warning m-1">Chat</button>
           </Link>
         
-          <button className="btn btn-dark border border-warning" onClick={logOutUser}>Logout</button>
-          <span className="" >{user && user.name}</span>
+          <button className="btn btn-dark border border-warning m-1" onClick={logOutUser}>Logout</button>
+          <span className="font-weight-bold" >{user && user.name}</span>
         </>
       )}
 
