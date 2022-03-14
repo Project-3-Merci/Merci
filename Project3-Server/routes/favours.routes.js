@@ -14,9 +14,9 @@ router.get("/", (req, res, next) => {
 });
 
 
-router.post("/create/:userId", (req, res, next) => {
+router.post("/create/:userId", isAuthenticated, (req, res, next) => {
   const asker = req.params.userId;
-  const { title, description, token, location, locationLat, locationLong, photo } =
+  const { title, description, token, location, photo } =
     req.body;
   Favour.create({
     asker,
@@ -24,8 +24,6 @@ router.post("/create/:userId", (req, res, next) => {
     description,
     token,
     location,
-    locationLat,
-    locationLong,
     photo
   })
     .then((newFavour) => {
