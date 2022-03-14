@@ -15,7 +15,7 @@ router.get("/", (req, res, next) => {
 
 router.post("/create/:userId", (req, res, next) => {
   const asker = req.params.userId;
-  const { title, description, token, location, locationLat, locationLong } =
+  const { title, description, token, location, locationLat, locationLong, photo } =
     req.body;
   Favour.create({
     asker,
@@ -25,6 +25,7 @@ router.post("/create/:userId", (req, res, next) => {
     location,
     locationLat,
     locationLong,
+    photo
   })
     .then((newFavour) => {
       User.findByIdAndUpdate(asker, {
