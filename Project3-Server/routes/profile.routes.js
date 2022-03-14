@@ -26,5 +26,7 @@ router.route("/:id/edit")
     
     UserModel.findByIdAndUpdate(id,{aboutMe, profileImg, age},{new: true})
     .then(user => res.status(200).json(user))
+    console.log(req)
   })
+
 module.exports = router;
