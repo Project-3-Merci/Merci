@@ -115,9 +115,20 @@ nav li {
   margin: 0 auto
 }
 
-.lat-long {
+.btn-upload-img {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 0 auto
+  margin: 0 auto;
+  height: 30%;
+  width: 5%;
+  font-size: 10px;
+  margin-bottom: 10px;
+}
+
+.img-upload {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  margin: 0 auto;
 }
