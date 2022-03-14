@@ -5,13 +5,11 @@ import { AuthContext } from "../context/auth.context";
 import FavourCard from "../components/FavourCard";
 import apiService from "../services/api.service";
 
-const API_URL = "http://localhost:5005";
 
 export default function UserFavoursPage(props) {
   const { isLoggedIn } = useContext(AuthContext);
 
   const [requestedFavours, setRequestedFavours] = useState([]);
-  const [acceptedFavours, setAcceptedFavours] = useState([]);
 
   let { userId } = useParams();
 
@@ -19,10 +17,8 @@ export default function UserFavoursPage(props) {
     apiService
       .getOne("favours/myList", userId)
       .then((response) => {
-        const oneRequestedFavour = response.data;
-        setRequestedFavours(oneRequestedFavour);
+        setRequestedFavours(response.data.requestedFavours);
       })
-
       .catch((error) => console.log(error));
   };
 
@@ -34,14 +30,11 @@ export default function UserFavoursPage(props) {
     return (
       <div>
         <h1>UserFavoursPage</h1>
-        <p>test userId: {requestedFavours.asker} </p>
-
         <div className="RequestedFavoursPage">
           <h2>Requested Favours</h2>
-
-          {/*           {requestedFavours.map((requestedFavour) => (
+          {requestedFavours.map((requestedFavour) => (
             <FavourCard key={requestedFavour._id} {...requestedFavour} />
-          ))} */}
+          ))}
 
           <h3>Favours:id + status/chat</h3>
         </div>
