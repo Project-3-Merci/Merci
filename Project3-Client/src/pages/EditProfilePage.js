@@ -1,96 +1,106 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import ProfilePage from "./ProfilePage";
+import apiService from "../services/api.service";
+import cloudinaryService from "../services/cloudinary";
 
 const API_URL = "http://localhost:5005";
 
 function EditProfilePage(props) {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const [profile, setProfile] = useState([]);
+  const [imageSelected, setImageSelected] = useState("");
+  const [age, setAge] = useState();
+  const [photoUrl, setPhoto] = useState("");
+  const [formData, setFormData] = useState({
+    aboutMe: "",
+    profileImg: "",
+    age: "",
+  });
 
-  const navigate =  useNavigate();
-  const { projectId } = useParams();
-  
-  
+  let { id } = useParams();
+
   useEffect(() => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');
-    
-    // Send the token through the request "Authorization" Headers 
+    console.log(id);
+    apiService.getOne("profile", id).then((response) => {
+      setProfile(response.data);
+      setPhoto(response.data.profileImg);
+      setFormData({
+        aboutMe: response.data.aboutMe,
+        profileImg: response.data.profileImg,
+        age: response.data.age,
+      });
+    });
+  }, []);
+
+  const uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "qgsi72uw");
+
     axios
-      .get(
-        `${API_URL}/api/projects/${projectId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }    
-      )
+      .post("https://api.cloudinary.com/v1_1/dfagcghmy/image/upload", formData)
       .then((response) => {
-        const oneProject = response.data;
-        setTitle(oneProject.title);
-        setDescription(oneProject.description);
-      })
-      .catch((error) => console.log(error));
-    
-  }, [projectId]);
-  
+        setPhoto(response.data.url);
+        console.log(response);
+      });
+  };
+
+  function handleChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+    setFormData((formData) => ({ ...formData, [key]: value }));
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { title, description };
-  
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');  
 
-    // Send the token through the request "Authorization" Headers   
-    axios
-      .put(
-        `${API_URL}/api/projects/${projectId}`,
-        requestBody,
-        { headers: { Authorization: `Bearer ${storedToken}` } }              
-      )
-      .then((response) => {
-        navigate(`/projects/${projectId}`)
-      });
+    // Get the token from the localStorage
+    apiService.updateOne("profile/edit", id, formData).then(() => {
+      return <Navigate to={`/profile/${id}`} />;
+    });
   };
-  
-  
-  const deleteProject = () => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');      
-    
-    // Send the token through the request "Authorization" Headers   
-    axios
-      .delete(
-        `${API_URL}/api/projects/${projectId}`,
-        { headers: { Authorization: `Bearer ${storedToken}` } }           
-      )
-      .then(() => navigate("/projects"))
-      .catch((err) => console.log(err));
-  };  
 
-  
   return (
-    <div className="EditProjectPage">
-      <h3>Edit the Project</h3>
+    <div className="EditProfilePage">
+      <h3>Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
-        <label>Title:</label>
+        <div>
+          <label>Image</label>
+          <img src={photoUrl} alt="profile image" width={80} />
+          <input
+            type="file"
+            onChange={(e) => setImageSelected(e.target.files[0])}
+          />
+        </div>
+        <button type="button" onClick={uploadImage}>
+          Upload Image
+        </button>
+
+        <label>Age:</label>
         <input
-          type="text"
-          name="title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          type="number"
+          name="age"
+          min="0"
+          value={formData.age}
+          onChange={(e) => {
+            if (e.target.value < 18) e.target.value = 18;
+            handleChange(e);
+          }}
         />
-        
-        <label>Description:</label>
+
+        <label>About me:</label>
         <textarea
-          name="description"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
+          name="aboutMe"
+          onChange={handleChange}
+          value={formData.aboutMe}
+        ></textarea>
 
-        <button type="submit">Update Project</button>
+        <button type="submit" onClick={() => (formData.profileImg = photoUrl)}>
+          Save Changes
+        </button>
       </form>
-
-      <button onClick={deleteProject}>Delete Project</button>
     </div>
   );
 }

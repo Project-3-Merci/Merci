@@ -62,8 +62,8 @@ export default function CreateFavour() {
     axios
       .post("https://api.cloudinary.com/v1_1/dfagcghmy/image/upload", formData)
       .then((response) => {
-        console.log(response);
         setPhoto(response.data.url);
+        console.log(response);
       });
   };
 
