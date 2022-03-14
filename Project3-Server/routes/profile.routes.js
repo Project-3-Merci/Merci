@@ -4,6 +4,15 @@ const User = require("../models/User.model");
 
 const router = express.Router();
 
+router
+  .route("/edit/:id")
+
+  .put((req, res) => {
+    User.findByIdAndUpdate(req.params.id, req.body, {new:true}).then((user) => {
+      res.status(200).json(user)
+    });
+  });
+  
 router.route("/:id").get(isAuthenticated, (req, res, next) => {
   const userId = req.params.id;
 
@@ -14,14 +23,5 @@ router.route("/:id").get(isAuthenticated, (req, res, next) => {
     .catch((error) => console.log(error));
 });
 
-router
-  .route("/edit/:id")
-
-  .put((req, res) => {
-    console.log("ID:", req.params.id);
-    console.log(req.body);
-
-    User.findByIdAndUpdate(req.params.id, req.body, {new:true}).then(console.log);
-  });
 
 module.exports = router;

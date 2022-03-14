@@ -13,10 +13,6 @@ export default function ProfilePage(props) {
   let {id} = useParams()
   
   useEffect(() => {
-      console.log(id)
-
-
-
     apiService.getOne("profile", id).then((response) => {
       setProfile(response.data);
       setFetching(false);
