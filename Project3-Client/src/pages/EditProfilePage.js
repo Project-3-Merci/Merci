@@ -4,6 +4,7 @@ import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import apiService from "../services/api.service";
 import cloudinaryService from "../services/cloudinary";
+import "bootstrap/dist/css/bootstrap.min.css"
 
 const API_URL = "http://localhost:5005";
 
@@ -62,24 +63,28 @@ function EditProfilePage(props) {
   };
 
   return (
-    <div className="EditProfilePage">
-      <h3>Edit Profile</h3>
+    <div className="p-4">
+      <h3 className="text-info">Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
-        <div>
-          <label>Image</label>
-          <img src={photoUrl} alt="profile image" width={80} />
+      <label className="p-2 text-center">Image</label>
+        <div className="p-2">
+          <img  className="rounded img-fluid" src={photoUrl} alt="profile image" width={80} />
           <input
             type="file"
             onChange={(e) => setImageSelected(e.target.files[0])}
           />
         </div>
-        <button type="button" onClick={uploadImage}>
+
+        <div>
+        <button className="btn btn-danger mx-auto" type="button" onClick={uploadImage}>
           Upload Image
         </button>
-
-        <label>Age:</label>
-        <input
+        </div>
+      
+        <label className="text-center">Age:</label>
+        <div  className="mx-auto">
+        <input className="rounded"
           type="number"
           name="age"
           min="0"
@@ -89,17 +94,21 @@ function EditProfilePage(props) {
             handleChange(e);
           }}
         />
-
-        <label>About me:</label>
-        <textarea
+        </div>
+        
+        <label className="text-center">About me:</label>
+          <div className="p-2">
+        <textarea className="text-dark alert alert-info border border-info"
           name="aboutMe"
           onChange={handleChange}
           value={formData.aboutMe}
         ></textarea>
-
-        <button type="submit" onClick={() => (formData.profileImg = photoUrl)}>
+          </div>
+        <div className="p-2">
+        <button className="btn btn-outline-success" type="submit" onClick={() => (formData.profileImg = photoUrl)}>
           Save Changes
         </button>
+        </div>
       </form>
     </div>
   );

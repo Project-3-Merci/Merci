@@ -28,7 +28,7 @@ export default function ProfilePage(props) {
   ) : (
     <div>
       <h1>Profile Page</h1>
-      <img src={profile.profileImg} alt="profile image" width={80}/>
+      <img className="rounded img-fluid"  src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>
       <h3>{profile.email}</h3>
       <h4>Age: {profile.age}</h4>
@@ -36,7 +36,7 @@ export default function ProfilePage(props) {
 
       <Link to={`/profile/edit/${id}`}>
         {" "}
-        <button>Edit</button>
+        <button className="btn btn-warning">Edit</button>
       </Link>
     </div>
   );
