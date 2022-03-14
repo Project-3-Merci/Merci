@@ -10,7 +10,8 @@ const userSchema = new Schema({
   profileImg: { type: String, default:"http://cdn.onlinewebfonts.com/svg/img_574534.png"},
   acceptedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
   requestedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
-  token: {type: Number, default: 100}
+  token: {type: Number, default: 100},
+  chats:[{type: Schema.Types.ObjectId, ref:"chat"}]
 });
 
 module.exports = model("User", userSchema);

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import apiService from "../services/api.service";
 
@@ -40,23 +40,18 @@ function AllFavoursPage() {
           return (
 
             <div className="favour-preview card">
-                <h2>{favour.title}</h2>
-                <h4>{favour.asker.name}</h4>
-                <Link to={`/favour/${favour._id}`}>
-                    <button>See details</button>
-                </Link>
-              {user?._id && (<button onClick={()=>{
-                    apiService.updateOne(`favours/${user._id}/accept`, favour._id,{})
-                    .then(()=>getAllFavours())
-                    }}>Accept</button>)}
+              <h2>{favour.title}</h2>
+              <h4>{favour.asker.name}</h4>
+              <Link to={`/favour/${favour._id}`}>
+                <button>See details</button>
+              </Link>
+              {user?._id && (<button onClick={() => {
+                apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
+                  .then(() => getAllFavours())
+              }}>Accept</button>)}
             </div>
-
-
           )
       }
-
-
-
       )}
 
     </div>
