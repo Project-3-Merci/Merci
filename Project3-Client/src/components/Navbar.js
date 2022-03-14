@@ -12,37 +12,37 @@ function Navbar() {
 
 
   return (
-    <nav>
+    <nav className="p-3 mb-2 bg-secondary col-xs-3">
       <Link to="/">
-        <button>Home</button>
+        <button className="btn btn-dark border border-warning ">Home</button>
       </Link>
 
       {isLoggedIn && (
         <>
           <Link to={`/favours/myList/${user?._id}`}>
-            <button>My Favours</button>
+            <button className="btn btn-dark border border-warning btn-block col-xs-2">My Favours</button>
           </Link>
           
           <Link to="/favours">
-            <button>All Favours</button>
+            <button className="btn btn-dark border border-warning col-xs-2">All Favours</button>
           </Link>
 
           <Link to={`/profile/${user?._id}`}>
-            <button>Profile</button>
+            <button className="btn btn-dark border border-warning">Profile</button>
           </Link>
 
           <Link to="/chat">
-            <button>Chat</button>
+            <button className="btn btn-dark border border-warning">Chat</button>
           </Link>
         
-          <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
+          <button className="btn btn-dark border border-warning" onClick={logOutUser}>Logout</button>
+          <span className="" >{user && user.name}</span>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
+          <Link className="text-decoration: none" to="/signup"> <button>Sign Up</button> </Link>
           <Link to="/login"> <button>Login</button> </Link>
         </>
       )}      
