@@ -40,7 +40,7 @@ class ApiService {
   };
 
   // DELETE /api/projects/:id
-  deleteProject = (resource, id) => {
+  deleteOne = (resource, id) => {
     return this.api.delete(`/${resource}/${id}`);
   };
 }
