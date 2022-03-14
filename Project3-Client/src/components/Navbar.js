@@ -37,8 +37,8 @@ function Navbar() {
             <button className="btn btn-dark border border-warning m-1">Profile</button>
           </Link>
 
-          <Link to="/chat">
-            <button className="btn btn-dark border border-warning m-1">Chat</button>
+          <Link to="/chats">
+            <button>Chat</button>
           </Link>
         
           <button className="btn btn-dark border border-warning m-1" onClick={logOutUser}>Logout</button>

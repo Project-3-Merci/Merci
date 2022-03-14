@@ -40,20 +40,15 @@ function AllFavoursPage() {
               <Link to={`/favour/${favour._id}`}>
                 <button>See details</button>
               </Link>
-              {user?._id && (
-                <button
-                  onClick={() => {
-                    apiService
-                      .updateOne(`favours/${user._id}/accept`, favour._id, {})
-                      .then(() => getAllFavours());
-                  }}
-                >
-                  Accept
-                </button>
-              )}
+              {user?._id && (<button onClick={() => {
+                apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
+                  .then(() => getAllFavours())
+              }}>Accept</button>)}
             </div>
-          );
-      })}
+          )
+      }
+      )}
+
     </div>
   );
 }
