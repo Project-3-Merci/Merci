@@ -62,6 +62,11 @@ router.route("/:id")
 
   })
   .delete(isAuthenticated, (req, res, next) => {
+    const favourId= req.params.id
+
+    Favour.findByIdAndRemove(favourId)
+    .then((deletedFavour) => res.json(deletedFavour))
+    .catch((error) => res.json (error))
 })
 
 
