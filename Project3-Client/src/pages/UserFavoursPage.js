@@ -18,7 +18,6 @@ export default function UserFavoursPage(props) {
       .getOne("favours/myList", userId)
       .then((response) => {
         setRequestedFavours(response.data.requestedFavours);
-        console.log(response.data.requestedFavours)
       })
       .catch((error) => console.log(error));
   };
@@ -32,7 +31,6 @@ export default function UserFavoursPage(props) {
       .getOne("favours/myList", userId)
       .then((response) => {
         setAcceptedFavours(response.data.acceptedFavours);
-        console.log(response.data.acceptedFavours)
       })
       .catch((error) => console.log(error));
   };
