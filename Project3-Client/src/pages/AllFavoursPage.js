@@ -42,7 +42,11 @@ function AllFavoursPage() {
               </Link>
               {user?._id && (<button onClick={() => {
                 apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
-                  .then(() => getAllFavours())
+                  .then(() => {
+                    apiService.createOne("chats/create",{user1:user._id, user2:favour.asker._id})
+                    getAllFavours()
+                  
+                  })
               }}>Accept</button>)}
             </div>
           )

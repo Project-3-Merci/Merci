@@ -37,7 +37,7 @@ function Navbar() {
             <button className="btn btn-dark border border-warning m-1">Profile</button>
           </Link>
 
-          <Link to="/chats">
+          <Link to={`/chats/${user?._id}`}>
             <button>Chat</button>
           </Link>
         
