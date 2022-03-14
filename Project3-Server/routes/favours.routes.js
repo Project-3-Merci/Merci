@@ -58,12 +58,12 @@ router.post("/accept/:id", isAuthenticated, (req, res, next) => {
 
 router.route("/myList/:userId")
 .get( isAuthenticated, (req, res, next) => {
-    const  userId  = req.params.id;
+    const  userId  = req.params.userId;
   
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
+/*     if (!mongoose.Types.ObjectId.isValid(userId)) {
       req.status(400).json({ message: "specified User Id is not valid" });
       return;
-    }
+    } */
   
     /*   User.findById(userId)
       .populate("acceptedFavours")
@@ -72,7 +72,7 @@ router.route("/myList/:userId")
   
     User.findById(userId)
       .populate("requestedFavours")
-      .then((user) => res.status(200).json(user))
+      .then((reqFavours) => res.status(200).json(reqFavours))
       .catch((error) => res.json(error));
   });
 

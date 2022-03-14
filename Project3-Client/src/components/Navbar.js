@@ -19,7 +19,7 @@ function Navbar() {
 
       {isLoggedIn && (
         <>
-          <Link to="/favours/myList">
+          <Link to={`/favours/myList/${user?._id}`}>
             <button>My Favours</button>
           </Link>
           
