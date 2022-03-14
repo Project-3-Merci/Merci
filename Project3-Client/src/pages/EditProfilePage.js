@@ -1,17 +1,14 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
-import ProfilePage from "./ProfilePage";
+import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../services/api.service";
-import cloudinaryService from "../services/cloudinary";
-import "bootstrap/dist/css/bootstrap.min.css"
 
-const API_URL = "http://localhost:5005";
 
 function EditProfilePage(props) {
   const [profile, setProfile] = useState([]);
   const [imageSelected, setImageSelected] = useState("");
   const [age, setAge] = useState();
+  const navigate = useNavigate();
   const [photoUrl, setPhoto] = useState("");
   const [formData, setFormData] = useState({
     aboutMe: "",
@@ -22,7 +19,6 @@ function EditProfilePage(props) {
   let { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
     apiService.getOne("profile", id).then((response) => {
       setProfile(response.data);
       setPhoto(response.data.profileImg);
@@ -43,7 +39,6 @@ function EditProfilePage(props) {
       .post("https://api.cloudinary.com/v1_1/dfagcghmy/image/upload", formData)
       .then((response) => {
         setPhoto(response.data.url);
-        console.log(response);
       });
   };
 
@@ -57,8 +52,9 @@ function EditProfilePage(props) {
     e.preventDefault();
 
     // Get the token from the localStorage
-    apiService.updateOne("profile/edit", id, formData).then(() => {
-      return <Navigate to={`/profile/${id}`} />;
+    apiService.updateOne("profile/edit", id, formData)
+    .then(() => {
+       navigate(`/profile/${id}`)
     });
   };
 
