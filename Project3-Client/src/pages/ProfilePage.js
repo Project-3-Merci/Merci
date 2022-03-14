@@ -22,9 +22,9 @@ export default function ProfilePage(props) {
   return !isLoading && !isLoggedIn ? (
     <Navigate to="/login" />
   ) : (
-    <div>
+    <div className="box">
       
-      <h1>Profile Page</h1>
+      <h1 className="card-title">Profile Page</h1>
       <img className="rounded img-fluid"  src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>
       <h3>{profile.email}</h3>
