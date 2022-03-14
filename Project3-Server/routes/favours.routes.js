@@ -46,6 +46,7 @@ router.route("/myList/:userId")
   
     User.findById(userId)
       .populate({path: "requestedFavours", model: Favour})
+      .populate({path: "acceptedFavours", model: Favour})
       .then((user) => {
         res.status(200).json(user)})
       .catch((error) => res.json(error));
