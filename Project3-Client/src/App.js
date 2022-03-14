@@ -23,10 +23,9 @@ function App() {
 
       <Routes>      
         <Route path="/" element={<HomePage />} />
-        <Route path="/chat" element={<IsPrivate> <ChatPage /> </IsPrivate>} />
-        
+        <Route path="/chat" element={<IsPrivate> <ChatPage /> </IsPrivate>} />        
         <Route path="/favours" element={<AllFavoursPage />} />
-        <Route path="/favours/myList" element={<UserFavoursPage/>} />
+        <Route path="/favours/myList/:userId" element={<UserFavoursPage/>} />
         <Route path="/favours/create" element={<CreateFavourPage/>} />
         <Route path="/profile/:id" element={<ProfilePage/>} />
         <Route path="/profile/edit/:id" element={<EditProfilePage/>} />

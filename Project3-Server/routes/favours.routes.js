@@ -3,6 +3,7 @@ const User = require("../models/User.model");
 const Favour = require("../models/Favour.model");
 
 const { isAuthenticated } = require("./../middleware/jwt.middleware.js");
+const { default: mongoose } = require("mongoose");
 
 const router = express.Router();
 
@@ -53,8 +54,24 @@ router.post("/accept/:id", isAuthenticated, (req, res, next) => {
 })
 
 
-router.get("/myList/:userId", isAuthenticated, (req, res, next) => {
-
-})
+router.route("/myList/:userId")
+.get( isAuthenticated, (req, res, next) => {
+    const  userId  = req.params.userId;
+  
+/*     if (!mongoose.Types.ObjectId.isValid(userId)) {
+      req.status(400).json({ message: "specified User Id is not valid" });
+      return;
+    } */
+  
+    /*   User.findById(userId)
+      .populate("acceptedFavours")
+      .then((user) => res.status(200).json(user))
+      .catch((error) => res.json(error)); */
+  
+    User.findById(userId)
+      .populate("requestedFavours")
+      .then((reqFavours) => res.status(200).json(reqFavours))
+      .catch((error) => res.json(error));
+  });
 
 module.exports = router;
