@@ -16,9 +16,8 @@ router.get("/:userId", (req,res,next)=>{
     })
 })
 
-router.post("/create/:user1/:user2",(req,res,next)=>{
-    const user1 = req.params.user1;
-    const user2 = req.params.user2;
+router.post("/create",(req,res,next)=>{
+    const {user1, user2} = req.body;
 
     Chat.find({$or:[
         {$and:[
