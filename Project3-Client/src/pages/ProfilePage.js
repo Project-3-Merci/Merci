@@ -34,7 +34,7 @@ export default function ProfilePage(props) {
       <h4>Age: {profile.age}</h4>
       <h4>About me: {profile.aboutMe}</h4>
 
-      <Link to={`/profile/${id}/edit`}>
+      <Link to={`/profile/edit/${id}`}>
         {" "}
         <button>Edit</button>
       </Link>

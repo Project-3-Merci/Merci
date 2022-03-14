@@ -1,118 +1,108 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import ProfilePage from "./ProfilePage";
 import apiService from "../services/api.service";
 import cloudinaryService from "../services/cloudinary";
 
-
 const API_URL = "http://localhost:5005";
 
-
-
 function EditProfilePage(props) {
-
-const [fetching, setFetching] = useState(true);
-const [profile, setProfile] = useState([]);
-
-let {id} = useParams()
-
-useEffect(() => {
-    console.log(id)
-
-
-
-  apiService.getOne("profile", id).then((response) => {
-    setProfile(response.data);
-    setFetching(false);
+  const [profile, setProfile] = useState([]);
+  const [imageSelected, setImageSelected] = useState("");
+  const [age, setAge] = useState();
+  const [photoUrl, setPhoto] = useState("");
+  const [formData, setFormData] = useState({
+    aboutMe: "",
+    profileImg: "",
+    age: "",
   });
-}, []);
-  const [title, setTitle] = useState("");
 
-  const [aboutMe, setAboutMe] = useState(profile.aboutMe);
-  const [age,setAge] = useState(profile.age)
-  const [profileImg, setProfileImg] = useState("")
-  const [imgUrl, setImgUrl] = useState("")
+  let { id } = useParams();
+
+  useEffect(() => {
+    console.log(id);
+    apiService.getOne("profile", id).then((response) => {
+      setProfile(response.data);
+      setPhoto(response.data.profileImg);
+      setFormData({
+        aboutMe: response.data.aboutMe,
+        profileImg: response.data.profileImg,
+        age: response.data.age,
+      });
+    });
+  }, []);
 
   const uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "qgsi72uw");
 
+    axios
+      .post("https://api.cloudinary.com/v1_1/dfagcghmy/image/upload", formData)
+      .then((response) => {
+        setPhoto(response.data.url);
+        console.log(response);
+      });
+  };
 
-  const formData = new FormData()
-    formData.append("file", profileImg)
-    formData.append("upload_preset", "sp284tf1")
-
-    axios.post("https://api.cloudinary.com/v1_1/db0sxdfjz/image/upload", formData)
-      .then((response)=>{
-        setImgUrl(response.data.url)
-        console.log(response)
-      })
- }
-
- 
+  function handleChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+    setFormData((formData) => ({ ...formData, [key]: value }));
+  }
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const requestBody = { aboutMe,profileImg,age };
-  
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem('authToken');  
 
-    // Send the token through the request "Authorization" Headers   
-    apiService.updateOne("profile",id,requestBody)
-      .then((response) => {
-  
-      });
+    // Get the token from the localStorage
+    apiService.updateOne("profile/edit", id, formData).then(() => {
+      return <Navigate to={`/profile/${id}`} />;
+    });
   };
-  
-  
-  
+
   return (
     <div className="EditProfilePage">
       <h3>Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit}>
-        
         <div>
-        <label>Image</label>
-        <img src={imgUrl} alt="profile image" width={80}/>
-        <input
-          type="file"
-          onChange={e=> setProfileImg(e.target.files[0])}
-        />
+          <label>Image</label>
+          <img src={photoUrl} alt="profile image" width={80} />
+          <input
+            type="file"
+            onChange={(e) => setImageSelected(e.target.files[0])}
+          />
         </div>
-        <button onClick={uploadImage}>Upload</button>
+        <button type="button" onClick={uploadImage}>
+          Upload Image
+        </button>
 
-         <label>Age:</label>
+        <label>Age:</label>
         <input
           type="number"
           name="age"
           min="0"
-          value={age}
-          onChange={(e) => {if(e.target.value > 18)
-            setAge(e.target.value)
-          else {
-            setAge(18) 
-           }
-          }
-        }
+          value={formData.age}
+          onChange={(e) => {
+            if (e.target.value < 18) e.target.value = 18;
+            handleChange(e);
+          }}
         />
-        
 
         <label>About me:</label>
         <textarea
-          name="description"
-          
-          
-        />
+          name="aboutMe"
+          onChange={handleChange}
+          value={formData.aboutMe}
+        ></textarea>
 
-        <button type="submit">Update Project</button>
+        <button type="submit" onClick={() => (formData.profileImg = photoUrl)}>
+          Save Changes
+        </button>
       </form>
-
     </div>
   );
 }
 
 export default EditProfilePage;
-
-
-
