@@ -39,6 +39,7 @@ function FavourDetailsPage (props) {
         <>
           <h1>{favour.title}</h1>
           <p>{favour.description}</p>
+          <p>{favour.asker.name}</p>
         </>
       )}
 
