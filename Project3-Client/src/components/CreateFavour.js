@@ -24,6 +24,7 @@ export default function CreateFavour() {
     location: "",
     locationLat: "",
     locationLong: "",
+    photo: "",
   });
 
   function handleSubmit(event) {
@@ -39,6 +40,7 @@ export default function CreateFavour() {
           location: "",
           locationLat: "",
           locationLong: "",
+          photo: "",
         });
       })
       .then((_) => {
@@ -51,6 +53,22 @@ export default function CreateFavour() {
     const value = event.target.value;
     setFormData((formData) => ({ ...formData, [key]: value }));
   }
+
+  const [imageSelected, setImageSelected] = useState("");
+  const [photoUrl, setPhoto] = useState("");
+
+  const uploadImage = () => {
+    const formData = new FormData();
+    formData.append("file", imageSelected);
+    formData.append("upload_preset", "qgsi72uw");
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dfagcghmy/image/upload", formData)
+      .then((response) => {
+        console.log(response);
+        setPhoto(response.data.url);
+      });
+  };
 
   return (
     <div className="AddFavour">
@@ -105,7 +123,22 @@ export default function CreateFavour() {
           onChange={handleChange}
         />
 
-        <button className="btn-create" type="submit">
+        <input
+          type="file"
+          onChange={(event) => {
+            setImageSelected(event.target.files[0]);
+          }}
+        />
+        {photoUrl && <img src={photoUrl} alt="photoUrl"/>}
+        <button type="button" onClick={uploadImage}>
+          upload image
+        </button>
+
+        <button
+          className="btn-create"
+          type="submit"
+          onClick={() => (formData.photo = photoUrl)}
+        >
           Create Favour
         </button>
       </form>
