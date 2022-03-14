@@ -31,7 +31,7 @@ function Navbar() {
             <button>Profile</button>
           </Link>
 
-          <Link to="/chats">
+          <Link to={`/chats/${user?._id}`}>
             <button>Chat</button>
           </Link>
         

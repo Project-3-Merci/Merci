@@ -23,7 +23,7 @@ function App() {
 
       <Routes>      
         <Route path="/" element={<HomePage />} />
-        <Route path="/chats" element={<IsPrivate> <ChatPage /> </IsPrivate>} />        
+        <Route path="/chats/:id" element={<IsPrivate> <ChatPage /> </IsPrivate>} />        
         <Route path="/favours" element={<AllFavoursPage />} />
         <Route path="/favours/myList/:userId" element={<UserFavoursPage/>} />
         <Route path="/favours/create" element={<CreateFavourPage/>} />
