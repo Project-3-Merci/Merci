@@ -34,7 +34,6 @@ export default function UserFavoursPage(props) {
     return (
       <div>
         <h1>UserFavoursPage</h1>
-        <p>test userId: {userId} </p>
         <p>test userId: {requestedFavours.asker} </p>
 
         <div className="RequestedFavoursPage">
