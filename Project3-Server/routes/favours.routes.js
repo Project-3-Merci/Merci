@@ -3,7 +3,6 @@ const User = require("../models/User.model");
 const Favour = require("../models/Favour.model");
 
 const { isAuthenticated } = require("./../middleware/jwt.middleware.js");
-const { default: mongoose } = require("mongoose");
 
 const router = express.Router();
 
@@ -45,14 +44,10 @@ router.route("/myList/:userId")
 .get( isAuthenticated, (req, res, next) => {
     const  userId  = req.params.userId;
   
-    if (!mongoose.Types.ObjectId.isValid(userId)) {
-      req.status(400).json({ message: "specified User Id is not valid" });
-      return;
-    } 
-  
     User.findById(userId)
-      .populate("requestedFavours")
-      .then((user) => res.status(200).json(user))
+      .populate({path: "requestedFavours", model: Favour})
+      .then((user) => {
+        res.status(200).json(user)})
       .catch((error) => res.json(error));
 });
 
