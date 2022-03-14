@@ -26,6 +26,7 @@ router.post("/create/:userId", (req, res, next) => {
     location,
     locationLat,
     locationLong,
+    photo
   })
     .then((newFavour) => {
       User.findByIdAndUpdate(asker, {

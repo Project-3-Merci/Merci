@@ -6,6 +6,7 @@ import { AuthContext } from "../context/auth.context";
 import Map from "../components/Map"
 import CreateFavour from "../components/CreateFavour"
 
+
 export default function CreateFavourPage() {
     const { isLoggedIn } = useContext(AuthContext);
     if(isLoggedIn){
