@@ -9,6 +9,7 @@ import apiService from "../services/api.service";
 export default function UserFavoursPage(props) {
   const { isLoggedIn } = useContext(AuthContext);
 
+  const { userId } = useParams();
   const [requestedFavours, setRequestedFavours] = useState([]);
 
 
