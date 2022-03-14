@@ -8,9 +8,8 @@ const { default: mongoose } = require("mongoose");
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
-  Favour.find().then((favours) => {
-    res.status(200).json(favours);
-  });
+  Favour.find().populate({path:"asker",model :User})
+    .then((favours)=>res.status(200).json(favours))
 });
 
 
@@ -40,7 +39,7 @@ router.post("/create/:userId", isAuthenticated, (req, res, next) => {
 router.route("/:id")
   .get((req, res, next) => {
     console.log("DETAILS")
-    Favour.findById(req.params.id)
+    Favour.findById(req.params.id).populate({path: "asker", model:User})
       .then(favour => {
         res.status(200).json(favour)
       })
@@ -49,8 +48,14 @@ router.route("/:id")
   .delete(isAuthenticated, (req, res, next) => {
   })
 
-router.post("/accept/:id", isAuthenticated, (req, res, next) => {
-
+router.put("/:userId/accept/:id", isAuthenticated, (req, res, next) => {
+  const userId = req.params.userId;
+  const favourId = req.params.id;
+  User.findByIdAndUpdate(userId, {$push:{acceptedFavours: favourId}}, {new:true})
+  .then(()=>{
+    Favour.findByIdAndUpdate(favourId,{taker:userId})
+    .then((favour)=>res.status(200).json(favour))
+  })
 })
 
 

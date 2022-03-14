@@ -1,10 +1,7 @@
 import { useState, useEffect, useContext } from "react";
+import { Link} from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
 import apiService from "../services/api.service";
-import FavorPreview from "../components/FavourPreview";
-
-const API_URL = "http://localhost:5005";
 
 
 function AllFavoursPage() {
@@ -31,19 +28,34 @@ function AllFavoursPage() {
     getAllFavours();
   }, []);
 
-
   return (
     <div>
 
       <h1>All Favours Page</h1>
 
       {favours.map((favour) => {
+        console.log(favour)
 
-           if(!favour.taker && favour.asker !== user?._id)
-           return <FavorPreview key={favour._id} title={favour.title} _id={favour._id} />
-          }
+        if (!favour.taker && (favour.asker._id !== user?._id))
+          return (
 
-      
+            <div className="favour-preview card">
+                <h2>{favour.title}</h2>
+                <h4>{favour.asker.name}</h4>
+                <Link to={`/favour/${favour._id}`}>
+                    <button>See details</button>
+                </Link>
+              {user?._id && (<button onClick={()=>{
+                    apiService.updateOne(`favours/${user._id}/accept`, favour._id,{})
+                    .then(()=>getAllFavours())
+                    }}>Accept</button>)}
+            </div>
+
+
+          )
+      }
+
+
 
       )}
 
