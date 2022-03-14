@@ -1,14 +1,15 @@
 import axios from "axios";
-import { useState, useContext } from "react";
+import { useState, useContext} from "react";
 import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
 
 export default function ChatList() {
 
     const [chats, setChats] = useState([]);
-    const { user } = useContext(AuthContext)
+    const {id} = useParams()
   
     const getAllChats = () => {
       // Get the token from the localStorage
@@ -16,7 +17,7 @@ export default function ChatList() {
   
       // Send the token through the request "Authorization" Headers
       apiService
-        .getOne("chats",user._id)
+        .getOne("chats",id)
         .then((response) => setChats(response.data))
         .catch((error) => console.log(error));
     };
@@ -33,17 +34,16 @@ export default function ChatList() {
         <h1>Chats List</h1>
   
         {chats.map((chat) => {
-          console.log(chat)
-  
-          if (user?._id)
+
+            const otherUser = chat.user1._id === id ? chat.user2 : chat.user1
             return (
-  
               <div className="chat-preview card">
-                <h2>{chat.user1.name} AND {chat.user2.name}</h2>
+                <h2>{otherUser.name}</h2>
+                <img src={otherUser.profileImg} alt="profile chat" width="100px"/>
               </div>
             )
         }
-        )}
+    )}
   
       </div>
     );
