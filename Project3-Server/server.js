@@ -11,8 +11,8 @@ const io = require('socket.io')(server, {
 const PORT = process.env.PORT || 5005;
 
 io.on('connection', (socket) => {
-  socket.on('conectado',()=>{
-    console.log("Usuario Conectado")
+  socket.on('newMessage',(receiverId)=>{
+    io.emit('updateChat', receiverId)
   })
 });
 
