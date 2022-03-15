@@ -20,9 +20,25 @@ router.get("/:userId/:otherUserId", (req,res,next)=>{
         ]}
     ]})
 
-    .populate({path: "messagess", model: "Message"})
     .populate({path:"user1", model: User})
     .populate({path:"user2", model: User})
+    .populate({
+        path:"messagess",
+        populate:{
+            path: "sender",
+            model: "User"
+        },
+        model: "Message"
+    })
+    .populate({
+        path:"messagess",
+        populate:{
+            path: "receiver",
+            model: "User"
+        },
+        model: "Message"
+    })
+
     .then(chat=>{
         res.status(200).json(chat)
     })

@@ -36,7 +36,7 @@ function AllFavoursPage() {
         if (!favour.taker && (favour.asker._id !== user?._id))
           return (
 
-            <div className="favour-preview card">
+            <div key={favour._id} className="favour-preview card">
               <h2>{favour.title}</h2>
               <h4>{favour.asker.name}</h4>
               <Link to={`/favour/${favour._id}`}>
