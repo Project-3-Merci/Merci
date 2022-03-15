@@ -3,7 +3,6 @@ import { AuthContext } from "../context/auth.context";
 import { useParams, useNavigate } from "react-router-dom";
 import apiService from "../services/api.service";
 
-const API_URL = "http://localhost:5005";
 
 function FavourDetailsPage(props) {
   const [favour, setFavour] = useState(null);
@@ -13,9 +12,6 @@ function FavourDetailsPage(props) {
   const navigate = useNavigate();
 
   const getFavour = () => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
-
     // Send the token through the request "Authorization" Headers
     apiService
       .getOne("favours", id)
@@ -43,9 +39,6 @@ function FavourDetailsPage(props) {
   };
 
   const getAllFavours = () => {
-    // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
-
     // Send the token through the request "Authorization" Headers
     apiService
       .getAll(
