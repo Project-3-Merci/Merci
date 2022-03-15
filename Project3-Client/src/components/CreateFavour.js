@@ -103,7 +103,11 @@ export default function CreateFavour() {
           type="number"
           name="token"
           value={formData.token}
-          onChange={handleChange}
+          onChange={(e) =>{ 
+            if (e.target.value > profile.token) e.target.value = profile.token;
+            if (e.target.value < 0) e.target.value = 0
+            handleChange(e)
+            }}
         />
 
         <input
