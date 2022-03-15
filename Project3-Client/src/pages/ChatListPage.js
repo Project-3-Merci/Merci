@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
+import { Link } from "react-router-dom";
 
 export default function ChatList() {
 
@@ -37,10 +38,13 @@ export default function ChatList() {
 
             const otherUser = chat.user1._id === id ? chat.user2 : chat.user1
             return (
-              <div className="chat-preview card">
-                <h2>{otherUser.name}</h2>
-                <img src={otherUser.profileImg} alt="profile chat" width="100px"/>
-              </div>
+
+              <Link to={`/chats/${id}/${otherUser._id}`}>
+                <div className="chat-preview card">
+                  <h2>{otherUser.name}</h2>
+                  <img src={otherUser.profileImg} alt="profile chat" width="100px"/>
+                </div>
+              </Link>
             )
         }
     )}
