@@ -3,6 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import apiService from "../services/api.service";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function ProfilePage(props) {
   const { user, isLoggedIn, isLoading } = useContext(AuthContext);
@@ -34,7 +35,7 @@ export default function ProfilePage(props) {
 
       <Link to={`/profile/edit/${id}`}>
         {" "}
-        <button className="btn btn-warning btn btn-outline-dark">Edit</button>
+        <button className="btn btn-warning btn btn-outline-dark btn-edit">Edit</button>
       </Link>
       </div>
     </div>
