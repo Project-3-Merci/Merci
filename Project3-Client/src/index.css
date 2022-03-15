@@ -170,12 +170,12 @@ nav li {
 
  .box-edit{
   margin: auto;
-  margin-top: 5px;
+  margin-top: 1px;
   padding: 0;
   flex-direction: column;
   align-items: center;
   width: 25vw;
-  height: 70vh;
+  height: 73vh;
   border-radius: 15px;
   box-shadow: 7px 7px 5px gray
  }
@@ -193,7 +193,7 @@ nav li {
  }
 
  .btn-save{
-  margin-top: 35px;
+  margin-top: 15px;
  }
  .text{
   margin:0
@@ -208,6 +208,10 @@ nav li {
   font-family: 'Helvetica Neue', 
   sans-serif; font-size: 15px; font-weight: 100; 
   letter-spacing: 1px; 
+ }
+
+ img{
+   width: 150px;
  }
 
 @media (max-device-width: 375px) {
@@ -229,7 +233,7 @@ nav li {
   flex-direction: column;
   align-items: center;
   width: 65vw;
-  height: 63vh;
+  height: 65vh;
   padding: 20px;
   border-radius: 15px;
   box-shadow: 7px 7px 10px gray
@@ -257,7 +261,7 @@ nav li {
   letter-spacing: 1px; 
 }
 .btn-save{
-  margin-top: 45px;
+  margin-top: 12px;
  }
  
 
