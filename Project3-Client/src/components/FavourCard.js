@@ -37,19 +37,25 @@ function FavourCard({
       <p style={{ maxWidth: "100px" }}>Location: {location} </p>
       <p style={{ maxWidth: "100px" }}>Tokens: {token} </p>
       {sessionId === taker && (
-        <Link to={`/chats/${sessionId}`}>
+        <Link to={`/chats/${sessionId}/${asker}`}>
           <button>Chat</button>
         </Link>
       )}
-      {(sessionId === asker && taker) && (
-        <Link to={`/chats/${sessionId}`}>
-          <button>Chat - Accepted request </button>
-        </Link>
+      {sessionId === asker && taker && (
+        <div>
+          <p>Accepted request</p>
+          <Link to={`/chats/${sessionId}/${taker}`}>
+            <button>Chat </button>
+          </Link>
+        </div>
       )}
-      {(sessionId === asker && !taker) && (
-        <Link to={`/chats/${sessionId}`}>
-          <button>Chat - Pending </button>
-        </Link>
+      {sessionId === asker && !taker && (
+        <div>
+          <p>Pending</p>
+          <Link to={`/favour/${_id}`}>
+            <button>See details</button>
+          </Link>
+        </div>
       )}
     </div>
   );
