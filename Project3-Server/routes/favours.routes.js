@@ -50,7 +50,6 @@ router.post("/create/:userId", isAuthenticated, (req, res, next) => {
         .then(() => res.json(newFavour));
     })
     .catch((error) => console.log(error));
-  console.log("THIS IS THE LOG", req.body);
 });
 
 
@@ -68,7 +67,6 @@ router.route("/myList/:userId")
 
 router.route("/:id")
   .get((req, res, next) => {
-    console.log("DETAILS")
     Favour.findById(req.params.id)
     .populate({path: "taker", model:User})
     .populate({path: "asker", model:User})
