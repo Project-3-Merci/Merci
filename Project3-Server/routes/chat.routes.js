@@ -7,6 +7,27 @@ const { isAuthenticated } = require('./../middleware/jwt.middleware.js');
 
 const router = express.Router();
 
+
+router.get("/:userId/:otherUserId", (req,res,next)=>{
+    Chat.find({$or:[
+        {$and:[
+            {user1:{$eq:req.params.userId}},
+            {user2:{$eq:req.params.otherUserId}},
+        ]},
+        {$and:[
+            {user1:{$eq:req.params.otherUserId}},
+            {user2:{$eq:req.params.userId}},
+        ]}
+    ]})
+    .populate({path: "messagess", model: Message})
+    .populate({path:"user1", model: User})
+    .populate({path:"user2", model: User})
+    .then(chats=>{
+        res.status(200).json({messages: chats[0].messagess, users:[chats[0].user1, chats[0].user2]})
+    })
+})
+
+
 router.get("/:userId", (req,res,next)=>{
     Chat.find({$or:[{user1:{$eq:req.params.userId}},{user2:{$eq:req.params.userId}}]})
     .populate({path:"user1",model:User})
