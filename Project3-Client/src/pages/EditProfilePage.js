@@ -104,7 +104,7 @@ function EditProfilePage(props) {
         <label className="text-center text-1">About me:</label>
         <div className="p-2">
           <textarea
-            className="text-dark border border-dark"
+            className="text-dark border border-dark aboutMe-text"
             name="aboutMe"
             onChange={handleChange}
             value={formData.aboutMe}

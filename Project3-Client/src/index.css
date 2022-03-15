@@ -234,7 +234,7 @@ nav li {
   flex-direction: column;
   align-items: center;
   width: 65vw;
-  height: 68vh;
+  height: 66vh;
   padding: 20px;
   padding-top: 5px;
   border-radius: 15px;
@@ -263,7 +263,7 @@ nav li {
   letter-spacing: 1px; 
 }
 .btn-save{
-  margin-top: 2px;
+  margin-top: 9px;
  }
  .box h4{
   margin-bottom: 15px;
