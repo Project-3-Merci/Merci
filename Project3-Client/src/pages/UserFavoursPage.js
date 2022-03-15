@@ -44,7 +44,7 @@ export default function UserFavoursPage(props) {
       <div>
         <h1>UserFavoursPage</h1>
         <div className="RequestedFavoursPage">
-          <h2>Requested Favours</h2>
+          <h2>My Requested Favours</h2>
           {requestedFavours.length === 0  ? <p>No more requested favours</p> 
           : requestedFavours.map((requestedFavour) => (
             <FavourCard key={requestedFavour._id} {...requestedFavour} />
@@ -52,7 +52,7 @@ export default function UserFavoursPage(props) {
         </div>
 
         <div className="AcceptedFavoursPage">
-          <h2>Accepted Favours</h2>
+          <h2>My Accepted Favours</h2>
           {acceptedFavours.length === 0 ? <p>No more accepted favours</p>
           : acceptedFavours.map((acceptedFavour) => (
             <FavourCard key={acceptedFavour._id} {...acceptedFavour} />
