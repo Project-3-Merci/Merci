@@ -37,8 +37,8 @@ export default function ChatList() {
 
 
     useEffect(() => {
-        socket.on('updateChat', receiverId =>{
-            if(receiverId === id){
+        socket.on('updateChat', users =>{
+            if(users.includes(id)){
                 getAllMessages()
                 console.log("Chat updated")
             }
@@ -46,14 +46,11 @@ export default function ChatList() {
       }, []);
   
 
-    
-
-
-
+      
     const addNewMessage= () => {
         apiService.createOne(`chats/newMessage/${chat._id}`, {content: newMessage, sender: id, receiver: otherId})
         .then(response=>{
-            socket.emit('newMessage', response.data.receiver)
+            socket.emit('newMessage', [response.data.sender, response.data.receiver])
         })
     }
 //    if(messages.length)
