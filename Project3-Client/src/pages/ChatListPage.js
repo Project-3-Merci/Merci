@@ -39,7 +39,7 @@ export default function ChatList() {
             const otherUser = chat.user1._id === id ? chat.user2 : chat.user1
             return (
 
-              <Link to={`/chats/${id}/${otherUser._id}`}>
+              <Link key={chat._id} to={`/chats/${id}/${otherUser._id}`}>
                 <div className="chat-preview card">
                   <h2>{otherUser.name}</h2>
                   <img src={otherUser.profileImg} alt="profile chat" width="100px"/>

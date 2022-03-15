@@ -7,8 +7,6 @@ const favourSchema = new Schema({
   title: { type: String, required: true },
   description: { type: String, required: true },
   location: { type: String },
-  locationLat: { type: Number },
-  locationLong: { type: Number },
   token: { type: Number },
   photo:{type: String}
 });
