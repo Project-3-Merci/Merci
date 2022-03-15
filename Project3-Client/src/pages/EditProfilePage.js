@@ -58,10 +58,10 @@ function EditProfilePage(props) {
   };
 
   return (
-    <div className="p-4">
+    <div className="">
       <h3 className="text-info ">Edit Profile</h3>
 
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFormSubmit} className="box-edit">
         <label className="p-2 text-center">Image</label>
         <div className="p-2">
           <img
@@ -112,7 +112,7 @@ function EditProfilePage(props) {
         </div>
         <div className="p-2">
           <button
-            className="btn btn-outline-success"
+            className="btn btn-outline-success btn-save"
             type="submit"
             onClick={() => (formData.profileImg = photoUrl)}
           >
