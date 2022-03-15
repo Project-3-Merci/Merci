@@ -8,10 +8,8 @@ function AllFavoursPage() {
   const [favours, setFavours] = useState([]);
   const { user } = useContext(AuthContext)
 
-  console.log("USER:", user)
   const getAllFavours = () => {
     // Get the token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
 
     // Send the token through the request "Authorization" Headers
     apiService
@@ -34,7 +32,6 @@ function AllFavoursPage() {
       <h1>All Favours Page</h1>
 
       {favours.map((favour) => {
-        console.log(favour)
 
         if (!favour.taker && (favour.asker._id !== user?._id))
           return (
