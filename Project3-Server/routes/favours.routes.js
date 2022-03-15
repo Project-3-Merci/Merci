@@ -3,7 +3,6 @@ const User = require("../models/User.model");
 const Favour = require("../models/Favour.model");
 
 const { isAuthenticated } = require("./../middleware/jwt.middleware.js");
-
 const router = express.Router();
 
 router.put("/:userId/accept/:id", isAuthenticated, (req, res, next) => {
@@ -30,7 +29,6 @@ router.put(`/finished/:id`, isAuthenticated, (req, res, next) =>{
     })
 })
 
-
 router.post("/create/:userId", isAuthenticated, (req, res, next) => {
   const asker = req.params.userId;
   const { title, description, token, location, photo } =
@@ -50,9 +48,7 @@ router.post("/create/:userId", isAuthenticated, (req, res, next) => {
         .then(() => res.json(newFavour));
     })
     .catch((error) => console.log(error));
-  console.log("THIS IS THE LOG", req.body);
 });
-
 
 router.route("/myList/:userId")
 .get( isAuthenticated, (req, res, next) => {
@@ -68,7 +64,6 @@ router.route("/myList/:userId")
 
 router.route("/:id")
   .get((req, res, next) => {
-    console.log("DETAILS")
     Favour.findById(req.params.id)
     .populate({path: "taker", model:User})
     .populate({path: "asker", model:User})
@@ -84,8 +79,6 @@ router.route("/:id")
     .then((deletedFavour) => res.json(deletedFavour))
     .catch((error) => res.json (error))
 })
-
-
 
 router.get("/", (req, res, next) => {
     Favour.find().populate({path:"asker",model :User})
