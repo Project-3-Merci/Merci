@@ -63,7 +63,7 @@ export default function ChatList() {
                 {messages.map((message) => {
                     const messageDate = new Date(message.createdAt)
                     const daysPassed = Math.floor((new Date().getTime() - messageDate.getTime()) / (1000 * 3600 * 24))
-                    const messageFooter = daysPassed > 0 ?
+                    const messageFooter = daysPassed > 0
                     return (
                         <div className="my-message-div">
                             <p className="message-content">{message.content}</p>
