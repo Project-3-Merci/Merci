@@ -25,21 +25,28 @@ function FavourDetailsPage(props) {
         setFavour(oneFavour);
       })
       .catch((error) => console.log(error));
-
   };
 
   useEffect(() => {
     getFavour();
   }, []);
 
-  const deleteFavour = () => {    
+  const deleteFavour = () => {
     apiService.deleteOne(`favours`, id).then(() => {
       navigate(`/favours/myList/${user._id}`);
     });
   };
 
   const finishFavour = () => {
-  
+
+
+
+    apiService
+    .updateOne(`favours` , favour.asker._id, {})
+    .updateOne(`favours` , favour.taker._id, {})
+
+    
+    
   };
 
   return (
@@ -52,21 +59,27 @@ function FavourDetailsPage(props) {
           <p>Username: {favour.asker.name}</p>
           <p>Location: {favour.location}</p>
           <p>Tokens: {favour.token}</p>
-          <img src={favour.photo} alt="favourPic" width={80}/>
+          <img src={favour.photo} alt="favourPic" width={80} />
         </>
       )}
 
-{ favour && (
-  user._id  === favour.asker._id ?
-      <button className="btn-create" onClick={deleteFavour}>Delete Favour</button>
-      : <button className="btn-create" onClick={finishFavour}>Favour done!</button>)
-      
-      }
+      {favour && user._id === favour.asker._id && (
+        <button className="btn-create" onClick={deleteFavour}>
+          Delete Favour
+        </button>
+      )}
 
-{/* { user._id === favour.taker._id &&
-      <button className="btn-create" onClick={finishFavour}>Favour done!</button>} */}
-
-
+      {favour && user._id === favour.taker._id && (
+        <button className="btn-create" onClick={finishFavour}>
+          Finish favour
+        </button>
+      )}
+{/* 
+      {favour && (user._id !== favour.asker._id && !favour.taker._id) && (
+        <Link to={`/`}>
+          <p>HEY! DON'T TRY TO HARDCODE!</p>
+        </Link>
+      )} */}
     </div>
   );
 }

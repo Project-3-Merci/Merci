@@ -16,6 +16,17 @@ router.put("/:userId/accept/:id", isAuthenticated, (req, res, next) => {
   })
 })
 
+router.put(`/:id/finished`, isAuthenticated, (req, res, next) =>{
+  const favourId = req.params.id;
+
+  Favour.findById(favourId)
+    .populate({path: "asker", model: User})
+    .populate({path: "taker", model: User})
+    .then(()=> { 
+      Favour.findByIdAndUpdate(favourId, {$sum: {token}})
+    })
+})
+
 
 router.post("/create/:userId", isAuthenticated, (req, res, next) => {
   const asker = req.params.userId;
@@ -55,7 +66,9 @@ router.route("/myList/:userId")
 router.route("/:id")
   .get((req, res, next) => {
     console.log("DETAILS")
-    Favour.findById(req.params.id).populate({path: "asker", model:User})
+    Favour.findById(req.params.id)
+    .populate({path: "taker", model:User})
+    .populate({path: "asker", model:User})
       .then(favour => {
         res.status(200).json(favour)
       })
