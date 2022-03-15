@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import apiService from "../services/api.service";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 function EditProfilePage(props) {
   const [profile, setProfile] = useState([]);

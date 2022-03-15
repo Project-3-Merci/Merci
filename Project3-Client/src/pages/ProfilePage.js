@@ -3,7 +3,7 @@ import { AuthContext } from "../context/auth.context";
 import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import apiService from "../services/api.service";
-import "bootstrap/dist/css/bootstrap.min.css";
+
 
 export default function ProfilePage(props) {
   const { user, isLoggedIn, isLoading } = useContext(AuthContext);
