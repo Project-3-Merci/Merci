@@ -18,37 +18,37 @@ function Navbar() {
 
   
     
-    <nav classNameNameName=" progress-bar-striped">
+    <nav className=" progress-bar-striped">
       <Link to="/">
-        <button classNameNameName="btn btn-dark border border-warning m-1">Home</button>
+        <button className="btn btn-dark border border-warning m-1">Home</button>
       </Link>
 
       {isLoggedIn && (
         <>
           <Link to={`/favours/myList/${user?._id}`}>
-            <button classNameNameName="btn btn-dark border border-warning btn-block m-1 topnav">My Favours</button>
+            <button className="btn btn-dark border border-warning btn-block m-1 topnav">My Favours</button>
           </Link>
           
           <Link to="/favours">
-            <button classNameNameName="btn btn-dark border border-warning m-1 topnav" >All Favours</button>
+            <button className="btn btn-dark border border-warning m-1 topnav" >All Favours</button>
           </Link>
 
           <Link to={`/profile/${user?._id}`}>
-            <button classNameNameName="btn btn-dark border border-warning m-1" >Profile</button>
+            <button className="btn btn-dark border border-warning m-1" >Profile</button>
           </Link>
 
           <Link to={`/chats/${user?._id}`}>
-            <button classNameNameName="btn btn-dark border border-warning m-1" >Chat</button>
+            <button className="btn btn-dark border border-warning m-1" >Chat</button>
           </Link>
         
-          <button classNameNameName="btn btn-dark border border-warning m-1" onClick={logOutUser}>Logout</button>
-          <span classNameNameName="font-weight-bold" >{user && user.name}</span>
+          <button className="btn btn-dark border border-warning m-1" onClick={logOutUser}>Logout</button>
+          <span className="font-weight-bold" >{user && user.name}</span>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <Link classNameNameName="text-decoration: none" to="/signup"> <button>Sign Up</button> </Link>
+          <Link className="text-decoration: none" to="/signup"> <button>Sign Up</button> </Link>
           <Link to="/login"> <button>Login</button> </Link>
         </>
       )}      
