@@ -9,7 +9,7 @@ const router = express.Router();
 
 
 router.get("/:userId/:otherUserId", (req,res,next)=>{
-    Chat.find({$or:[
+    Chat.findOne({$or:[
         {$and:[
             {user1:{$eq:req.params.userId}},
             {user2:{$eq:req.params.otherUserId}},
@@ -19,11 +19,24 @@ router.get("/:userId/:otherUserId", (req,res,next)=>{
             {user2:{$eq:req.params.userId}},
         ]}
     ]})
-    .populate({path: "messagess", model: Message})
+
+    .populate({path: "messagess", model: "Message"})
     .populate({path:"user1", model: User})
     .populate({path:"user2", model: User})
-    .then(chats=>{
-        res.status(200).json({messages: chats[0].messagess, users:[chats[0].user1, chats[0].user2]})
+    .then(chat=>{
+        res.status(200).json(chat)
+    })
+})
+
+router.post("/newMessage/:chatId/", (req,res,next)=>{
+
+    const {content, sender, receiver} = req.body;
+
+    Message.create({content, sender, receiver})
+    .then(message=>{
+        Chat.findOneAndUpdate({"_id":req.params.chatId}, {$push:{messagess: message._id}}, {new: true})
+        .then(()=>{
+            res.status(200).json(message)})
     })
 })
 

@@ -6,12 +6,13 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
 import { Link } from "react-router-dom";
-
+import socket from "../components/Socket";
 export default function ChatList() {
 
     const [newMessage, setNewMessage] = useState("");
     const [messages, setMessages] = useState([])
     const [receiver, setReceiver] = useState({})
+    const [chat, setChat] = useState({})
 
     const {id, otherId} = useParams()
   
@@ -21,8 +22,9 @@ export default function ChatList() {
       apiService
         .getAll(`chats/${id}/${otherId}`)
         .then((response) => {
-            setReceiver(response.data.users[0]._id == id ? response.data.users[1]: response.data.users[0]) 
-            setMessages(response.data.messages)
+            setReceiver(response.data.user1._id == id ? response.data.user2: response.data.user1) 
+            setMessages(response.data.messagess)
+            setChat(response.data)
         })
         .catch((error) => console.log(error));
     };
@@ -33,13 +35,31 @@ export default function ChatList() {
       getAllMessages();
     }, []);
 
-    const addNewMessage= () => {
 
+    useEffect(() => {
+        socket.on('updateChat', receiverId =>{
+            if(receiverId === id){
+                getAllMessages()
+                console.log("Chat updated")
+            }
+        })
+      }, []);
+  
+
+    
+
+
+
+    const addNewMessage= () => {
+        apiService.createOne(`chats/newMessage/${chat._id}`, {content: newMessage, sender: id, receiver: otherId})
+        .then(response=>{
+            socket.emit('newMessage', response.data.receiver)
+        })
     }
-    if(messages.length > 0)
+//    if(messages.length)
     return (
       <div className="chat-box">
-          
+
         <h2>{receiver.name}</h2>
 
         {messages.map((message) => {
@@ -49,18 +69,19 @@ export default function ChatList() {
             )
         },
 
-        <textarea>{newMessage}</textarea>
-    )}
-  
+        
+        )}
+        <textarea onChange={e=>setNewMessage(e.target.value)}></textarea>
+            <button type="button" onClick={addNewMessage}>Send</button>
       </div>
     );
-    else
-    return(
+  //  else
+{/*    return(
         <div>
             <h2>Start a conversation with {receiver.name}</h2>
-            <textarea onChange={e=>setNewMessage(e.target.value)}>{newMessage}</textarea>
-            <button type="button" onClick={e => setMessages()}>Send</button>
+            <textarea onChange={e=>setNewMessage(e.target.value)}></textarea>
+            <button type="button" onClick={addNewMessage}>Send</button>
         </div>
         
-    )
+)*/}
   }
