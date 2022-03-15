@@ -28,6 +28,74 @@
   color: #61dafb;
 }
 
+.my-message-content{
+  margin:0;
+  color: white;
+}
+.other-message-content{
+  margin:0;
+}
+
+.my-message-div{
+  word-wrap: break-word;
+  background-color: #006AFF;
+  padding: 10px 15px;
+  max-width: 50%;
+  height: auto;
+  margin: 5px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.other-message-div{
+  word-wrap: break-word;
+  background-color: #D4D8E8;
+  padding: 10px 15px;
+  max-width: 50%;
+  height: auto;
+  margin: 5px;
+  border-radius: 20px;
+  position: relative;
+}
+
+.chat-page{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.chat-box{
+  max-width: 600px;
+}
+.chat-display-box{
+
+  height: 400px;
+  overflow: scroll;
+}
+.my-message-div-container{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.other-message-div-container{
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.my-message-date{
+  position: absolute;
+  right: 0px;
+  margin-top: 0px;
+
+}
+.other-message-date{
+  position: absolute;
+  left: 0px;
+  margin-top: 0px;
+}
+
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

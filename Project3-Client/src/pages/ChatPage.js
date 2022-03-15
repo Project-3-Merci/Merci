@@ -56,25 +56,40 @@ export default function ChatList() {
 
     if (messages.length > 0)
         return (
-            <div className="chat-box">
+            <div className="chat-page">
+                <div className="chat-box">
+                        <h2>{receiver.name}</h2>
+                    <div className="chat-display-box">
+                        {messages.map((message) => {
+                            const messageDate = new Date(message.createdAt)
+                            const daysPassed = Math.floor((new Date().getTime() - messageDate.getTime()) / (1000 * 3600 * 24))
+                            const messageFooter = daysPassed > 0 ? `${daysPassed} days ago` :`At ${messageDate.getHours()}:${messageDate.getMinutes()}`
+                
+                            return message.sender._id === id? (
 
-                <h2>{receiver.name}</h2>
+                                <div className="my-message-div-container">
+                                    <div className="my-message-div">
+                                        <p className="my-message-content">{message.content}</p>
+                                        <p className="my-message-date">{messageFooter}</p>
+                                    </div>
+                                </div>
 
-                {messages.map((message) => {
-                    const messageDate = new Date(message.createdAt)
-                    const daysPassed = Math.floor((new Date().getTime() - messageDate.getTime()) / (1000 * 3600 * 24))
-                    const messageFooter = daysPassed > 0
-                    return (
-                        <div className="my-message-div">
-                            <p className="message-content">{message.content}</p>
-                            <p className="message-date">{daysPassed}</p>
+                            ):(
+                                <div className="other-message-div-container">
+                                    <div className="other-message-div">
+                                        <p className="other-message-content">{message.content}</p>
+                                        <p className="other-message-date">{messageFooter}</p>
+                                    </div>
+                                </div>
+                            )
+                        },
+                        )}
+                    </div>
+                        <div className="message-box">
+                            <textarea onChange={e => setNewMessage(e.target.value)}></textarea>
+                            <button type="button" onClick={addNewMessage}>Send</button>
                         </div>
-                    )
-                },
-
-                )}
-                <textarea onChange={e => setNewMessage(e.target.value)}></textarea>
-                <button type="button" onClick={addNewMessage}>Send</button>
+                </div>
             </div>
         );
     else
