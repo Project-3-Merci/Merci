@@ -62,7 +62,7 @@ function EditProfilePage(props) {
       <h3 className="text">Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit} className="box-edit">
-        <label className="p-2 text-center text-1">Image</label>
+        <label className="p-2 text-center text-1 text-1">Image</label>
         <div className="p-2">
           <img
             className="rounded img-fluid border border-warning"
@@ -86,7 +86,7 @@ function EditProfilePage(props) {
           </button>
         </div>
 
-        <label className="text-center text-1">Age:</label>
+        <label className="text-center text-1 text-1">Age:</label>
         <div className="mx-auto">
           <input
             className="rounded"
