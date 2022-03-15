@@ -38,14 +38,15 @@ function AllFavoursPage() {
               <Link to={`/favour/${favour._id}`}>
                 <button>See details</button>
               </Link>
-              {user?._id && (<button onClick={() => {
+              { (favour.asker.token > 0) ?
+                user?._id && (<button onClick={() => {
                 apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
                   .then(() => {
                     apiService.createOne("chats/create",{user1:user._id, user2:favour.asker._id})
                     getAllFavours()
                   
                   })
-              }}>Accept</button>)}
+              }}>Accept</button>):<p> Sorry, this user run out of tokens!</p> }
             </div>
           )
       }
