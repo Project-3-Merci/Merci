@@ -1,7 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import axios from "axios";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import apiService from "../services/api.service";
 
 const API_URL = "http://localhost:5005";
@@ -9,7 +8,7 @@ const API_URL = "http://localhost:5005";
 function FavourDetailsPage(props) {
   const [favour, setFavour] = useState(null);
   const { user } = useContext(AuthContext);
-
+  const [favours, setFavours] = useState([]);
   const { id } = useParams();
   const navigate = useNavigate();
 
@@ -38,16 +37,30 @@ function FavourDetailsPage(props) {
   };
 
   const finishFavour = () => {
-
-
-
     apiService
-    .updateOne(`favours` , favour.asker._id, {})
-    .updateOne(`favours` , favour.taker._id, {})
-
-    
-    
+    .updateOne(`favours/finished`,favour._id, {})    
+    .then(()=> deleteFavour())
   };
+
+  const getAllFavours = () => {
+    // Get the token from the localStorage
+    const storedToken = localStorage.getItem("authToken");
+
+    // Send the token through the request "Authorization" Headers
+    apiService
+      .getAll(
+        "favours"
+      )
+      .then((response) => setFavours(response.data))
+      .catch((error) => console.log(error));
+  };
+
+  // We set this effect will run only once, after the initial render
+  // by setting the empty dependency array - []
+  useEffect(() => {
+    getAllFavours();
+  }, []);
+
 
   return (
     <div className="FavourCard card">
@@ -69,11 +82,21 @@ function FavourDetailsPage(props) {
         </button>
       )}
 
-      {favour && user._id === favour.taker._id && (
+      {favour && favour.taker &&  user._id === favour.taker._id && (
         <button className="btn-create" onClick={finishFavour}>
           Finish favour
         </button>
       )}
+
+      {user?._id &&  !favour?.taker && user._id !== favour?.asker._id && (<button onClick={() => {
+                apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
+                  .then(() => {
+                    apiService.createOne("chats/create",{user1:user._id, user2:favour.asker._id})
+                    getFavour()
+                  
+                  })
+              }}>Accept</button>)}
+      
 {/* 
       {favour && (user._id !== favour.asker._id && !favour.taker._id) && (
         <Link to={`/`}>

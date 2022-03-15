@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import axios from "axios";
-import { useNavigate, useParams, Navigate, Link } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import FavourCard from "../components/FavourCard";
 import apiService from "../services/api.service";
