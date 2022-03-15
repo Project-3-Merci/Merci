@@ -15,9 +15,6 @@ function Navbar() {
   return (
 
 
-
-
-
     
     <nav className=" progress-bar-striped">
       <Link to="/">
@@ -25,7 +22,6 @@ function Navbar() {
       </Link>
 
       {isLoggedIn && (
-      
         <>
           <Link to={`/favours/myList/${user?._id}`}>
             <button className="btn btn-dark border border-warning btn-block m-1 topnav">My Favours</button>
@@ -47,14 +43,16 @@ function Navbar() {
           <span className="font-weight-bold" >{user && user.name}</span>
         </>
       )}
+
       {!isLoggedIn && (
         <>
           <Link className="text-decoration: none" to="/signup"> <button>Sign Up</button> </Link>
           <Link to="/login"> <button>Login</button> </Link>
         </>
       )}      
-    </nav>
-  );
+      </nav>
+  )
+  
 }
 
 export default Navbar;

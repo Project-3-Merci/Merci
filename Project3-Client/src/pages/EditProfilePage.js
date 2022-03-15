@@ -59,13 +59,13 @@ function EditProfilePage(props) {
 
   return (
     <div className="">
-      <h3 className="text-info ">Edit Profile</h3>
+      <h3 className="text">Edit Profile</h3>
 
       <form onSubmit={handleFormSubmit} className="box-edit">
-        <label className="p-2 text-center">Image</label>
+        <label className="p-2 text-center text-1">Image</label>
         <div className="p-2">
           <img
-            className="rounded img-fluid"
+            className="rounded img-fluid border border-warning"
             src={photoUrl}
             alt="profile image"
             width={80}
@@ -78,7 +78,7 @@ function EditProfilePage(props) {
 
         <div>
           <button
-            className="btn btn-danger mx-auto"
+            className="btn btn-outline-dark mx-auto"
             type="button"
             onClick={uploadImage}
           >
@@ -86,7 +86,7 @@ function EditProfilePage(props) {
           </button>
         </div>
 
-        <label className="text-center">Age:</label>
+        <label className="text-center text-1">Age:</label>
         <div className="mx-auto">
           <input
             className="rounded"
@@ -101,10 +101,10 @@ function EditProfilePage(props) {
           />
         </div>
 
-        <label className="text-center">About me:</label>
+        <label className="text-center text-1">About me:</label>
         <div className="p-2">
           <textarea
-            className="text-dark alert alert-info border border-info"
+            className="text-dark border border-dark"
             name="aboutMe"
             onChange={handleChange}
             value={formData.aboutMe}
@@ -112,7 +112,7 @@ function EditProfilePage(props) {
         </div>
         <div className="p-2">
           <button
-            className="btn btn-outline-success btn-save"
+            className="btn btn-dark border border-warning btn-save"
             type="submit"
             onClick={() => (formData.profileImg = photoUrl)}
           >
