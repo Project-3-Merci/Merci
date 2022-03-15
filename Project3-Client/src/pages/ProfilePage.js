@@ -29,6 +29,7 @@ export default function ProfilePage(props) {
       <h3>{profile.email}</h3>
       <h4>Age: {profile.age}</h4>
       <h4>About me: {profile.aboutMe}</h4>
+      <p>tokens: {profile.token}</p>
 
       <Link to={`/profile/edit/${id}`}>
         {" "}
