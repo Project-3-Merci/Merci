@@ -25,7 +25,7 @@ function Navbar() {
       </Link>
 
       {isLoggedIn && (
-        <div className="container-fluid">
+      
         <>
           <Link to={`/favours/myList/${user?._id}`}>
             <button className="btn btn-dark border border-warning btn-block m-1 topnav">My Favours</button>
@@ -46,7 +46,6 @@ function Navbar() {
           <button className="btn btn-dark border border-warning m-1" onClick={logOutUser}>Logout</button>
           <span className="font-weight-bold" >{user && user.name}</span>
         </>
-        </div>
       )}
       {!isLoggedIn && (
         <>
