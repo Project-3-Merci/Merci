@@ -25,16 +25,21 @@ function FavourDetailsPage(props) {
         setFavour(oneFavour);
       })
       .catch((error) => console.log(error));
+
   };
 
   useEffect(() => {
     getFavour();
   }, []);
 
-  const deleteFavour = () => {
+  const deleteFavour = () => {    
     apiService.deleteOne(`favours`, id).then(() => {
       navigate(`/favours/myList/${user._id}`);
     });
+  };
+
+  const finishFavour = () => {
+  
   };
 
   return (
@@ -47,10 +52,21 @@ function FavourDetailsPage(props) {
           <p>Username: {favour.asker.name}</p>
           <p>Location: {favour.location}</p>
           <p>Tokens: {favour.token}</p>
-          <img src={favour.photo} alt="favour-photo" width={80}/>
+          <img src={favour.photo} alt="favourPic" width={80}/>
         </>
       )}
-      <button className="btn-create" onClick={deleteFavour}>Delete Project</button>
+
+{ favour && (
+  user._id  === favour.asker._id ?
+      <button className="btn-create" onClick={deleteFavour}>Delete Favour</button>
+      : <button className="btn-create" onClick={finishFavour}>Favour done!</button>)
+      
+      }
+
+{/* { user._id === favour.taker._id &&
+      <button className="btn-create" onClick={finishFavour}>Favour done!</button>} */}
+
+
     </div>
   );
 }
