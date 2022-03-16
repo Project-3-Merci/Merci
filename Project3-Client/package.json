@@ -15,7 +15,6 @@
     "react": "^16.0.0",
     "react-bootstrap": "^2.2.1",
     "react-dom": "^16.0.0",
-    "react-google-maps": "^9.4.5",
     "react-numeric-input": "^2.2.3",
     "react-router-dom": "^6.1.1",
     "react-scripts": "^5.0.0",
