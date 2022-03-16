@@ -71,14 +71,14 @@ export default function CreateFavour() {
   };
 
   return (
-    <div className="AddFavour centered">
+    <div className="AddFavour">
       <h3>Add a Favour</h3>
 
       <GoogleMap/>
       <form onSubmit={handleSubmit}>
 
-        <input id="lat" name="lat" type="number" className="coordinate-input" disabled></input>
-        <input id="lng" name="lng" type="number" className="coordinate-input" disabled></input>
+        <input id="lat" name="lat" type="number" className="coordinate-input hidden" disabled></input>
+        <input id="lng" name="lng" type="number" className="coordinate-input hidden" disabled></input>
         <label className="btn-create">Title:</label>
         <input
           type="text"

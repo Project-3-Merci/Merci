@@ -1,6 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar1 from "./components/Navbar";
 import HomePage from "./pages/HomePage";
 
 import ChatListPage from "./pages/ChatListPage";
@@ -20,7 +20,7 @@ import FavourDetailsPage from "./pages/FavourDetailsPage"
 function App() {
   return (
     <div className="App">
-      <Navbar />
+      <Navbar1 />
 
       <Routes>      
         <Route path="/" element={<HomePage />} />
