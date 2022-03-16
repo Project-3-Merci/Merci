@@ -31,21 +31,23 @@ function FavourCard({
   return (
     <div className="favour-preview card bg-secondary">
       <Link to={`/favour/${_id}`}>
-        <p>{title}</p>
+        <h2>{title}</h2>
       </Link>
-      <p style={{ maxWidth: "200px" }}>Description: {description} </p>
-      <p style={{ maxWidth: "100px" }}>Location: {location} </p>
-      <p style={{ maxWidth: "100px" }}>Tokens: {token} </p>
+      <p>Description: {description} </p>
+      {location ? <p>Location: {location} </p> : <p>Location not provided</p>}
+      <p>Tokens: {token} </p>
       {sessionId === taker && (
         <Link to={`/chats/${sessionId}/${asker}`}>
-          <button>Chat</button>
+          <button className="btn btn-dark border border-warning">Chat</button>
         </Link>
       )}
       {sessionId === asker && taker && (
         <div>
           <p>Accepted request</p>
           <Link to={`/chats/${sessionId}/${taker}`}>
-            <button>Chat </button>
+            <button className="btn btn-dark border border-warning">
+              Chat{" "}
+            </button>
           </Link>
         </div>
       )}
@@ -53,7 +55,9 @@ function FavourCard({
         <div>
           <p>Pending</p>
           <Link to={`/favour/${_id}`}>
-            <button>See details</button>
+            <button className="btn btn-dark border border-warning">
+              See details
+            </button>
           </Link>
         </div>
       )}

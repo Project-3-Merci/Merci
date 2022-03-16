@@ -60,22 +60,41 @@ function FavourDetailsPage(props) {
             <h2>Title: {favour.title}</h2>
             <p>Description: {favour.description}</p>
             <p>Username: {favour.asker.name}</p>
-            <p>Location: {favour.location}</p>
+            {favour.location ? (
+              <p>Location: {favour.location}</p>
+            ) : (
+              <p>Location not provided</p>
+            )}
             <p>Tokens: {favour.token}</p>
-            <div className="d-flex justify-content-center"> 
-           {favour.photo ? <img src={favour.photo} alt="favourPic" width={80} className="mb-3"/>: <p>No photo available</p>}
-           </div>
+            <div className="d-flex justify-content-center">
+              {favour.photo ? (
+                <img
+                  src={favour.photo}
+                  alt="favourPic"
+                  width={80}
+                  className="mb-3"
+                />
+              ) : (
+                <p>No photo available</p>
+              )}
+            </div>
           </>
         )}
 
         {favour && user._id === favour.asker._id && (
-          <button className="btn-create btn-dark border border-danger text-danger" onClick={deleteFavour}>
+          <button
+            className="btn-create btn-dark border border-danger text-danger"
+            onClick={deleteFavour}
+          >
             Delete Favour
           </button>
         )}
 
         {favour && favour.taker && user._id === favour.taker._id && (
-          <button className="btn-create btn-dark border border-success text-success" onClick={finishFavour}>
+          <button
+            className="btn-create btn-dark border border-success text-success"
+            onClick={finishFavour}
+          >
             Finish favour
           </button>
         )}
@@ -96,7 +115,7 @@ function FavourDetailsPage(props) {
                     getFavour();
                   });
               }}
-              className="btn btn-dark border border-warning"
+              className="btn btn-dark border border-success"
             >
               Accept
             </button>
