@@ -23,10 +23,10 @@ export default function ProfilePage(props) {
   return !isLoading && !isLoggedIn ? (
     <Navigate to="/login" />
   ) : (
-    <div className="box ">
+    <div className="box">
       
       <h1 className="card-title">Profile Page</h1>
-      <div className="internal-box">
+      <div className="internal-box btn btn-dark">
       <img className="rounded img-fluid"  src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>
       <h3>{profile.email}</h3>
@@ -36,7 +36,7 @@ export default function ProfilePage(props) {
 
       <Link to={`/profile/edit/${id}`}>
         {" "}
-        <button className="btn btn-warning btn btn-outline-dark btn-edit">Edit</button>
+        <button className="btn btn-outline-dark btn-edit">Edit</button>
       </Link>
       </div>
     </div>
