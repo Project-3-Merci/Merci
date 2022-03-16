@@ -12,7 +12,7 @@ function Navbar() {
 
   
     
-    <nav className=" progress-bar-striped">
+    <nav>
       <Link to="/">
         <img src="logo.png" style={{width:"50px", height:"50px"}}/>
       </Link>
