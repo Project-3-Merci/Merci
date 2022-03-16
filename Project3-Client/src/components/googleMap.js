@@ -16,6 +16,8 @@ class GoogleMap extends Component {
         const map = new window.google.maps.Map(document.getElementById("map"), {
             center: { lat: 41.385063, lng: 2.173404 },
             zoom: 10,
+            mapTypeControl: false,
+            fullscreenControl: false
         });
 
         let markers = [];
@@ -24,10 +26,11 @@ class GoogleMap extends Component {
         const locationButton = document.createElement("button")
         locationButton.classList.add("current-location-btn");
         const searchInput = document.createElement("input");
+        searchInput.classList.add("searchInput")
         const searchBox = new window.google.maps.places.SearchBox(searchInput);
 
 
-        locationButton.textContent = "Use Current Location";
+        locationButton.textContent = "Current Location";
         locationButton.classList.add("custom-map-control-button");
         map.controls[window.google.maps.ControlPosition.BOTTOM_CENTER].push(locationButton);
         map.controls[window.google.maps.ControlPosition.TOP_CENTER].push(searchInput);
