@@ -25,18 +25,18 @@ function AllFavoursPage() {
 
   return (
     <div>
-      <h1>All Favours Page</h1>
+      <h1 className="mt-2">All Favours Page</h1>
 
       {favours.map((favour) => {
 
         if (!favour.taker && favour.asker._id !== user?._id)
           return (
 
-            <div key={favour._id} className="favour-preview card">
+            <div key={favour._id} className="favour-preview card bg-secondary">
               <h2>{favour.title}</h2>
-              <h4>{favour.asker.name}</h4>
+              <h5>User: {favour.asker.name}</h5>
               <Link to={`/favour/${favour._id}`}>
-                <button>See details</button>
+                <button className="btn btn-dark border border-warning">See details</button>
               </Link>
               { (favour.asker.token >= favour.token) ?
                 user?._id && (<button onClick={() => {
@@ -46,7 +46,7 @@ function AllFavoursPage() {
                     getAllFavours()
                   
                   })
-              }}>Accept</button>):<p> Sorry, this user run out of tokens!</p> }
+              }} className="btn btn-dark border border-success text-success">Accept</button>):<p className="text-warning"> Sorry, this user doesn't have tokens!</p> }
             </div>
           )
       }

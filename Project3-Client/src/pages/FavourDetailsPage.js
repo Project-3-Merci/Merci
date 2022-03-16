@@ -3,7 +3,6 @@ import { AuthContext } from "../context/auth.context";
 import { useParams, useNavigate, Link } from "react-router-dom";
 import apiService from "../services/api.service";
 
-
 function FavourDetailsPage(props) {
   const [favour, setFavour] = useState(null);
   const { user } = useContext(AuthContext);
@@ -34,16 +33,14 @@ function FavourDetailsPage(props) {
 
   const finishFavour = () => {
     apiService
-    .updateOne(`favours/finished`,favour._id, {})    
-    .then(()=> deleteFavour())
+      .updateOne(`favours/finished`, favour._id, {})
+      .then(() => deleteFavour());
   };
 
   const getAllFavours = () => {
     // Send the token through the request "Authorization" Headers
     apiService
-      .getAll(
-        "favours"
-      )
+      .getAll("favours")
       .then((response) => setFavours(response.data))
       .catch((error) => console.log(error));
   };
@@ -54,48 +51,66 @@ function FavourDetailsPage(props) {
     getAllFavours();
   }, []);
 
-
   return (
-    <div className="FavourCard card">
-      <h1>Favour Detail</h1>
-      {favour && (
-        <>
-          <h2>Title: {favour.title}</h2>
-          <p>Description: {favour.description}</p>
-          <p>Username: {favour.asker.name}</p>
-          <p>Location: {favour.location}</p>
-          <p>Tokens: {favour.token}</p>
-          <img src={favour.photo} alt="favourPic" width={80} />
-        </>
-      )}
+    <div>
+      <h1 className="mt-2">Favour Detail</h1>
+      <div className="favour-preview card bg-secondary">
+        {favour && (
+          <>
+            <h2>Title: {favour.title}</h2>
+            <p>Description: {favour.description}</p>
+            <p>Username: {favour.asker.name}</p>
+            <p>Location: {favour.location}</p>
+            <p>Tokens: {favour.token}</p>
+            <div className="d-flex justify-content-center"> 
+           {favour.photo ? <img src={favour.photo} alt="favourPic" width={80} className="mb-3"/>: <p>No photo available</p>}
+           </div>
+          </>
+        )}
 
-      {favour && user._id === favour.asker._id && (
-        <button className="btn-create" onClick={deleteFavour}>
-          Delete Favour
-        </button>
-      )}
+        {favour && user._id === favour.asker._id && (
+          <button className="btn-create btn-dark border border-danger text-danger" onClick={deleteFavour}>
+            Delete Favour
+          </button>
+        )}
 
-      {favour && favour.taker &&  user._id === favour.taker._id && (
-        <button className="btn-create" onClick={finishFavour}>
-          Finish favour
-        </button>
-      )}
+        {favour && favour.taker && user._id === favour.taker._id && (
+          <button className="btn-create btn-dark border border-success text-success" onClick={finishFavour}>
+            Finish favour
+          </button>
+        )}
 
-      {user?._id &&  !favour?.taker && user._id !== favour?.asker._id && favour?.asker.token >= favour?.token && (<button onClick={() => {
-                apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
+        {user?._id &&
+          !favour?.taker &&
+          user._id !== favour?.asker._id &&
+          favour?.asker.token >= favour?.token && (
+            <button
+              onClick={() => {
+                apiService
+                  .updateOne(`favours/${user._id}/accept`, favour._id, {})
                   .then(() => {
-                    apiService.createOne("chats/create",{user1:user._id, user2:favour.asker._id})
-                    getFavour()
-                  
-                  })
-              }}>Accept</button>) }
-      
+                    apiService.createOne("chats/create", {
+                      user1: user._id,
+                      user2: favour.asker._id,
+                    });
+                    getFavour();
+                  });
+              }}
+              className="btn btn-dark border border-warning"
+            >
+              Accept
+            </button>
+          )}
 
-      {user?._id &&  favour?.taker && ((user._id !== favour?.asker._id) && (user._id !== favour?.taker._id)) && (
-        <Link to={`/favours`}>
-          <p>This favours has been taken! Check for more here</p>
-        </Link>
-      )}
+        {user?._id &&
+          favour?.taker &&
+          user._id !== favour?.asker._id &&
+          user._id !== favour?.taker._id && (
+            <Link to={`/favours`}>
+              <p>This favours has been taken! Check for more here</p>
+            </Link>
+          )}
+      </div>
     </div>
   );
 }

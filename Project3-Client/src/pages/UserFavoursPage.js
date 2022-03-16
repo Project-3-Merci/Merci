@@ -41,7 +41,7 @@ export default function UserFavoursPage(props) {
   if (isLoggedIn) {
     return (
       <div>
-        <h1>UserFavoursPage</h1>
+        <h1 className="mt-2">UserFavoursPage</h1>
         <div className="RequestedFavoursPage">
           <h2>My Requested Favours</h2>
           {requestedFavours.length === 0  ? <p>You have not created favours!</p> 

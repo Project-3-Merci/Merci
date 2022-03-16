@@ -29,7 +29,7 @@ function FavourCard({
   }, []);
 
   return (
-    <div className="FavourCard card">
+    <div className="favour-preview card bg-secondary">
       <Link to={`/favour/${_id}`}>
         <p>{title}</p>
       </Link>
