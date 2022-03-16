@@ -61,6 +61,7 @@ router.get("/:userId", (req,res,next)=>{
     Chat.find({$or:[{user1:{$eq:req.params.userId}},{user2:{$eq:req.params.userId}}]})
     .populate({path:"user1",model:User})
     .populate({path:"user2",model:User})
+    .populate({path:"messagess",model:"Message"})
     .then(chats=>{
         res.status(200).json(chats)
     })

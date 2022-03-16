@@ -70,9 +70,9 @@ export default function ChatList() {
     }
 
         return !messages.length ? (
-            <div className="chat-page">
-                <div className="chat-box">
+            <div className="chat-page general-container">
                     <h2>{receiver.name}</h2>
+                <div className="chat-box">
                     
                     <div className="chat-display-box">
                     </div>
@@ -83,9 +83,9 @@ export default function ChatList() {
                 </div>
             </div>
         ):(
-            <div className="chat-page">
-                <div className="chat-box">
+            <div className="chat-page general-container centered">
                     <h2>{receiver.name}</h2>
+                <div className="chat-box">
                     
                     <div className="chat-display-box">
 

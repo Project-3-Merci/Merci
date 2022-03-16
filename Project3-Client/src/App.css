@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
 
+.general-container{
+  margin-top: 50px;
+}
 .coordinate-input{
   width: 100px;
   text-align: center;
@@ -80,12 +84,17 @@
   justify-content: center;
 }
 .chat-box{
-  width: 400px;
+  max-width: 375px;
+  min-width: 350px;
   border: 1px solid #D4D8E8;
+}
+.chat-page h2{
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
 }
 .chat-display-box{
 
-  height: 400px;
+  height: 60vh;
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -139,6 +148,56 @@
   border: none;
 }
 
+.chat-card{
+  margin: 0;
+  border: none;
+  
+  border-top: 1px solid rgba(65, 63, 63, 0.582);
+  box-shadow: none;
+  height: 100px;
+  position: relative;
+  background-color: transparent !important;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-evenly !important;
+  align-items: center;
+}
+
+.chat-card:hover{
+
+  transform: scale(1.025);
+  cursor: pointer;
+  background-color: rgba(160, 160, 160, 0.096) !important;
+}
+.chat-name{
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+  font-weight: bolder;
+}
+
+.chat-img{
+  position: absolute;
+  left: 25px;
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+  object-fit: fill;
+  box-shadow: 1px 1px 3px black;
+}
+
+.page-title{
+  font-family: 'Inter', sans-serif;
+}
+
+.chat-message-preview{
+  width: 100%;
+  display: flex;
+}
+
+.chat-message-time{
+  position: absolute;
+  right: 20px;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
