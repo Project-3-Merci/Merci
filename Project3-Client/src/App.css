@@ -1,7 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
+.coordinate-input{
+  width: 100px;
+  text-align: center;
+}
+.centered{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .App-logo {

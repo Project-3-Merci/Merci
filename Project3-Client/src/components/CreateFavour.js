@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
 
+import GoogleMap from "./googleMap";
+
 export default function CreateFavour() {
 
   const { user } = useContext(AuthContext);
@@ -23,6 +25,8 @@ export default function CreateFavour() {
     description: "",
     token: 0,
     location: "",
+    lat:"",
+    lng:"",    
     photo: "",
   });
 
@@ -68,10 +72,14 @@ export default function CreateFavour() {
   };
 
   return (
-    <div className="AddFavour">
+    <div className="AddFavour centered">
       <h3>Add a Favour</h3>
 
+      <GoogleMap/>
       <form onSubmit={handleSubmit}>
+
+        <input id="lat" name="lat" type="number" className="coordinate-input" disabled></input>
+        <input id="lng" name="lng" type="number" className="coordinate-input" disabled></input>
         <label className="btn-create">Title:</label>
         <input
           type="text"
@@ -90,10 +98,10 @@ export default function CreateFavour() {
 
         <label className="btn-create">Location: </label>
         <input
+          id="location"
           type="text"
           name="location"
-          value={formData.location}
-          onChange={handleChange}
+          onClick={handleChange}
         />
 
         <label className="btn-create">
@@ -128,7 +136,9 @@ export default function CreateFavour() {
         <button
           className="btn-create"
           type="submit"
-          onClick={() => (formData.photo = photoUrl)}
+          onClick={() => {
+            formData.photo = photoUrl
+          }}
         >
           Create Favour
         </button>
