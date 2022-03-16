@@ -2,12 +2,6 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./../context/auth.context";
 
-
-
-
-const API_URL = "http://localhost:5005";
-
-
 function Navbar() {
   // Subscribe to the AuthContext to gain access to
   // the values from AuthContext.Provider `value` prop
@@ -20,7 +14,7 @@ function Navbar() {
     
     <nav className=" progress-bar-striped">
       <Link to="/">
-        <button className="btn btn-dark border border-warning m-1">Home</button>
+        <img src="logo.png" style={{width:"50px", height:"50px"}}/>
       </Link>
 
       {isLoggedIn && (
