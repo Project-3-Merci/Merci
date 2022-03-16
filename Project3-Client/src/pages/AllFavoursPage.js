@@ -38,7 +38,7 @@ function AllFavoursPage() {
               <Link to={`/favour/${favour._id}`}>
                 <button>See details</button>
               </Link>
-              { (favour.asker.token > 0) ?
+              { (favour.asker.token >= favour.token) ?
                 user?._id && (<button onClick={() => {
                 apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
                   .then(() => {

@@ -21,7 +21,7 @@ export default function CreateFavour() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    token: "",
+    token: 0,
     location: "",
     photo: "",
   });
@@ -35,7 +35,7 @@ export default function CreateFavour() {
         setFormData({
           title: "",
           description: "",
-          token: "",
+          token: 0,
           location: "",
           photo: "",
         });
@@ -102,6 +102,7 @@ export default function CreateFavour() {
         <input
           type="number"
           name="token"
+          min="1"
           value={formData.token}
           onChange={(e) =>{ 
             if (e.target.value > profile.token) e.target.value = profile.token;
