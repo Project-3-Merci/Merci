@@ -67,7 +67,6 @@ export default function CreateFavour() {
       .post("https://api.cloudinary.com/v1_1/dfagcghmy/image/upload", formData)
       .then((response) => {
         setPhoto(response.data.url);
-        console.log(response);
       });
   };
 

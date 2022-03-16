@@ -45,7 +45,6 @@ export default function ChatList() {
         socket.on('updateChat', users => {
             if (users.includes(id)) {
                 getAllMessages()
-                console.log("Chat updated")
             }
         })
     }, []);
