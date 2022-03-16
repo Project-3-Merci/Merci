@@ -3,6 +3,8 @@
 
 .general-container{
   margin-top: 50px;
+  width: 30rem;
+  max-width: 375px;
 }
 .coordinate-input{
   width: 100px;
@@ -196,7 +198,7 @@
 
 .chat-message-time{
   position: absolute;
-  right: 20px;
+  right: 10px;
 }
 @keyframes App-logo-spin {
   from {
