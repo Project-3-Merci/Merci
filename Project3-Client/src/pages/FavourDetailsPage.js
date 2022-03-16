@@ -81,14 +81,14 @@ function FavourDetailsPage(props) {
         </button>
       )}
 
-      {user?._id &&  !favour?.taker && user._id !== favour?.asker._id && favour?.asker.token >0 ? (<button onClick={() => {
+      {user?._id &&  !favour?.taker && user._id !== favour?.asker._id && favour?.asker.token >= favour?.token && (<button onClick={() => {
                 apiService.updateOne(`favours/${user._id}/accept`, favour._id, {})
                   .then(() => {
                     apiService.createOne("chats/create",{user1:user._id, user2:favour.asker._id})
                     getFavour()
                   
                   })
-              }}>Accept</button>) : <p> Sorry, this user run out of tokens!</p> }
+              }}>Accept</button>) }
       
 {/* 
       {favour && (user._id !== favour.asker._id && !favour.taker._id) && (
