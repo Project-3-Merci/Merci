@@ -3,19 +3,16 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import apiService from "../services/api.service";
 
-
 function AllFavoursPage() {
   const [favours, setFavours] = useState([]);
-  const { user } = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
 
   const getAllFavours = () => {
     // Get the token from the localStorage
 
     // Send the token through the request "Authorization" Headers
     apiService
-      .getAll(
-        "favours"
-      )
+      .getAll("favours")
       .then((response) => setFavours(response.data))
       .catch((error) => console.log(error));
   };
@@ -28,12 +25,11 @@ function AllFavoursPage() {
 
   return (
     <div>
-
       <h1>All Favours Page</h1>
 
       {favours.map((favour) => {
 
-        if (!favour.taker && (favour.asker._id !== user?._id))
+        if (!favour.taker && favour.asker._id !== user?._id)
           return (
 
             <div key={favour._id} className="favour-preview card">
@@ -61,4 +57,3 @@ function AllFavoursPage() {
 }
 
 export default AllFavoursPage;
-

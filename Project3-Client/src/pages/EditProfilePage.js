@@ -52,51 +52,73 @@ function EditProfilePage(props) {
     e.preventDefault();
 
     // Get the token from the localStorage
-    apiService.updateOne("profile/edit", id, formData)
-    .then(() => {
-       navigate(`/profile/${id}`)
+    apiService.updateOne("profile/edit", id, formData).then(() => {
+      navigate(`/profile/${id}`);
     });
   };
 
   return (
-    <div className="EditProfilePage">
-      <h3>Edit Profile</h3>
+    <div className="">
+      <h3 className="text">Edit Profile</h3>
 
-      <form onSubmit={handleFormSubmit}>
-        <div>
-          <label>Image</label>
-          <img src={photoUrl} alt="profile image" width={80} />
+      <form onSubmit={handleFormSubmit} className="box-edit">
+        <label className="p-2 text-center text-1 text-1">Image</label>
+        <div className="p-2">
+          <img
+            className="rounded img-fluid border border-warning"
+            src={photoUrl}
+            alt="profile image"
+            width={80}
+          />
           <input
             type="file"
             onChange={(e) => setImageSelected(e.target.files[0])}
           />
         </div>
-        <button type="button" onClick={uploadImage}>
-          Upload Image
-        </button>
 
-        <label>Age:</label>
-        <input
-          type="number"
-          name="age"
-          min="0"
-          value={formData.age}
-          onChange={(e) => {
-            if (e.target.value < 18) e.target.value = 18;
-            handleChange(e);
-          }}
-        />
+        <div>
+          <button
+            className="btn btn-outline-dark mx-auto"
+            type="button"
+            onClick={uploadImage}
+          >
+            Upload Image
+          </button>
+        </div>
 
-        <label>About me:</label>
-        <textarea
-          name="aboutMe"
-          onChange={handleChange}
-          value={formData.aboutMe}
-        ></textarea>
+        <label className="text-center text-1 text-1">Age:</label>
+        <div className="mx-auto">
+          <input
+            className="rounded"
+            type="number"
+            name="age"
+            min="0"
+            value={formData.age}
+            onChange={(e) => {
+              if (e.target.value < 18) e.target.value = 18;
+              handleChange(e);
+            }}
+          />
+        </div>
 
-        <button type="submit" onClick={() => (formData.profileImg = photoUrl)}>
-          Save Changes
-        </button>
+        <label className="text-center text-1">About me:</label>
+        <div className="p-2">
+          <textarea
+            className="text-dark border border-dark aboutMe-text"
+            name="aboutMe"
+            onChange={handleChange}
+            value={formData.aboutMe}
+          ></textarea>
+        </div>
+        <div className="p-2">
+          <button
+            className="btn btn-dark border border-warning btn-save"
+            type="submit"
+            onClick={() => (formData.profileImg = photoUrl)}
+          >
+            Save Changes
+          </button>
+        </div>
       </form>
     </div>
   );
