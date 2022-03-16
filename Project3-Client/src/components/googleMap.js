@@ -21,7 +21,8 @@ class GoogleMap extends Component {
         let markers = [];
 
         const geocoder = new window.google.maps.Geocoder();
-        const locationButton = document.createElement("button");
+        const locationButton = document.createElement("button")
+        locationButton.classList.add("current-location-btn");
         const searchInput = document.createElement("input");
         const searchBox = new window.google.maps.places.SearchBox(searchInput);
 
@@ -119,8 +120,8 @@ class GoogleMap extends Component {
 
     render() {
         return (
-            <main>
-                <div id="map" style={{ width: "400px", height: "400px" }}></div>
+            <main className="map-container">
+                <div id="map" className="map-box"></div>
             </main>
         )
     }
