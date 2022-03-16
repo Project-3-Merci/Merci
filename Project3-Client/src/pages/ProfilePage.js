@@ -4,6 +4,7 @@ import { Navigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import apiService from "../services/api.service";
 
+
 export default function ProfilePage(props) {
   const { user, isLoggedIn, isLoading } = useContext(AuthContext);
 
@@ -22,9 +23,11 @@ export default function ProfilePage(props) {
   return !isLoading && !isLoggedIn ? (
     <Navigate to="/login" />
   ) : (
-    <div>
-      <h1>Profile Page</h1>
-      <img src={profile.profileImg} alt="profile image" width={80}/>
+    <div className="box ">
+      
+      <h1 className="card-title">Profile Page</h1>
+      <div className="internal-box">
+      <img className="rounded img-fluid"  src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>
       <h3>{profile.email}</h3>
       <h4>Age: {profile.age}</h4>
@@ -33,8 +36,9 @@ export default function ProfilePage(props) {
 
       <Link to={`/profile/edit/${id}`}>
         {" "}
-        <button>Edit</button>
+        <button className="btn btn-warning btn btn-outline-dark btn-edit">Edit</button>
       </Link>
+      </div>
     </div>
   );
 }

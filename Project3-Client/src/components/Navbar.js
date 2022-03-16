@@ -9,6 +9,9 @@ function Navbar() {
 
 
   return (
+
+  
+    
     <nav>
       <Link to="/">
         <img src="logo.png" style={{width:"50px", height:"50px"}}/>
@@ -17,34 +20,35 @@ function Navbar() {
       {isLoggedIn && (
         <>
           <Link to={`/favours/myList/${user?._id}`}>
-            <button>My Favours</button>
+            <button className="btn btn-dark border border-warning btn-block m-1 topnav">My Favours</button>
           </Link>
           
           <Link to="/favours">
-            <button>All Favours</button>
+            <button className="btn btn-dark border border-warning m-1 topnav" >All Favours</button>
           </Link>
 
           <Link to={`/profile/${user?._id}`}>
-            <button>Profile</button>
+            <button className="btn btn-dark border border-warning m-1" >Profile</button>
           </Link>
 
           <Link to={`/chats/${user?._id}`}>
-            <button>Chat</button>
+            <button className="btn btn-dark border border-warning m-1" >Chat</button>
           </Link>
         
-          <button onClick={logOutUser}>Logout</button>
-          <span>{user && user.name}</span>
+          <button className="btn btn-dark border border-warning m-1" onClick={logOutUser}>Logout</button>
+          <span className="font-weight-bold" >{user && user.name}</span>
         </>
       )}
 
       {!isLoggedIn && (
         <>
-          <Link to="/signup"> <button>Sign Up</button> </Link>
+          <Link className="text-decoration: none" to="/signup"> <button>Sign Up</button> </Link>
           <Link to="/login"> <button>Login</button> </Link>
         </>
       )}      
-    </nav>
-  );
+      </nav> 
+  )
+  
 }
 
 export default Navbar;
