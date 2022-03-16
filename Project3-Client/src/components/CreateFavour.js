@@ -4,11 +4,11 @@ import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
+import {Card} from 'react-bootstrap'
 
 import GoogleMap from "./googleMap";
 
 export default function CreateFavour() {
-
   const { user } = useContext(AuthContext);
 
   const [profile, setProfile] = useState([]);
@@ -25,8 +25,8 @@ export default function CreateFavour() {
     description: "",
     token: 0,
     location: "",
-    lat:"",
-    lng:"",    
+    lat: "",
+    lng: "",
     photo: "",
   });
 
@@ -71,77 +71,126 @@ export default function CreateFavour() {
   };
 
   return (
-    <div className="AddFavour">
-      <h3>Add a Favour</h3>
+    <div className="centered">
+      <Card className="centered" border="dark" style={{ width: '30rem', maxWidth: "375px", background: "white"}}>
+      <h3> </h3>
 
-      <GoogleMap/>
-      <form onSubmit={handleSubmit}>
+      <GoogleMap />
+      <form className="centered" onSubmit={handleSubmit}>
+      
+          <input
+            id="lat"
+            name="lat"
+            type="number"
+            className="coordinate-input hidden"
+            disabled
+          ></input>
+          <input
+            id="lng"
+            name="lng"
+            type="number"
+            className="coordinate-input hidden"
+            disabled
+          ></input>
 
-        <input id="lat" name="lat" type="number" className="coordinate-input hidden" disabled></input>
-        <input id="lng" name="lng" type="number" className="coordinate-input hidden" disabled></input>
-        <label className="btn-create">Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={formData.title}
-          onChange={handleChange}
-        />
+          <div className="form-group">
+            <div className="form-floating mb-3 centered">
+            <input
+              type="text"
+              name="title"
+              className="form-control"
+              style={{width: "15rem",}}
+              placeholder="Enter Title"
+              value={formData.title}
+              onChange={handleChange}
+            />
+            <label for="floatingInput">Title</label>
+            </div>
+          </div>
 
-        <label className="btn-create"> Description: </label>
-        <textarea
-          type="text"
-          name="description"
-          value={formData.description}
-          onChange={handleChange}
-        />
+          <div class="form-group">
+            <div class="form-floating mb-3 centered">
+            <textarea
+              type="text"
+              name="description"
+              className="form-control"
+              
+              placeholder="Enter Description"
+              rows="3" style={{height: "80px", width: "15rem"}}
+              value={formData.description}
+              onChange={handleChange}
+            />
+            <label for="floatingInput">Description</label>
+            </div>
+          </div>
 
-        <label className="btn-create">Location: </label>
-        <input
-          id="location"
-          type="text"
-          name="location"
-          onClick={handleChange}
-        />
+          <div class="form-group">
+            <div class="form-floating mb-3 centered">
+          <input
+            id="location"
+            type="text"
+            className="form-control"
+            name="location"
+            style={{width: "15rem"}}
+            placeholder="Enter Location"
+            onClick={handleChange}
+          />
+          <label for="floatingInput">Location</label>
+            </div>
+          </div>
 
-        <label className="btn-create">
-          Your token credit is: {profile.token}
-        </label>
-        <input
-          type="number"
-          name="token"
-          min="1"
-          value={formData.token}
-          onChange={(e) =>{ 
-            if (e.target.value > profile.token) e.target.value = profile.token;
-            if (e.target.value < 0) e.target.value = 0
-            handleChange(e)
+          <div class="form-group centered">
+            <div class="form-floating mb-3 centered">
+          <input
+            type="number"
+            name="token"
+            min="1"
+            className="form-control centered"
+            style={{width: "10rem"}}
+            value={formData.token}
+            onChange={(e) => {
+              if (e.target.value > profile.token)
+                e.target.value = profile.token;
+              if (e.target.value < 0) e.target.value = 0;
+              handleChange(e);
             }}
-        />
+          />
+          <label for="floatingInput">Your token credit is : {profile.token} </label>
+          </div>
+          </div>
 
-        <input
-          type="file"
-          className="img-upload"
-          onChange={(event) => {
-            setImageSelected(event.target.files[0]);
-          }}
-        />
+          <label for="favourImg" className="btn btn-outline-secondary" style={{width: "120px"}}>Choose File</label>
+          <input
+            id="favourImg"
+            type="file"
+            className="form-control-file hidden"
+            onChange={(event) => {
+              setImageSelected(event.target.files[0]);
+            }}
+          />
+          <div style={{width: "50%"}}>
+          {photoUrl && <img src={photoUrl} alt="photoUrl" className="img-thumbnail"/>}
+          </div>
+          <button
+            className="btn btn-outline-dark"
+            type="button"
+            onClick={uploadImage}
+          >
+            Upload Image
+          </button>
 
-        {photoUrl && <img src={photoUrl} alt="photoUrl" width="10%" />}
+          <button
+            className="btn-create btn btn-outline-dark"
+            type="submit"
+            onClick={() => {
+              formData.photo = photoUrl;
+            }}
+          >
+            Create Favour
+          </button>
 
-        <button className="btn-upload-img" type="button" onClick={uploadImage}>
-          Upload Image
-        </button>
-
-        <button
-          className="btn-create"
-          type="submit"
-          onClick={() => {
-            formData.photo = photoUrl
-          }}
-        >
-          Create Favour
-        </button>
       </form>
+      </Card>
     </div>
   );
 }

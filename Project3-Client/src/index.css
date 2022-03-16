@@ -46,16 +46,6 @@ nav li {
   font-weight: 600;
 }
 
-.card {
-  padding: 10px;
-  border-radius: 15px;
-  box-shadow: 0px 2px 3px grey;
-  margin: 0 auto;
-  margin-bottom: 20px;
-  background: gray;
-  border-radius: 4px;
-}
-
 .ProjectCard h3::after {
   content: url("https://education-team-2020.s3.eu-west-1.amazonaws.com/web-dev/m3/icon-expand.png");
   margin-left: 5px;
@@ -282,6 +272,21 @@ img {
 .h1-login {
   margin-bottom: 25px;
 }
+.current-location-btn {
+  width: 100px;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  font-size: 15px;
+  margin-bottom: 17px;
+}
+
+.searchInput {
+  max-width: 375px;
+  width: 17rem;
+  border: none;
+  box-shadow: 1px 1px 3px black;
+  
+}
 
 .login-sighup a{
   text-decoration: none;
@@ -293,7 +298,46 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 65vw;
+  height: 66vh;
+  padding: 20px;
+  padding-top: 5px;
+  border-radius: 15px;
+  box-shadow: 7px 7px 10px gray
+ }
+ .internal-box{
+  margin: auto;
+  width: 55vw;
+  height: 50vh;
+  margin-top: 2px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 7px gray; 
+  background-color: #f9f9f9; 
+ }
+ .text{
+  margin-top: 5px;
+  font-family: 'Helvetica Neue', 
+  sans-serif; font-size: 35px; font-weight: 100; 
+  letter-spacing: 1px; 
+ }
+.text-1{
+  font-family: 'Helvetica Neue', 
+  sans-serif; font-size: 20px; font-weight: 100; 
+  letter-spacing: 1px; 
 }
+.btn-save{
+  margin-top: 9px;
+ }
+ .box h4{
+  margin-bottom: 15px;
+ font-family: 'Helvetica Neue', 
+ sans-serif; font-size: 20px; font-weight: 100; 
+ letter-spacing: 1px;
+}
+ 
+
 
 .map-box {
   width: 20rem;

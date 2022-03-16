@@ -8,7 +8,7 @@ export default function CreateFavourPage() {
   if (isLoggedIn) {
     return (
       <div>
-        <h1>CREATE NEW FAVOUR PAGE</h1>
+        <h1>Ask for a Favour</h1>
         <CreateFavour />
       </div>
     );
