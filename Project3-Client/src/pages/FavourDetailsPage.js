@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import apiService from "../services/api.service";
 
 
@@ -90,12 +90,12 @@ function FavourDetailsPage(props) {
                   })
               }}>Accept</button>) }
       
-{/* 
-      {favour && (user._id !== favour.asker._id && !favour.taker._id) && (
-        <Link to={`/`}>
-          <p>HEY! DON'T TRY TO HARDCODE!</p>
+
+      {user?._id &&  favour?.taker && ((user._id !== favour?.asker._id) && (user._id !== favour?.taker._id)) && (
+        <Link to={`/favours`}>
+          <p>This favours has been taken! Check for more here</p>
         </Link>
-      )} */}
+      )}
     </div>
   );
 }
