@@ -4,7 +4,7 @@ import { AuthContext } from "../context/auth.context";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
-import FavourMap from "./favourMap";
+
 import GoogleMap from "./googleMap";
 
 export default function CreateFavour() {
@@ -75,9 +75,7 @@ export default function CreateFavour() {
     <div className="AddFavour centered">
       <h3>Add a Favour</h3>
 
-      
       <GoogleMap/>
-      {/*<FavourMap lat={41.385063} lng={2.173404} zoom={10}/>*/}
       <form onSubmit={handleSubmit}>
 
         <input id="lat" name="lat" type="number" className="coordinate-input" disabled></input>
