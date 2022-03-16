@@ -49,13 +49,13 @@ export default function ChatList() {
 
                 <h2 className="chat-name">{otherUser.name}</h2>
                 <div className="chat-message-preview">
-                  {(chat.messagess[chat.messagess.length - 1].sender == id) && <p>You: {chat.messagess[chat.messagess.length - 1].content}</p>}
-                  {!(chat.messagess[chat.messagess.length - 1].sender == id) && <p>{otherUser.name}: {chat.messagess[chat.messagess.length - 1].content}</p>}
-                  {((Math.floor((new Date().getTime() - new Date(chat.messagess[chat.messagess.length - 1].createdAt).getTime()) / (1000 * 3600 * 24))) > 0) && 
+                  {(chat.messagess[chat.messagess.length - 1]?.sender == id) && <p>You: {chat.messagess[chat.messagess.length - 1]?.content}</p>}
+                  {!(chat.messagess[chat.messagess.length - 1]?.sender == id) && <p>{otherUser.name}: {chat.messagess[chat.messagess.length - 1]?.content}</p>}
+                  {((Math.floor((new Date().getTime() - new Date(chat.messagess[chat.messagess.length - 1]?.createdAt).getTime()) / (1000 * 3600 * 24))) > 0) && 
                   <p className="chat-message-time">{`${(Math.floor((new Date().getTime() - new Date(chat.messagess[chat.messagess.length - 1].createdAt).getTime()) / (1000 * 3600 * 24)))} days ago`}</p>}
                   
-                  {!((Math.floor((new Date().getTime() - new Date(chat.messagess[chat.messagess.length - 1].createdAt).getTime()) / (1000 * 3600 * 24))) > 0) && 
-                  <p className="chat-message-time">{`At ${new Date(chat.messagess[chat.messagess.length - 1].createdAt).getHours()}:${new Date(chat.messagess[chat.messagess.length - 1].createdAt).getMinutes()}`}</p>}
+                  {!((Math.floor((new Date().getTime() - new Date(chat.messagess[chat.messagess.length - 1]?.createdAt).getTime()) / (1000 * 3600 * 24))) > 0) && 
+                  <p className="chat-message-time">{`At ${new Date(chat.messagess[chat.messagess.length - 1]?.createdAt).getHours()}:${new Date(chat.messagess[chat.messagess.length - 1]?.createdAt).getMinutes()}`}</p>}
                   
                 </div>
 
