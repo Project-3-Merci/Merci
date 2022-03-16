@@ -58,11 +58,14 @@ function EditProfilePage(props) {
   };
 
   return (
-    <div className="">
+    <div className="card edit-card-big ">
       <h3 className="text">Edit Profile</h3>
 
-      <form onSubmit={handleFormSubmit} className="box-edit">
-        <label className="p-2 text-center text-1 text-1">Image</label>
+      <form onSubmit={handleFormSubmit} className="card bg-dark edit-card">
+        <div className="centered">
+        <label className="name">Image</label>
+        </div>
+        
         <div className="p-2">
           <img
             className="rounded img-fluid border border-warning"
@@ -78,15 +81,17 @@ function EditProfilePage(props) {
 
         <div>
           <button
-            className="btn btn-outline-dark mx-auto"
+            className="btn btn-outline-light mx-auto"
             type="button"
             onClick={uploadImage}
           >
             Upload Image
           </button>
         </div>
-
-        <label className="text-center text-1 text-1">Age:</label>
+        <div className="centered">
+        <label className="text-center name">Age:</label>
+        </div>
+       
         <div className="mx-auto">
           <input
             className="rounded"
@@ -101,10 +106,12 @@ function EditProfilePage(props) {
           />
         </div>
 
-        <label className="text-center text-1">About me:</label>
+<div className="centered"> 
+        <label className="border border-white rounded-pill name ">About me:</label>
+        </div>
         <div className="p-2">
           <textarea
-            className="text-dark border border-dark aboutMe-text"
+            className="text-dark border border-dark "
             name="aboutMe"
             onChange={handleChange}
             value={formData.aboutMe}
@@ -112,7 +119,7 @@ function EditProfilePage(props) {
         </div>
         <div className="p-2">
           <button
-            className="btn btn-dark border border-warning btn-save"
+            className="btn btn-dark btn-save btn btn-outline-light mx-auto"
             type="submit"
             onClick={() => (formData.profileImg = photoUrl)}
           >

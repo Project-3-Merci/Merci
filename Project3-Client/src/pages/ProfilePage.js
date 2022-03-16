@@ -23,7 +23,7 @@ export default function ProfilePage(props) {
   return !isLoading && !isLoggedIn ? (
     <Navigate to="/login" />
   ) : (
-    <div className="card">
+    <div className="card table-responsive">
       
       <h1 className="card-title">Profile Page</h1>
       <div className="internal-box btn btn-dark">
@@ -36,7 +36,7 @@ export default function ProfilePage(props) {
 
       <Link to={`/profile/edit/${id}`}>
         {" "}
-        <button className="btn btn-outline-dark btn-edit">Edit</button>
+        <button className=" btn btn-outline-light border-white">Edit</button>
       </Link>
       </div>
     </div>

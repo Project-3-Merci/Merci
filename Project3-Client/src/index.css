@@ -1,8 +1,8 @@
 body {
   margin: 0;
-  font-family: 'Montserrat', sans-serif;
-  font-family: 'Roboto', sans-serif;
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Mono", monospace;
 }
 
 a {
@@ -32,7 +32,6 @@ textarea {
 }
 
 nav {
-  
   color: white;
   padding: 0px 20px;
   box-shadow: 0px 1px 2px gray;
@@ -48,7 +47,6 @@ nav li {
 }
 
 .card {
-  width: 400px;
   padding: 10px;
   border-radius: 15px;
   box-shadow: 0px 2px 3px grey;
@@ -83,10 +81,6 @@ nav li {
   background-color: rgb(239, 196, 88);
 }
 
-.SignupPage,
-.LoginPage {
-  background-color: #608dd5;
-}
 
 .LoginPage {
   background-color: #94a7c8;
@@ -115,7 +109,7 @@ nav li {
   display: flex;
   justify-content: center;
   text-align: center;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 .btn-upload-img {
@@ -136,120 +130,163 @@ nav li {
   margin: 0 auto;
 }
 
-.card{
+.card-ol {
   margin: auto;
   margin-top: 20px;
   flex-direction: column;
   align-items: center;
   box-shadow: 7px 7px 10px gray;
-  font-size: 15px; font-weight: 100; 
+  font-size: 15px;
+  font-weight: 100;
   letter-spacing: 1px;
- }
+  background: white;
+  height: 480px;
+}
 
- .card-title{
-  font-size: 25px; 
-  letter-spacing: 1px; 
- }
+.btn-dark {
+  width: 200px;
+  border-radius: 15px;
+}
 
- .box h2{
-    color: #0a0a0a;
-    font-size: 30px;
-    font-weight: bold;
-    font-family: monospace;
-    letter-spacing: 7px;
-    cursor: pointer
-  }
-  h2{
-    transition: .5s linear
-  }
-  h2:hover h2:nth-child(1){
-    margin-right: 5px
-  }
-  h2:hover h2:nth-child(1):after{
-    content: "'";
-  }
-  h2:hover h2:nth-child(2){
-    margin-left: 30px
-  }
-  h2:hover{
-    color: #fff;
-    text-shadow: 0 0 10px #fff,
-                 0 0 20px #fff, 
-                 0 0 40px #fff;
-  }
+.card-title {
+  font-size: 25px;
+  letter-spacing: 1px;
+}
 
- .box h3{
+.card h2 {
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 7px;
+  cursor: pointer;
+}
+h2 {
+  transition: 0.5s linear;
+}
+h2:hover h2:nth-child(1) {
+  margin-right: 5px;
+}
+h2:hover h2:nth-child(1):after {
+  content: "'";
+}
+h2:hover h2:nth-child(2) {
+  margin-left: 30px;
+}
+h2:hover {
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+}
+
+.card h3 {
   margin-bottom: 10px;
-  font-size: 18px; 
+  font-size: 25px;
   letter-spacing: 1px;
- }
+}
 
- .box h4{
+.card h4 {
   margin-bottom: 22px;
-  font-size: 15px; 
+  font-size: 15px;
   letter-spacing: 1px;
   overflow: hidden;
- }
+}
 
- .box p{
-  font-size: 20px; 
+.card p {
+  font-size: 20px;
   letter-spacing: 1px;
- }
-
- .box-edit{
-  margin: auto;
-  margin-top: 1px;
-  padding: 0;
-  flex-direction: column;
-  align-items: center;
-  width: 25vw;
-  height: 85vh;
-  border-radius: 15px;
-  box-shadow: 7px 7px 5px gray;
-  
- }
-
- .card{
-  margin: auto;
-  margin-top: 5px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 15px;
-  box-shadow: 1px 1px 7px gray; 
-
- }
-
- .internal-box:hover {
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-  transform: scale(1.01);
-  color: #fff;
-    text-shadow: 0 0 10px #fff,
-                 0 0 20px #fff, 
-                 0 0 40px #fff;
-  transition: .5s linear
 }
 
 
+.edit-card {
+  border-radius: 15px;
+  box-shadow: 1px 1px 7px gray;
+  width: 80%;
+}
 
- .btn-save{
+.edit-card-big {
+  margin: auto;
+  margin-top: 5px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  border-radius: 15px;
+  box-shadow: 1px 1px 7px gray;
+}
+.internal-box{
+  width: 350px;
+  height: 480px;
+}
+.name  {
+  justify-content: center;
+  color: aliceblue;
+  text-align: center;
+}
+.text-signup{
+  color: white;
+}
+.text-signup a{
+  color: white;
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+.magin-box-signup{
+margin-top: 75px;
+}
+.p-2 {
+  padding-bottom: 0;
+}
+.file {
+  margin: 0;
+}
+
+.internal-box:hover {
+  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
+  transform: scale(1.01);
+  color: #fff;
+  text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 40px #fff;
+  transition: 0.5s linear;
+}
+
+.border-white {
+  width: 100px;
+}
+.btn-save {
   margin-top: 15px;
- }
- .text{
-  margin:0
- }
+}
 
- .text{
-  font-size: 30px; font-weight: 100; 
-  letter-spacing: 1px; 
- }
- .text-1{
-  font-size: 15px; font-weight: 100; 
-  letter-spacing: 1px; 
- }
+.text{
+  font-size: 30px;
+  font-weight: 100;
+  letter-spacing: 1px;
+  color: white;
+  margin: 0;
+  font-size: 30px;
+}
+.text-1 {
+  font-size: 15px;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
 
- img{
-   width: 150px;
- }
+img {
+  width: 150px;
+  margin-top:5px ;
+  margin-bottom: 30px;
+}
+
+.login-card {
+  color: white;
+  margin: 40px;
+  border-radius: 15px;
+}
+
+.h1-login {
+  margin-bottom: 25px;
+}
+
+.login-sighup a{
+  text-decoration: none;
+  color: white;
+}
 
 .map-container {
   max-width: 100%;
@@ -258,113 +295,15 @@ nav li {
   align-items: center;
 }
 
-.map-box{
-width: 20rem;
-height: 20rem;
+.map-box {
+  width: 20rem;
+  height: 20rem;
 }
 
-.hidden{
-  display:none
+.hidden {
+  display: none;
 }
 
 .current-location-btn {
-  width: 100px
-}
-
-@media (max-device-width: 375px) {
-.box{
-  margin: auto;
-  margin-top: 60px;
-  flex-direction: column;
-  align-items: center;
-  width: 65vw;
-  height: 68vh;
-  padding: 20px;
-  border-radius: 15px;
-  box-shadow: 7px 7px 10px gray
- }
-
- .box h2{
-  color: #484848;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: monospace;
-  letter-spacing: 7px;
-  cursor: pointer
-}
-h2{
-  transition: .5s linear
-}
-h2:hover h2:nth-child(1){
-  margin-right: 5px
-}
-h2:hover h2:nth-child(1):after{
-  content: "'";
-}
-h2:hover h2:nth-child(2){
-  margin-left: 30px
-}
-h2:hover{
-  color: #fff;
-  text-shadow: 0 0 10px #fff,
-               0 0 20px #fff, 
-               0 0 40px #fff;
-}
-
-
- .box-edit{
-  margin: auto;
-  margin-top: 10px;
-  flex-direction: column;
-  align-items: center;
-  width: 65vw;
-  height: 66vh;
-  padding: 20px;
-  padding-top: 5px;
-  border-radius: 15px;
-  box-shadow: 7px 7px 10px gray
- }
- .internal-box{
-  margin: auto;
-  width: 55vw;
-  height: 47vh;
-  margin-top: 2px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  border-radius: 15px;
-  box-shadow: 1px 1px 7px gray; 
- }
-
- .box h4{
-  overflow: hidden;
- }
- 
- .internal-box:hover {
-  box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.4);
-  transform: scale(1.01);
-}
-
-.btn-edit{
-  margin-top: 2px;
-}
-
- .text{
-  font-size: 35px; font-weight: 100; 
-  letter-spacing: 1px; 
- }
-.text-1{
-  font-size: 20px; font-weight: 100; 
-  letter-spacing: 1px; 
-}
-.btn-save{
-  margin-top: 9px;
- }
-
- 
-.AddFavour {
-  box-shadow: 7px 7px 10px grey;
-  border-radius: 15px;
-}
-
-
+  width: 100px;
 }
