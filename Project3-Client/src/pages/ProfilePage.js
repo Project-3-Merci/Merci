@@ -23,7 +23,7 @@ export default function ProfilePage(props) {
   return !isLoading && !isLoggedIn ? (
     <Navigate to="/login" />
   ) : (
-    <div className="box">
+    <div className="card">
       
       <h1 className="card-title">Profile Page</h1>
       <div className="internal-box btn btn-dark">
