@@ -215,6 +215,26 @@ nav li {
    width: 150px;
  }
 
+.map-container {
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map-box{
+width: 20rem;
+height: 20rem;
+}
+
+.hidden{
+  display:none
+}
+
+.current-location-btn {
+  width: 100px
+}
+
 @media (max-device-width: 375px) {
 .box{
   margin: auto;
@@ -272,5 +292,10 @@ nav li {
  letter-spacing: 1px;
 }
  
+.AddFavour {
+  box-shadow: 7px 7px 10px grey;
+  border-radius: 15px;
+}
+
 
 }

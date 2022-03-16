@@ -5,7 +5,7 @@ import FavourCard from "../components/FavourCard";
 import apiService from "../services/api.service";
 
 export default function UserFavoursPage(props) {
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, user, isLoadding} = useContext(AuthContext);
 
   const [requestedFavours, setRequestedFavours] = useState([]);
   const [acceptedFavours, setAcceptedFavours] = useState([]);
@@ -38,7 +38,6 @@ export default function UserFavoursPage(props) {
     getAcceptedFavours();
   }, []);
 
-  if (isLoggedIn) {
     return (
       <div>
         <h1>UserFavoursPage</h1>
@@ -59,7 +58,5 @@ export default function UserFavoursPage(props) {
         </div>
       </div>
     );
-  } else {
-    return <Navigate to="/login"></Navigate>;
-  }
+  
 }
