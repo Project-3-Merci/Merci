@@ -74,8 +74,9 @@ export default function CreateFavour() {
     <div className="centered">
       <Card className="centered" border="dark" style={{ width: '30rem', maxWidth: "375px", background: "white"}}>
       <h3> </h3>
-
+      <div className="map-border">
       <GoogleMap />
+      </div>
       <form className="centered" onSubmit={handleSubmit}>
       
           <input
@@ -93,7 +94,7 @@ export default function CreateFavour() {
             disabled
           ></input>
 
-          <div className="form-group">
+          <div className="form-group create-favour-box">
             <div className="form-floating mb-3 centered">
             <input
               type="text"
@@ -108,7 +109,7 @@ export default function CreateFavour() {
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group create-favour-box">
             <div class="form-floating mb-3 centered">
             <textarea
               type="text"
@@ -124,7 +125,7 @@ export default function CreateFavour() {
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group create-favour-box">
             <div class="form-floating mb-3 centered">
           <input
             id="location"
@@ -159,7 +160,8 @@ export default function CreateFavour() {
           </div>
           </div>
 
-          <label for="favourImg" className="btn btn-outline-secondary" style={{width: "120px"}}>Choose File</label>
+          <div className="upload-profileImg-btn">
+          <label for="favourImg" className="btn btn-outline-secondary" style={{width: "115px"}}>Choose File</label>
           <input
             id="favourImg"
             type="file"
@@ -172,16 +174,18 @@ export default function CreateFavour() {
           {photoUrl && <img src={photoUrl} alt="photoUrl" className="img-thumbnail"/>}
           </div>
           <button
-            className="btn btn-outline-dark"
+            className="btn btn-outline-secondary"
             type="button"
             onClick={uploadImage}
           >
             Upload Image
           </button>
+          </div>
 
           <button
             className="btn-create btn btn-outline-dark"
             type="submit"
+            style={{marginTop: "30px", marginBottom: "10px"}}
             onClick={() => {
               formData.photo = photoUrl;
             }}
