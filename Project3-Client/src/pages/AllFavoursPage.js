@@ -31,11 +31,11 @@ function AllFavoursPage() {
       {favours.map((favour) => {
         if (!favour.taker && favour.asker._id !== user?._id)
           return (
-            <div key={favour._id} className="favour-preview card bg-secondary">
+            <div key={favour._id} className="card bg-dark" style={{color:"white", marginBottom:"5px", padding:"6px", paddingTop:"15px", width:"375px", maxWidth:"375px"}}>
               <h2>{favour.title}</h2>
-              <h5>User: {favour.asker.name}</h5>
+              <h5 >User: {favour.asker.name}</h5>
               <Link to={`/favour/${favour._id}`}>
-                <button className="btn btn-dark border border-warning">
+                <button className="btn btn-outline-light border-white">
                   See details
                 </button>
               </Link>
@@ -53,7 +53,7 @@ function AllFavoursPage() {
                           getAllFavours();
                         });
                     }}
-                    className="btn btn-dark border border-success "
+                    className="btn btn-outline-light border-success text-success"
                   >
                     Accept
                   </button>
