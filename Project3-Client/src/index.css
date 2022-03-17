@@ -131,8 +131,8 @@ nav li {
   height: 480px;
 }
 
-.btn-dark {
-  width: 150px;
+.btn-dark{
+
   border-radius: 15px;
 }
 
@@ -245,7 +245,7 @@ h4:hover {
 }
 
 .border-white {
-  width: 100px;
+  
 }
 .btn-save {
   margin-top: 15px;
@@ -325,12 +325,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65vw;
-  height: 66vh;
-  padding: 20px;
-  padding-top: 5px;
-  border-radius: 15px;
-  box-shadow: 7px 7px 10px gray;
+  
 }
 .internal-box {
   margin: auto;
