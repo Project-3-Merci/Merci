@@ -105,12 +105,12 @@ export default function CreateFavour() {
               value={formData.title}
               onChange={handleChange}
             />
-            <label for="floatingInput">Title</label>
+            <label htmlFor="floatingInput">Title</label>
             </div>
           </div>
 
-          <div class="form-group create-favour-box">
-            <div class="form-floating mb-3 centered">
+          <div className="form-group create-favour-box">
+            <div className="form-floating mb-3 centered">
             <textarea
               type="text"
               name="description"
@@ -121,12 +121,12 @@ export default function CreateFavour() {
               value={formData.description}
               onChange={handleChange}
             />
-            <label for="floatingInput">Description</label>
+            <label htmlFor="floatingInput">Description</label>
             </div>
           </div>
 
-          <div class="form-group create-favour-box">
-            <div class="form-floating mb-3 centered">
+          <div className="form-group create-favour-box">
+            <div className="form-floating mb-3 centered">
           <input
             id="location"
             type="text"
@@ -136,12 +136,12 @@ export default function CreateFavour() {
             placeholder="Enter Location"
             onClick={handleChange}
           />
-          <label for="floatingInput">Location</label>
+          <label htmlFor="floatingInput">Location</label>
             </div>
           </div>
 
-          <div class="form-group centered">
-            <div class="form-floating mb-3 centered">
+          <div className="form-group centered">
+            <div className="form-floating mb-3 centered">
           <input
             type="number"
             name="token"
@@ -156,12 +156,12 @@ export default function CreateFavour() {
               handleChange(e);
             }}
           />
-          <label for="floatingInput">Your token credit is : {profile.token} </label>
+          <label htmlFor="floatingInput">Your token credit is : {profile.token} </label>
           </div>
           </div>
 
           <div className="upload-profileImg-btn">
-          <label for="favourImg" className="btn btn-outline-secondary" style={{width: "115px"}}>Choose File</label>
+          <label htmlFor="favourImg" className="btn btn-outline-secondary" style={{width: "115px"}}>Choose File</label>
           <input
             id="favourImg"
             type="file"
