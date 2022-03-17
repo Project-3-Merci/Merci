@@ -54,7 +54,7 @@ function FavourDetailsPage(props) {
   return (
     <div>
       <h1 className="mt-2">Favour Detail</h1>
-      <div className="favour-preview card bg-secondary">
+      <div className="favour-preview card bg-dark" style={{color:"white", marginBottom:"5px", padding:"6px", width:"375px", maxWidth:"375px"}}>
         {favour && (
           <>
             <h2>Title: {favour.title}</h2>
@@ -115,7 +115,7 @@ function FavourDetailsPage(props) {
                     getFavour();
                   });
               }}
-              className="btn btn-dark border border-success"
+              className="btn btn-dark border border-success text-success"
             >
               Accept
             </button>
