@@ -22,7 +22,7 @@ function Navbar1() {
             <Nav.Link href="/">Home</Nav.Link>
             <Nav.Link href="/favours">Favours</Nav.Link>
             <Nav.Link href={`/favours/myList/${user?._id}`}>My Favours</Nav.Link>
-            <Nav.Link href={`/chats/${user?._id}`}>Chat</Nav.Link>
+            <Nav.Link href={`/chats/${user?._id}`}>Chats</Nav.Link>
             <NavDropdown title="Profile" id="basic-nav-dropdown">
               <NavDropdown.Item href={`/profile/${user?._id}`}>My Profile</NavDropdown.Item>
               <NavDropdown.Item href={`/profile/edit/${user?._id}`}>Edit Profile</NavDropdown.Item>

@@ -49,7 +49,7 @@ export default function UserFavoursPage(props) {
 
   return (
     <div className="mt-2">
-    <button  onClick={handleChangeView} className="btn btn-dark border border-warning"> {changeView ? "Show My Accepted Favours" : "Show My Requested Favours"} </button>
+    <button  onClick={handleChangeView} className=" btn btn-dark border border-warning"> {changeView ? "Show My Accepted Favours" : "Show My Requested Favours"} </button>
 
 
 {changeView ?
