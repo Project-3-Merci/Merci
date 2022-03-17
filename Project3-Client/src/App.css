@@ -208,3 +208,52 @@
     transform: rotate(360deg);
   }
 }
+
+
+.ask-home-btn{
+
+}
+
+.do-home-btn{
+
+}
+
+.home-card{
+  max-width: 320px;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 3px black;
+  padding: 20px 0px;
+
+}
+
+.home-container{
+  width: 100%;
+  padding-top: 30px;
+}
+
+.home-card-container{
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.home-card-img{
+  width: 150px;
+}
+
+.home-card h2{
+  font-family: 'Inter', sans-serif;
+  font-size: 1.8rem;
+}
+
+.do-card{
+  background-color: rgba(0, 108, 250, 0.322);
+}
+
+.ask-card{
+  background-color: rgba(245, 224, 129, 0.322);
+}
