@@ -107,7 +107,7 @@ function EditProfilePage(props) {
         </div>
 
 <div className="centered"> 
-        <label className="border border-white rounded-pill name ">About me:</label>
+        <label className=" name ">About me:</label>
         </div>
         <div className="p-2">
           <textarea

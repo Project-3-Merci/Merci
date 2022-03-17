@@ -70,7 +70,6 @@ nav li {
   background-color: rgb(239, 196, 88);
 }
 
-
 .LoginPage {
   background-color: #94a7c8;
 }
@@ -142,14 +141,6 @@ nav li {
   letter-spacing: 1px;
 }
 
-.card h2 {
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  font-family: monospace;
-  letter-spacing: 7px;
-  cursor: pointer;
-}
 h2 {
   transition: 0.5s linear;
 }
@@ -202,7 +193,6 @@ h4:hover {
   letter-spacing: 1px;
 }
 
-
 .edit-card {
   border-radius: 15px;
   box-shadow: 1px 1px 7px gray;
@@ -218,26 +208,26 @@ h4:hover {
   border-radius: 15px;
   box-shadow: 1px 1px 7px gray;
 }
-.internal-box{
+.internal-box {
   width: 10px;
   height: 3px;
 }
-.name  {
+.name {
   justify-content: center;
   color: aliceblue;
   text-align: center;
 }
-.text-signup{
+.text-signup {
   color: white;
   margin-bottom: 10px;
 }
-.text-signup a{
+.text-signup a {
   color: white;
   text-decoration: none;
   padding-bottom: 5px;
 }
-.magin-box-signup{
-margin-top: 75px;
+.magin-box-signup {
+  margin-top: 75px;
 }
 .p-2 {
   padding-bottom: 0;
@@ -261,7 +251,7 @@ margin-top: 75px;
   margin-top: 15px;
 }
 
-.text{
+.text {
   font-size: 30px;
   font-weight: 100;
   letter-spacing: 1px;
@@ -277,7 +267,7 @@ margin-top: 75px;
 
 img {
   width: 150px;
-  margin-top:5px ;
+  margin-top: 5px;
   margin-bottom: 30px;
 }
 
@@ -302,18 +292,18 @@ img {
   border: none;
   margin-bottom: 10px;
   margin-top: 10px;
-  box-shadow: 1px 1px 3px black
+  box-shadow: 1px 1px 3px black;
 }
 
 .create-favour-box {
   margin-bottom: -15px;
 }
 
-.upload-profileImg-btn{
+.upload-profileImg-btn {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  align-items:center;
+  align-items: center;
   width: 15rem;
   max-width: 375px;
 }
@@ -323,10 +313,9 @@ img {
   width: 17rem;
   border: none;
   box-shadow: 1px 1px 3px black;
-  
 }
 
-.login-sighup a{
+.login-sighup a {
   text-decoration: none;
   color: white;
 }
@@ -341,9 +330,9 @@ img {
   padding: 20px;
   padding-top: 5px;
   border-radius: 15px;
-  box-shadow: 7px 7px 10px gray
- }
- .internal-box{
+  box-shadow: 7px 7px 10px gray;
+}
+.internal-box {
   margin: auto;
   width: 55vw;
   height: 50vh;
@@ -351,31 +340,32 @@ img {
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 15px;
-  box-shadow: 1px 1px 7px gray; 
-  background-color: #f9f9f9; 
- }
- .text{
+  box-shadow: 1px 1px 7px gray;
+  background-color: #f9f9f9;
+}
+.text {
   margin-top: 5px;
-  font-family: 'Helvetica Neue', 
-  sans-serif; font-size: 35px; font-weight: 100; 
-  letter-spacing: 1px; 
- }
-.text-1{
-  font-family: 'Helvetica Neue', 
-  sans-serif; font-size: 20px; font-weight: 100; 
-  letter-spacing: 1px; 
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 35px;
+  font-weight: 100;
+  letter-spacing: 1px;
 }
-.btn-save{
+.text-1 {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
+.btn-save {
   margin-top: 9px;
- }
- .box h4{
-  margin-bottom: 15px;
- font-family: 'Helvetica Neue', 
- sans-serif; font-size: 20px; font-weight: 100; 
- letter-spacing: 1px;
 }
- 
-
+.box h4 {
+  margin-bottom: 15px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 20px;
+  font-weight: 100;
+  letter-spacing: 1px;
+}
 
 .map-box {
   width: 20rem;
