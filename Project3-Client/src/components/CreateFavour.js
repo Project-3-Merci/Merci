@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import apiService from "../services/api.service";
 import {Card} from 'react-bootstrap'
+import socket from "./Socket";
 
 import GoogleMap from "./googleMap";
 
@@ -45,6 +46,7 @@ export default function CreateFavour() {
         });
       })
       .then((_) => {
+        socket.emit('createdFavour',[])
         navigate(`/favours/myList/${user._id}`);
       });
   }

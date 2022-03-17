@@ -18,6 +18,10 @@ io.on('connection', (socket) => {
   socket.on('acceptedFavour',()=>{
     io.emit('updateFavours',[])
   })
+
+  socket.on('createdFavour',()=>{
+    io.emit('updateFavours',[])
+  })
 });
 
 server.listen(PORT, () => {
