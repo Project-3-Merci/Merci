@@ -14,7 +14,7 @@ function AllFavoursPage() {
     // Send the token through the request "Authorization" Headers
     apiService
       .getAll("favours")
-      .then((response) => setFavours(response.data))
+      .then((response) => setFavours(response.data.reverse()))
       .catch((error) => console.log(error));
   };
 
@@ -35,7 +35,9 @@ function AllFavoursPage() {
     <div>
       <h1 className="mt-2">All Favours</h1>
 
-      {favours.map((favour) => {
+      {
+        
+      favours.map((favour) => {
         if (!favour.taker && favour.asker._id !== user?._id)
           return (
             <div key={favour._id} className="card bg-dark" style={{color:"white", marginBottom:"5px", padding:"6px", paddingTop:"15px", width:"375px", maxWidth:"375px"}}>
