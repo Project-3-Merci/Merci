@@ -161,7 +161,7 @@
   background-color: transparent !important;
   display: flex !important;
   flex-direction: row;
-  justify-content: space-evenly !important;
+  justify-content: flex-start !important;
   align-items: center;
 }
 
@@ -178,8 +178,7 @@
 }
 
 .chat-img{
-  position: absolute;
-  left: 25px;
+  margin: 0;
   width: 70px;
   height: 70px;
   border-radius: 35px;
@@ -187,19 +186,47 @@
   box-shadow: 1px 1px 3px black;
 }
 
+.chat-img-container{
+  padding-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+}
+
 .page-title{
   font-family: 'Inter', sans-serif;
 }
 
 .chat-message-preview{
-  width: 100%;
+  width: 70%;
+  overflow: hidden;
   display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
 }
 
 .chat-message-time{
   position: absolute;
+  margin: 0;
   right: 10px;
+  bottom: 0px;
+  font-size: 0.7rem !important;
 }
+
+.chat-preview-content{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  overflow: hidden;
+  width: 100%;
+}
+.message-preview-content{
+  font-size: 0.7rem !important;
+  text-align: left;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

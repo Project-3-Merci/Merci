@@ -70,7 +70,7 @@ export default function ChatList() {
     }
 
         return !messages.length ? (
-            <div className="chat-page">
+            <div className="chat-page centered">
                     <h2>{receiver.name}</h2>
                 <div className="chat-box">
                     
