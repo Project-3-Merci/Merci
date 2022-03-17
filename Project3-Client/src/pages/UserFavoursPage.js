@@ -3,6 +3,7 @@ import { useParams, Navigate } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import FavourCard from "../components/FavourCard";
 import apiService from "../services/api.service";
+import socket from "../components/Socket";
 
 export default function UserFavoursPage(props) {
   const { isLoggedIn, user, isLoadding } = useContext(AuthContext);
@@ -27,19 +28,26 @@ export default function UserFavoursPage(props) {
     getRequestedFavours();
   }, []);
 
+  
   const getAcceptedFavours = () => {
     apiService
-      .getOne("favours/myList", userId)
-      .then((response) => {
-        setAcceptedFavours(response.data.acceptedFavours);
-      })
-      .catch((error) => console.log(error));
+    .getOne("favours/myList", userId)
+    .then((response) => {
+      setAcceptedFavours(response.data.acceptedFavours);
+    })
+    .catch((error) => console.log(error));
   };
-
+  
   useEffect(() => {
     getAcceptedFavours();
   }, []);
-
+  
+  useEffect(() => {
+    socket.on('updateFavours', () => {
+      getRequestedFavours();
+      getAcceptedFavours();
+    })
+}, []);
 
   const handleChangeView = () =>{
     setChangeView(!changeView)  

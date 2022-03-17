@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../context/auth.context";
 import apiService from "../services/api.service";
+import socket from "../components/Socket";
 
 function AllFavoursPage() {
   const [favours, setFavours] = useState([]);
@@ -22,6 +23,12 @@ function AllFavoursPage() {
   useEffect(() => {
     getAllFavours();
   }, []);
+
+  useEffect(() => {
+    socket.on('updateFavours', () => {
+      getAllFavours();
+    })
+}, []);
 
   
   return (
@@ -51,6 +58,7 @@ function AllFavoursPage() {
                             user2: favour.asker._id,
                           });
                           getAllFavours();
+                          socket.emit('acceptedFavour', [])
                         });
                     }}
                     className="btn btn-outline-light border-success text-success"
