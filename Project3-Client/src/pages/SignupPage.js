@@ -39,26 +39,41 @@ function SignupPage(props) {
 
   
   return (
-    <div className="SignupPage">
-      <h1>Sign Up</h1>
+    <div className="card bg-dark login-card">
+      
+      <div className="centered text-signup">
+        <h1>Sign Up</h1>
+      </div>
 
       <form onSubmit={handleSignupSubmit}>
-        <label>Email:</label>
+        <div className="centered text-signup">
+          <label>Email:</label>
+        </div>
+        
         <input type="email" name="email" value={email} onChange={handleEmail} />
-
+        <div className="centered text-signup">
         <label>Password:</label>
+        </div>
         <input type="password" name="password" value={password} onChange={handlePassword} />
-
+        <div className="text-signup centered">
         <label>Name:</label>
+        </div>
+        <div>
         <input type="text" name="name" value={name} onChange={handleName} />
-
-        <button type="submit">Sign Up</button>
+        </div>
+        <button className="btn btn-outline-light border-white" type="submit">Sign Up</button>
       </form>
 
       { errorMessage && <p className="error-message">{errorMessage}</p> }
-
+      <div className="text-signup">
       <p>Already have account?</p>
+      </div>
+      <div className="centered">
+      <div className="text-signup btn btn-outline-light border-white">
       <Link to={"/login"}> Login</Link>
+      </div>
+      </div>
+     
     </div>
   )
 }
