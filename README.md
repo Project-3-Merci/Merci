@@ -66,31 +66,6 @@ User profile:
 
 - Mapbox
 
-
-## Services
-
-- Auth Service
-  - auth.login(user)
-  - auth.signup(user)
-  - auth.logout()
-  - auth.me()
-  - auth.getUser() // synchronous
-- Tournament Service
-  - tournament.list()
-  - tournament.detail(id)
-  - tournament.add(id)
-  - tournament.delete(id)
-  
-- Player Service 
-
-  - player.detail(id)
-  - player.add(id)
-  - player.delete(id)
-
-- Game Service
-
-  - Game.put(id)
-
 <br>
 
 
@@ -107,11 +82,12 @@ User model
   password: { type: String, required: true },
   name: { type: String, required: true, unique: true },
   aboutMe: {type:String, default: ""},
-  age :{type: Number},
+  age :{type: Number, default: 18},
   profileImg: { type: String, default:"http://cdn.onlinewebfonts.com/svg/img_574534.png"},
   acceptedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
   requestedFavours: [{type: Schema.Types.ObjectId, ref:"favours"}],
-  toke: {type: Number, default: 100}
+  token: {type: Number, default: 100},
+  chats:[{type: Schema.Types.ObjectId, ref:"chat"}]
 }
 ```
 
@@ -120,13 +96,15 @@ Favours model
 
 ```javascript
  {
-  asker: {type: Schema.Types.ObjectId, ref:"user"},
-  taker: {type: Schema.Types.ObjectId, ref:"user", default: null},
-  description: {type: String},
-  location: {type: String},
-  locationLat: {type: Number},
-  locationLong: {type: Number},
-  token: {type: Number}
+   asker: { type: Schema.Types.ObjectId, ref:"user" , default: null},
+  taker: { type: Schema.Types.ObjectId, ref:"user", default: null },
+  title: { type: String, required: true },
+  description: { type: String, required: true },
+  location: { type: String },
+  lat:{type:Number},
+  lng:{type:Number},
+  token: { type: Number },
+  photo:{type: String}
  }
 ```
 
@@ -134,11 +112,24 @@ Message model
 
 ```javascript
  {
-   content: {type: String},
-   sender: {type: Schema.Types.ObjectId, ref:"user"},
-   receiver: {type: Schema.Types.ObjectId, ref:"user"}
+   content: { type: String },
+  sender: { type: Schema.Types.ObjectId, ref:"user" },
+  receiver: { type: Schema.Types.ObjectId, ref:"user"}
+},{
+  timestamps:true
  }
 ```
+
+Chat model
+
+```javascript
+ {
+  user1: { type: Schema.Types.ObjectId, ref:"user"},
+  user2: { type: Schema.Types.ObjectId, ref:"user"},
+  messagess :[{ type: Schema.Types.ObjectId, ref:"message"}]
+ }
+```
+
 <br>
 
 
