@@ -65,14 +65,11 @@ function SignupPage(props) {
       </form>
 
       { errorMessage && <p className="error-message">{errorMessage}</p> }
+      
       <div className="text-signup">
-      <p>Already have account?</p>
+      <Link to={"/login"}> <p>Already have account?</p></Link>
       </div>
-      <div className="centered">
-      <div className="text-signup btn btn-outline-light border-white">
-      <Link to={"/login"}> Login</Link>
-      </div>
-      </div>
+
      
     </div>
   )
