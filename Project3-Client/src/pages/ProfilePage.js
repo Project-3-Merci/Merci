@@ -23,13 +23,13 @@ export default function ProfilePage(props) {
   return !isLoading && !isLoggedIn ? (
     <Navigate to="/login" />
   ) : (
-    <div className="card table-responsive">
+    <div className="">
       
       <h1 className="card-title">Profile Page</h1>
-      <div className="internal-box btn btn-dark">
-      <img className="rounded img-fluid"  src={profile.profileImg} alt="profile image" width={80}/>
+      <div className="btn btn-dark" style={{width: "300px", maxWidth: "375px"}}>
+      <img className="rounded img-fluid border border-warning"  src={profile.profileImg} alt="profile image" width={80}/>
       <h2>{profile.name}</h2>
-      <h3>{profile.email}</h3>
+      <h4>{profile.email}</h4>
       <h4>Age: {profile.age}</h4>
       <h4>About me: {profile.aboutMe}</h4>
       <p>tokens: {profile.token}</p>

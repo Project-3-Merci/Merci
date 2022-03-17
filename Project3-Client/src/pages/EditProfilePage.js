@@ -58,10 +58,10 @@ function EditProfilePage(props) {
   };
 
   return (
-    <div className="card edit-card-big ">
-      <h3 className="text">Edit Profile</h3>
+    <div className="centered" style={{maxWidth: "375px"}}>
+      <h3 className="text" style={{color: "black"}}>Edit Profile</h3>
 
-      <form onSubmit={handleFormSubmit} className="card bg-dark edit-card">
+      <form onSubmit={handleFormSubmit} className="card bg-dark edit-card" style={{marginBottom: "20px", maxWidth: "375px", width:"20rem", height: "580px", maxHeight: "580px"}}>
         <div className="centered">
         <label className="name">Image</label>
         </div>

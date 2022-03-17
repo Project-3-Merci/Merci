@@ -61,7 +61,7 @@ function LoginPage(props) {
 
       <p>Don't have an account yet?</p>
       <div className="centered login-sighup">
-      <Link to={"/signup"}> Sign Up</Link>
+      <Link className="btn btn-outline-light border-white" to={"/signup"}> Sign Up</Link>
       </div>
     </div>
   )
